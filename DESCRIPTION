@@ -19,7 +19,8 @@ BugReports: https://github.com/egeulgen/driveR/issues
 Depends: 
     R (>= 4.0)
 Imports:
-    caret
+    caret,
+    randomForest
 Suggests: 
     testthat,
     covr
