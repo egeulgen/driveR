@@ -21,5 +21,5 @@ Create Coding Impact Meta-prediction Score Data Frame
 \examples{
 path2annovar_csv <- system.file("extdata/LGG-US.hg19_multianno.csv",
 package = "driveR")
-metapred_df <- create_metaprediction_score_df(path2annovar_csv)
+metapred_df <- driveR:::create_metaprediction_score_df(path2annovar_csv)
 }

@@ -10,9 +10,9 @@
 #' @examples
 #' path2annovar_csv <- system.file("extdata/LGG-US.hg19_multianno.csv",
 #' package = "driveR")
-#' metapred_df <- create_metaprediction_score_df(path2annovar_csv)
+#' metapred_df <- driveR:::create_metaprediction_score_df(path2annovar_csv)
 create_metaprediction_score_df <- function(annovar_csv_path) {
-    anno_bechmark_df <- read.csv(annovar_csv_path)
+    anno_bechmark_df <- utils::read.csv(annovar_csv_path)
 
     # filter out missing scores
     anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$SIFT_score != ".", ]
@@ -52,7 +52,7 @@ create_metaprediction_score_df <- function(annovar_csv_path) {
     anno_bechmark_df$DANN_score <- as.numeric(anno_bechmark_df$DANN_score)
 
     # Predict metapredictor probabilities
-    pred_df <- predict(metapredictor_model, newdata = anno_bechmark_df, type = "prob")
+    pred_df <- stats::predict(metapredictor_model, newdata = anno_bechmark_df, type = "prob")
     anno_bechmark_df$metaprediction_score <- pred_df$non.neutral
 
     metapred_scores_df <- anno_bechmark_df[, c("Gene.refGene", "metaprediction_score")]
