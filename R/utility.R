@@ -8,7 +8,7 @@
 #' }
 #'
 #' @examples
-#' path2annovar_csv <- system.file("extdata/LGG-US.hg19_multianno.csv",
+#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
 #' package = "driveR")
 #' metapred_df <- driveR:::create_metaprediction_score_df(path2annovar_csv)
 create_metaprediction_score_df <- function(annovar_csv_path) {
