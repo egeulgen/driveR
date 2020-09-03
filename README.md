@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![Codecov test
+coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://codecov.io/gh/egeulgen/driveR?branch=master)
+[![Travis build
+status](https://travis-ci.com/egeulgen/driveR.svg?branch=master)](https://travis-ci.com/egeulgen/driveR)
 <!-- badges: end -->
 
 The goal of driveR is to …
