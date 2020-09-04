@@ -2,6 +2,7 @@
 
 language: R
 cache: packages
+r: bioc-release
 
 # for codecov
 r_packages:
