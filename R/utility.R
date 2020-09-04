@@ -111,7 +111,7 @@ create_SCNA_score_df <- function(scna_df,
     ### format check
     nec_cols <- c("chr", "start", "end", "log2ratio")
     if (!all(nec_cols %in% colnames(scna_df))) {
-        stop("`scna_df` must contain all of: ",
+        stop("`scna_df` should contain all of: ",
              paste(dQuote(nec_cols), collapse = ", "))
     }
 
@@ -213,4 +213,55 @@ create_SCNA_score_df <- function(scna_df,
     colnames(final_scna_df)[1] <- "gene_symbol"
 
     return(final_scna_df)
+}
+
+#' Determine Hotspot Containing Genes
+#'
+#' @inheritParams create_metaprediction_score_df
+#' @param threshold (integer) threshold for the minimum number of cases with
+#' a certain mutation in COSMIC (default = 5)
+#'
+#' @return vector of gene symbols of genes containing hotspot mutation(s)
+#'
+#' @examples
+#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+#'                                 package = "driveR")
+#' hotspot_genes <- driveR:::determine_hotspot_genes(path2annovar_csv)
+determine_hotspot_genes <- function(annovar_csv_path, threshold = 5L) {
+    # argument check
+    if (!is.numeric(threshold))
+        stop("`threshold` should be numeric")
+
+    annovar_df <- utils::read.csv(annovar_csv_path)
+
+    # parse COSMIC occurences
+    annovar_df$coding_occurence <- vapply(annovar_df$cosmic91_coding,
+                                          function(x) {
+                                              tmp <- unlist(strsplit(x, ";"))[2]
+                                              tmp <- sub("OCCURENCE=", "", tmp)
+                                              tmp <- unlist(strsplit(tmp, ","))
+                                              tmp <- as.numeric(sub("\\(.*\\)", "", tmp))
+                                              return(sum(tmp))
+                                          }, 1)
+
+    annovar_df$noncoding_occurence <- vapply(annovar_df$cosmic91_noncoding,
+                                             function(x) {
+                                                 tmp <- unlist(strsplit(x, ";"))[2]
+                                                 tmp <- sub("OCCURENCE=", "", tmp)
+                                                 tmp <- unlist(strsplit(tmp, ","))
+                                                 tmp <- as.numeric(sub("\\(.*\\)", "", tmp))
+                                                 return(sum(tmp))
+                                             }, 1)
+
+    annovar_df$coding_occurence <- ifelse(is.na(annovar_df$coding_occurence), 0, annovar_df$coding_occurence)
+    annovar_df$noncoding_occurence <- ifelse(is.na(annovar_df$noncoding_occurence), 0, annovar_df$noncoding_occurence)
+
+    # keep first symbol if multiple symbols exist
+    annovar_df$Gene.refGene[grepl(";", annovar_df$Gene.refGene)] <- vapply(annovar_df$Gene.refGene[grepl(";", annovar_df$Gene.refGene)], function(x) unlist(strsplit(x, ";"))[1], "char")
+
+    # determine genes containing hotspot mutation
+    cond <- (annovar_df$coding_occurence > threshold) | (annovar_df$noncoding_occurence > threshold)
+    hotspot_genes <- unique(annovar_df$Gene.refGene[cond])
+
+    return(hotspot_genes)
 }

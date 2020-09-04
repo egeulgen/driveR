@@ -25,6 +25,18 @@ test_that("`create_SCNA_score_df` format check works", {
     tmp <- imielinski_scna_table[, 1:3]
     nec_cols <- c("chr", "start", "end", "log2ratio")
     expect_error(driveR:::create_SCNA_score_df(tmp),
-                 paste0("`scna_df` must contain all of: ",
+                 paste0("`scna_df` should contain all of: ",
                         paste(dQuote(nec_cols), collapse = ", ")))
+})
+
+# determine_hotspot_genes -------------------------------------------------
+test_that("`determine_hotspot_genes` works", {
+    path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+                                    package = "driveR")
+    expect_is(hotspot_genes <- driveR:::determine_hotspot_genes(path2annovar_csv), "character")
+})
+
+test_that("`determine_hotspot_genes` arg check works", {
+    expect_error(driveR:::determine_hotspot_genes(path2annovar_csv, threshold = "INVALID"),
+                 "`threshold` should be numeric")
 })
