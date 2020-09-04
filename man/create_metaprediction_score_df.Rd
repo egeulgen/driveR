@@ -10,9 +10,9 @@ create_metaprediction_score_df(annovar_csv_path)
 \item{annovar_csv_path}{path to ANNOVAR csv output file}
 }
 \value{
-data frame of meta-prediction scores containing 2 cclumns: \describe{
-\item{gene_symbol}{ID of the enriched term}
-\item{metaprediction_score}{the metapredictor impact score}
+data frame of meta-prediction scores containing 2 columns: \describe{
+\item{gene_symbol}{HGNC gene symbol}
+\item{metaprediction_score}{metapredictor impact score}
 }
 }
 \description{

@@ -31,7 +31,15 @@ Depends:
     R (>= 4.0)
 Imports:
     caret,
-    randomForest
+    randomForest,
+    Homo.sapiens,
+    dplyr,
+    GenomicRanges,
+    GenomeInfoDb,
+    GenomicFeatures,
+    TxDb.Hsapiens.UCSC.hg19.knownGene,
+    S4Vectors,
+    org.Hs.eg.db
 Suggests: 
     testthat,
     covr
