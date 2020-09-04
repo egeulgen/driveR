@@ -5,13 +5,29 @@
 
 <!-- badges: start -->
 
-[![Codecov test
-coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://codecov.io/gh/egeulgen/driveR?branch=master)
 [![Travis build
 status](https://travis-ci.com/egeulgen/driveR.svg?branch=master)](https://travis-ci.com/egeulgen/driveR)
+[![Codecov test
+coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://codecov.io/gh/egeulgen/driveR?branch=master)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-The goal of driveR is to …
+Cancer genomes contain large numbers of somatic alterations but few
+genes drive tumor development. Identifying molecular cancer driver genes
+is critical for precision oncology. Most of current approaches either
+identify driver genes based on mutational recurrence or using estimated
+scores predicting the functional consequences of mutations. driveR is a
+tool for scoring and ranking genes from somatic whole exome/genome
+sequencing according to cancer driverness. As features, driveR uses
+coding impact metaprediction scores, non-coding impact scores, somatic
+copy number alteration scores, hotspot gene/double-hit gene condition,
+‘phenolyzer’ gene scores and memberships to cancer-related KEGG
+pathways. It uses these features to calculate cancer-type-specific
+driverness scores for each gene using the related task of a multi-task
+learning model.
 
 ## Installation
 
