@@ -33,9 +33,6 @@ overlaps an MCR region more than this threshold, the gene is assigned the
 MCR's SCNA density}
 }
 \value{
-data frame containing gene-level SCNA events (that are concordant with
-MCRs) with proxy SCNA scores (\code{CNVdensity..CNV.Mb.})
-
 data frame of SCNA proxy scores containing 2 columns: \describe{
 \item{gene_symbol}{HGNC gene symbol}
 \item{SCNA_density}{SCNA proxy score. SCNA density (SCNA/Mb) of the minimal common region (MCR) in which the gene is located.}

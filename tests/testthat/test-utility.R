@@ -15,18 +15,23 @@ test_that("`create_metaprediction_score_df` works", {
 })
 
 
+# create_gene_level_scna_df -----------------------------------------------
+test_that("`create_gene_level_scna_df` works", {
+    expect_is(driveR:::create_gene_level_scna_df(imielinski_scna_table), "data.frame")
+})
+
+test_that("`create_gene_level_scna_df` format check works", {
+    tmp <- imielinski_scna_table[, 1:3]
+    nec_cols <- c("chr", "start", "end", "log2ratio")
+    expect_error(driveR:::create_gene_level_scna_df(tmp),
+                 paste0("`scna_df` should contain all of: ",
+                        paste(dQuote(nec_cols), collapse = ", ")))
+})
+
 # create_SCNA_score_df ----------------------------------------------------
 test_that("`create_SCNA_score_df` works", {
     expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(imielinski_scna_table), "data.frame")
     expect_equal(ncol(SCNA_scores_df), 2)
-})
-
-test_that("`create_SCNA_score_df` format check works", {
-    tmp <- imielinski_scna_table[, 1:3]
-    nec_cols <- c("chr", "start", "end", "log2ratio")
-    expect_error(driveR:::create_SCNA_score_df(tmp),
-                 paste0("`scna_df` should contain all of: ",
-                        paste(dQuote(nec_cols), collapse = ", ")))
 })
 
 # determine_hotspot_genes -------------------------------------------------

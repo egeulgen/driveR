@@ -38,7 +38,8 @@ Imports:
     GenomicFeatures,
     TxDb.Hsapiens.UCSC.hg19.knownGene,
     S4Vectors,
-    org.Hs.eg.db
+    org.Hs.eg.db,
+    rlang
 Depends: 
     R (>= 4.0)
 Suggests: 

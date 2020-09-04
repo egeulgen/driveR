@@ -67,7 +67,7 @@ create_metaprediction_score_df <- function(annovar_csv_path) {
     return(metapred_scores_df)
 }
 
-#' Create SCNA Score Data Frame
+#' Create Gene-level SCNA Data Frame
 #'
 #' @param scna_df the SCNA segments data frame. Must contain: \describe{
 #'   \item{chr}{chromosome the segment is located in}
@@ -75,39 +75,21 @@ create_metaprediction_score_df <- function(annovar_csv_path) {
 #'   \item{end}{end position of the segment}
 #'   \item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of the segment}
 #' }
-#' @param log2_ratio_threshold the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
-#' ratio threshold for keeping high-confidence SCNA events (default = 0.25)
 #' @param gene_overlap_threshold the percentage threshold for the overlap between
 #' a segment and a transcript (default = 25). This means that if only a segment
 #' overlaps a transcript more than this threshold, the transcript is assigned
 #' the segment's SCNA event.
-#' @param MCR_overlap_threshold the percentage threshold for the overlap between
-#' a gene and an MCR region (default = 25). This means that if only a gene
-#' overlaps an MCR region more than this threshold, the gene is assigned the
-#' MCR's SCNA density
 #'
-#' @return data frame containing gene-level SCNA events (that are concordant with
-#' MCRs) with proxy SCNA scores (`CNVdensity..CNV.Mb.`)
-
-#' @return data frame of SCNA proxy scores containing 2 columns: \describe{
-#'   \item{gene_symbol}{HGNC gene symbol}
-#'   \item{SCNA_density}{SCNA proxy score. SCNA density (SCNA/Mb) of the minimal common region (MCR) in which the gene is located.}
-#' }
+#' @return data frame of gene-level SCNA events, i.e. table of genes overlapped
+#' by SCNA segments.
 #'
-#' @details The function first aggregates SCNA \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio
-#' on gene-level (by keeping the ratio with the maximal \ifelse{html}{\out{|log<sub>2</sub>|}}{\eqn{|log_2|}}
-#' ratio over all the SCNA segments overlapping a gene). Next, it identifies the
-#' minimal common regions (MCRs) that the genes overlap and finally assigns the
-#' SCNA density (SCNA/Mb) values as proxy SCNA scores.
+#' @importFrom rlang .data
 #'
 #' @examples
 #' \dontrun{
-#' SCNA_scores_df <- driveR:::create_SCNA_score_df(imielinski_scna_table)
+#' gene_scna_df <- driveR:::create_gene_level_scna_df(imielinski_scna_table)
 #' }
-create_SCNA_score_df <- function(scna_df,
-                                 log2_ratio_threshold = 0.25,
-                                 gene_overlap_threshold = 25,
-                                 MCR_overlap_threshold = 25){
+create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
     ### format check
     nec_cols <- c("chr", "start", "end", "log2ratio")
     if (!all(nec_cols %in% colnames(scna_df))) {
@@ -139,13 +121,13 @@ create_SCNA_score_df <- function(scna_df,
     genes_df <- as.data.frame(genes_df %>%
                                   dplyr::mutate(segment_start = as.integer(GenomicRanges::start(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)])))) %>%
                                   dplyr::mutate(segment_end = as.integer(GenomicRanges::end(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)])))) %>%
-                                  dplyr::mutate(segment_length_Mb = round((as.numeric((segment_end - segment_start + 1) / 1e6)), digits = 4)) %>%
+                                  dplyr::mutate(segment_length_Mb = round((as.numeric((.data$segment_end - .data$segment_start + 1) / 1e6)), digits = 4)) %>%
                                   dplyr::mutate(transcript_start = GenomicRanges::start(ranges)) %>%
                                   dplyr::mutate(transcript_end = GenomicRanges::end(ranges)) %>%
                                   dplyr::mutate(chrom = as.character(GenomeInfoDb::seqnames(ranges))) %>%
                                   dplyr::rowwise() %>%
                                   dplyr::mutate(transcript_overlap_percent =
-                                                    round(as.numeric((min(transcript_end, segment_end) - max(segment_start, transcript_start)) / (transcript_end - transcript_start)) * 100, digits = 2)))
+                                                    round(as.numeric((min(.data$transcript_end, .data$segment_end) - max(.data$segment_start, .data$transcript_start)) / (.data$transcript_end - .data$transcript_start)) * 100, digits = 2)))
 
     # filter for `gene_overlap_threshold`
     genes_df <- genes_df[genes_df$transcript_overlap_percent >= gene_overlap_threshold, ]
@@ -154,6 +136,43 @@ create_SCNA_score_df <- function(scna_df,
     all_syms_tbl <- as.data.frame(org.Hs.eg.db::org.Hs.egSYMBOL)
     genes_df$symbol <- all_syms_tbl$symbol[match(genes_df$gene_id, all_syms_tbl$gene_id)]
     genes_df <- genes_df[!is.na(genes_df$symbol), ]
+
+    return(genes_df)
+}
+
+#' Create SCNA Score Data Frame
+#'
+#' @inheritParams create_gene_level_scna_df
+#' @param log2_ratio_threshold the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
+#' ratio threshold for keeping high-confidence SCNA events (default = 0.25)
+#' @param MCR_overlap_threshold the percentage threshold for the overlap between
+#' a gene and an MCR region (default = 25). This means that if only a gene
+#' overlaps an MCR region more than this threshold, the gene is assigned the
+#' MCR's SCNA density
+#'
+#' @return data frame of SCNA proxy scores containing 2 columns: \describe{
+#'   \item{gene_symbol}{HGNC gene symbol}
+#'   \item{SCNA_density}{SCNA proxy score. SCNA density (SCNA/Mb) of the minimal common region (MCR) in which the gene is located.}
+#' }
+#'
+#' @details The function first aggregates SCNA \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio
+#' on gene-level (by keeping the ratio with the maximal \ifelse{html}{\out{|log<sub>2</sub>|}}{\eqn{|log_2|}}
+#' ratio over all the SCNA segments overlapping a gene). Next, it identifies the
+#' minimal common regions (MCRs) that the genes overlap and finally assigns the
+#' SCNA density (SCNA/Mb) values as proxy SCNA scores.
+#'
+#' @examples
+#' \dontrun{
+#' SCNA_scores_df <- driveR:::create_SCNA_score_df(imielinski_scna_table)
+#' }
+create_SCNA_score_df <- function(scna_df,
+                                 log2_ratio_threshold = 0.25,
+                                 gene_overlap_threshold = 25,
+                                 MCR_overlap_threshold = 25){
+    #### determine gene-level log2-ratios
+    # gene-level SCNA df
+    genes_df <- create_gene_level_scna_df(scna_df = scna_df,
+                                          gene_overlap_threshold = gene_overlap_threshold)
 
     # discard sex chromosomes
     genes_df <- genes_df[!genes_df$chr %in% c("chrX", "chrY"), ]
@@ -192,6 +211,7 @@ create_SCNA_score_df <- function(scna_df,
     final_scna_df <- data.frame(chr = as.vector(GenomeInfoDb::seqnames(ranges)),
                                 as.data.frame(S4Vectors::mcols(ranges)))
 
+    `%>%` <- dplyr::`%>%`
     final_scna_df <- as.data.frame(final_scna_df %>%
                                        dplyr::mutate(transcript_start = as.integer(GenomicRanges::start(GenomicRanges::ranges(agg_gr[S4Vectors::queryHits(hits)])))) %>%
                                        dplyr::mutate(transcript_end = as.integer(GenomicRanges::end(GenomicRanges::ranges(agg_gr[S4Vectors::queryHits(hits)])))) %>%
@@ -200,7 +220,7 @@ create_SCNA_score_df <- function(scna_df,
                                        dplyr::mutate(chrom = as.character(GenomeInfoDb::seqnames(ranges))) %>%
                                        dplyr::rowwise() %>%
                                        dplyr::mutate(MCR_overlap_percent =
-                                                         round(as.numeric((min(MCR_end, transcript_end) - max(transcript_start, MCR_start)) / (MCR_end - MCR_start)) * 100, digits = 2)))
+                                                         round(as.numeric((min(.data$MCR_end, .data$transcript_end) - max(.data$transcript_start, .data$MCR_start)) / (.data$MCR_end - .data$MCR_start)) * 100, digits = 2)))
     # filter for `MCR_overlap_threshold`
     final_scna_df <- final_scna_df[final_scna_df$MCR_overlap_percent >= MCR_overlap_threshold, ]
 
