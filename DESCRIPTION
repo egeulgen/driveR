@@ -1,5 +1,5 @@
 Package: driveR
-Title: Rank Genes According to Cancer Driverness
+Title: Rank Genes According to Cancer Driverness using Individual Sequencing Results
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Ege",
@@ -13,13 +13,13 @@ Description: Cancer genomes contain large numbers of somatic alterations but few
     critical for precision oncology. Most of current approaches either identify 
     driver genes based on mutational recurrence or using estimated scores 
     predicting the functional consequences of mutations. driveR is a tool for 
-    scoring and ranking genes from somatic whole exome/genome sequencing 
-    according to cancer driverness. As features, driveR uses coding impact 
-    metaprediction scores, non-coding impact scores, somatic copy number 
-    alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene
-    scores and memberships to cancer-related KEGG pathways. It uses these 
-    features to calculate cancer-type-specific driverness scores for each gene 
-    using the related task of a multi-task learning model.
+    scoring and ranking genes from indiviual somatic whole exome/genome 
+    sequencing data  according to cancer driverness. As features, driveR uses 
+    coding impact metaprediction scores, non-coding impact scores, somatic copy 
+    number alteration scores, hotspot gene/double-hit gene condition, 
+    'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It 
+    uses these features to calculate cancer-type-specific driverness scores for 
+    each gene using the related task of a multi-task learning model.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
