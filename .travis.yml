@@ -1,9 +1,8 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
 cache: packages
-r: bioc-devel
+r: bioc-release
 
 # for codecov
 r_packages:
