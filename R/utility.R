@@ -300,9 +300,9 @@ determine_hotspot_genes <- function(annovar_csv_path, threshold = 5L) {
 #' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
 #'                                 package = "driveR")
 #' \dontrun{
-#' dhit_genes <- driveR:::determine_double_hits(path2annovar_csv, imielinski_scna_table)
+#' dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, imielinski_scna_table)
 #' }
-determine_double_hits <- function(annovar_csv_path,
+determine_double_hit_genes <- function(annovar_csv_path,
                                   scna_df,
                                   gene_overlap_threshold = 25,
                                   log2_threshold = -1) {
