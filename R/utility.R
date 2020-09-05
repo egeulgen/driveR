@@ -90,12 +90,18 @@ create_metaprediction_score_df <- function(annovar_csv_path) {
 #' gene_scna_df <- driveR:::create_gene_level_scna_df(imielinski_scna_table)
 #' }
 create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
-    ### format check
+    ### argument checks
     nec_cols <- c("chr", "start", "end", "log2ratio")
     if (!all(nec_cols %in% colnames(scna_df))) {
         stop("`scna_df` should contain all of: ",
              paste(dQuote(nec_cols), collapse = ", "))
     }
+
+    if (!is.numeric(gene_overlap_threshold))
+        stop("`gene_overlap_threshold` should be numberic")
+
+    if (gene_overlap_threshold < 0 | gene_overlap_threshold > 100)
+        stop("`gene_overlap_threshold` should be between 0-100")
 
     #### determine gene-level log2-ratios
     # GRanges objects
@@ -169,6 +175,16 @@ create_SCNA_score_df <- function(scna_df,
                                  log2_ratio_threshold = 0.25,
                                  gene_overlap_threshold = 25,
                                  MCR_overlap_threshold = 25){
+    ### argument checks
+    if (!is.numeric(log2_ratio_threshold))
+        stop("`log2_ratio_threshold` should be numberic")
+
+    if (!is.numeric(MCR_overlap_threshold))
+        stop("`MCR_overlap_threshold` should be numberic")
+
+    if (MCR_overlap_threshold < 0 | MCR_overlap_threshold > 100)
+        stop("`MCR_overlap_threshold` should be between 0-100")
+
     #### determine gene-level log2-ratios
     # gene-level SCNA df
     genes_df <- create_gene_level_scna_df(scna_df = scna_df,
@@ -306,6 +322,10 @@ determine_double_hit_genes <- function(annovar_csv_path,
                                   scna_df,
                                   gene_overlap_threshold = 25,
                                   log2_threshold = -1) {
+    ### argument checks
+    if (!is.numeric(log2_threshold))
+        stop("`log2_threshold` should be numberic")
+
     ### gene-level hom. loss df
     genes_df <- create_gene_level_scna_df(scna_df = scna_df,
                                           gene_overlap_threshold = gene_overlap_threshold)
