@@ -45,3 +45,11 @@ test_that("`determine_hotspot_genes` arg check works", {
     expect_error(driveR:::determine_hotspot_genes(path2annovar_csv, threshold = "INVALID"),
                  "`threshold` should be numeric")
 })
+
+# determine_double_hits ---------------------------------------------------
+test_that("`determine_double_hits` works", {
+    path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+                                    package = "driveR")
+    expect_is(dhit_genes <- driveR:::determine_double_hits(path2annovar_csv, imielinski_scna_table), "character")
+})
+

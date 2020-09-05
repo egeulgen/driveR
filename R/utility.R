@@ -285,3 +285,44 @@ determine_hotspot_genes <- function(annovar_csv_path, threshold = 5L) {
 
     return(hotspot_genes)
 }
+
+#' Determine Double-Hit Genes
+#'
+#' @inheritParams create_metaprediction_score_df
+#' @inheritParams create_gene_level_scna_df
+#' @param log2_threshold \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold
+#' for determining homozygous loss events (default = -1)
+#'
+#' @return vector of gene symbols that are subject to double-hit event(s), i.e.
+#' non-synonymous mutation + homozygous CN loss
+#'
+#' @examples
+#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+#'                                 package = "driveR")
+#' \dontrun{
+#' dhit_genes <- driveR:::determine_double_hits(path2annovar_csv, imielinski_scna_table)
+#' }
+determine_double_hits <- function(annovar_csv_path,
+                                  scna_df,
+                                  gene_overlap_threshold = 25,
+                                  log2_threshold = -1) {
+    ### gene-level hom. loss df
+    genes_df <- create_gene_level_scna_df(scna_df = scna_df,
+                                          gene_overlap_threshold = gene_overlap_threshold)
+    # keep only hom. loss
+    loss_genes_df <- genes_df[genes_df$log2ratio < log2_threshold, ]
+
+    ### non-synonymous mutations df
+    annovar_df <- utils::read.csv(annovar_csv_path)
+    # exclude synonymous muts
+    non_syn_df <- annovar_df[annovar_df$ExonicFunc.refGene != "synonymous SNV", ]
+    # keep first symbol if multiple symbols exist
+    non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)] <- vapply(non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)], function(x) unlist(strsplit(x, ";"))[1], "char")
+
+    ### determine double-hit genes
+    tmp <- unique(loss_genes_df$symbol)
+    tmp2 <- unique(non_syn_df$Gene.refGene)
+    dhit_genes <- tmp[tmp %in% tmp2]
+
+    return(dhit_genes)
+}
