@@ -12,50 +12,50 @@
 #'                                 package = "driveR")
 #' metapred_df <- driveR:::create_metaprediction_score_df(path2annovar_csv)
 create_metaprediction_score_df <- function(annovar_csv_path) {
-    anno_bechmark_df <- utils::read.csv(annovar_csv_path)
+    annovar_df <- utils::read.csv(annovar_csv_path)
 
     # filter out missing scores
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$SIFT_score != ".", ]
-    anno_bechmark_df$SIFT_score <- as.numeric(anno_bechmark_df$SIFT_score)
+    annovar_df <- annovar_df[annovar_df$SIFT_score != ".", ]
+    annovar_df$SIFT_score <- as.numeric(annovar_df$SIFT_score)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$Polyphen2_HDIV_score != ".", ]
-    anno_bechmark_df$Polyphen2_HDIV_score <- as.numeric(anno_bechmark_df$Polyphen2_HDIV_score)
+    annovar_df <- annovar_df[annovar_df$Polyphen2_HDIV_score != ".", ]
+    annovar_df$Polyphen2_HDIV_score <- as.numeric(annovar_df$Polyphen2_HDIV_score)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$LRT_score != ".", ]
-    anno_bechmark_df$LRT_score <- as.numeric(anno_bechmark_df$LRT_score)
+    annovar_df <- annovar_df[annovar_df$LRT_score != ".", ]
+    annovar_df$LRT_score <- as.numeric(annovar_df$LRT_score)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$MutationTaster_score != ".", ]
-    anno_bechmark_df$MutationTaster_score <- as.numeric(anno_bechmark_df$MutationTaster_score)
+    annovar_df <- annovar_df[annovar_df$MutationTaster_score != ".", ]
+    annovar_df$MutationTaster_score <- as.numeric(annovar_df$MutationTaster_score)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$MutationAssessor_score != ".", ]
-    anno_bechmark_df$MutationAssessor_score <- as.numeric(anno_bechmark_df$MutationAssessor_score)
+    annovar_df <- annovar_df[annovar_df$MutationAssessor_score != ".", ]
+    annovar_df$MutationAssessor_score <- as.numeric(annovar_df$MutationAssessor_score)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$FATHMM_score != ".", ]
-    anno_bechmark_df$FATHMM_score <- as.numeric(anno_bechmark_df$FATHMM_score)
+    annovar_df <- annovar_df[annovar_df$FATHMM_score != ".", ]
+    annovar_df$FATHMM_score <- as.numeric(annovar_df$FATHMM_score)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$GERP.._RS != ".", ]
-    anno_bechmark_df$GERP.._RS <- as.numeric(anno_bechmark_df$GERP.._RS)
+    annovar_df <- annovar_df[annovar_df$GERP.._RS != ".", ]
+    annovar_df$GERP.._RS <- as.numeric(annovar_df$GERP.._RS)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$phyloP7way_vertebrate != ".", ]
-    anno_bechmark_df$phyloP7way_vertebrate <- as.numeric(anno_bechmark_df$phyloP7way_vertebrate)
+    annovar_df <- annovar_df[annovar_df$phyloP7way_vertebrate != ".", ]
+    annovar_df$phyloP7way_vertebrate <- as.numeric(annovar_df$phyloP7way_vertebrate)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$CADD_phred != ".", ]
-    anno_bechmark_df$CADD_phred <- as.numeric(anno_bechmark_df$CADD_phred)
+    annovar_df <- annovar_df[annovar_df$CADD_phred != ".", ]
+    annovar_df$CADD_phred <- as.numeric(annovar_df$CADD_phred)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$VEST3_score != ".", ]
-    anno_bechmark_df$VEST3_score <- as.numeric(anno_bechmark_df$VEST3_score)
+    annovar_df <- annovar_df[annovar_df$VEST3_score != ".", ]
+    annovar_df$VEST3_score <- as.numeric(annovar_df$VEST3_score)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$SiPhy_29way_logOdds != ".", ]
-    anno_bechmark_df$SiPhy_29way_logOdds <- as.numeric(anno_bechmark_df$SiPhy_29way_logOdds)
+    annovar_df <- annovar_df[annovar_df$SiPhy_29way_logOdds != ".", ]
+    annovar_df$SiPhy_29way_logOdds <- as.numeric(annovar_df$SiPhy_29way_logOdds)
 
-    anno_bechmark_df <- anno_bechmark_df[anno_bechmark_df$DANN_score != ".", ]
-    anno_bechmark_df$DANN_score <- as.numeric(anno_bechmark_df$DANN_score)
+    annovar_df <- annovar_df[annovar_df$DANN_score != ".", ]
+    annovar_df$DANN_score <- as.numeric(annovar_df$DANN_score)
 
     # Predict metapredictor probabilities
-    pred_df <- stats::predict(metapredictor_model, newdata = anno_bechmark_df, type = "prob")
-    anno_bechmark_df$metaprediction_score <- pred_df$non.neutral
+    pred_df <- stats::predict(metapredictor_model, newdata = annovar_df, type = "prob")
+    annovar_df$metaprediction_score <- pred_df$non.neutral
 
-    metapred_scores_df <- anno_bechmark_df[, c("Gene.refGene", "metaprediction_score")]
+    metapred_scores_df <- annovar_df[, c("Gene.refGene", "metaprediction_score")]
     colnames(metapred_scores_df) <- c("gene_symbol", "metaprediction_score")
 
     # keep first symbol if multiple symbols exist
