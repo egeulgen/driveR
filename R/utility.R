@@ -319,9 +319,9 @@ determine_hotspot_genes <- function(annovar_csv_path, threshold = 5L) {
 #' dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, imielinski_scna_table)
 #' }
 determine_double_hit_genes <- function(annovar_csv_path,
-                                  scna_df,
-                                  gene_overlap_threshold = 25,
-                                  log2_threshold = -1) {
+                                       scna_df,
+                                       gene_overlap_threshold = 25,
+                                       log2_threshold = -1) {
     ### argument checks
     if (!is.numeric(log2_threshold))
         stop("`log2_threshold` should be numberic")
