@@ -67,6 +67,37 @@ create_metaprediction_score_df <- function(annovar_csv_path) {
     return(metapred_scores_df)
 }
 
+#' Create Non-coding Impact Score Data Frame
+#'
+#' @inheritParams  create_metaprediction_score_df
+#'
+#' @return data frame of meta-prediction scores containing 2 columns: \describe{
+#'   \item{gene_symbol}{HGNC gene symbol}
+#'   \item{CADD_phred}{PHRED-scaled CADD score}
+#' }
+#'
+#' @examples
+#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+#'                                 package = "driveR")
+#' metapred_df <- driveR:::create_noncoding_impact_score_df(path2annovar_csv)
+create_noncoding_impact_score_df <- function(annovar_csv_path) {
+    annovar_df <- utils::read.csv(annovar_csv_path)
+    noncoding_df <- annovar_df[annovar_df$Func.refGene != "exonic", ]
+    noncoding_df <- noncoding_df[noncoding_df$CADD_phred != ".", ]
+    noncoding_df$CADD_phred <- as.numeric(noncoding_df$CADD_phred)
+    noncoding_scores_df <- noncoding_df[, c("Gene.refGene", "CADD_phred")]
+    colnames(noncoding_scores_df) <- c("gene_symbol", "CADD_score")
+
+    # keep first symbol if multiple symbols exist
+    noncoding_scores_df$gene_symbol[grepl(";", noncoding_scores_df$gene_symbol)] <- vapply(noncoding_scores_df$gene_symbol[grepl(";", noncoding_scores_df$gene_symbol)], function(x) unlist(strsplit(x, ";"))[1], "char")
+
+    # keep highest score
+    noncoding_scores_df <- noncoding_scores_df[order(noncoding_scores_df$CADD_score, decreasing = TRUE), ]
+    noncoding_scores_df <- noncoding_scores_df[!duplicated(noncoding_scores_df$gene_symbol), ]
+
+    return(noncoding_scores_df)
+}
+
 #' Create Gene-level SCNA Data Frame
 #'
 #' @param scna_df the SCNA segments data frame. Must contain: \describe{
