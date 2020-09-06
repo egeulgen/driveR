@@ -68,12 +68,12 @@ Create Data Frame of Features for Driverness Scoring
 }
 \examples{
 \dontrun{
-path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                 package = "driveR")
-path2phenolyzer_out <- system.file("extdata/imielinski.annotated_gene_list",
+path2phenolyzer_out <- system.file("extdata/example.annotated_gene_list",
                                    package = "driveR")
 features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
-                                  scna_df = imielinski_scna_table,
+                                  scna_df = example_scna_table,
                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
 }
 }

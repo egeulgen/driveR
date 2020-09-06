@@ -38,9 +38,9 @@ non-synonymous mutation + homozygous CN loss
 Determine Double-Hit Genes
 }
 \examples{
-path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                 package = "driveR")
 \dontrun{
-dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, imielinski_scna_table)
+dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, example_scna_table)
 }
 }

@@ -8,7 +8,7 @@
 #' }
 #'
 #' @examples
-#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+#' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
 #'                                 package = "driveR")
 #' metapred_df <- driveR:::create_metaprediction_score_df(path2annovar_csv)
 create_metaprediction_score_df <- function(annovar_csv_path) {
@@ -77,7 +77,7 @@ create_metaprediction_score_df <- function(annovar_csv_path) {
 #' }
 #'
 #' @examples
-#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+#' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
 #'                                 package = "driveR")
 #' metapred_df <- driveR:::create_noncoding_impact_score_df(path2annovar_csv)
 create_noncoding_impact_score_df <- function(annovar_csv_path) {
@@ -118,7 +118,7 @@ create_noncoding_impact_score_df <- function(annovar_csv_path) {
 #'
 #' @examples
 #' \dontrun{
-#' gene_scna_df <- driveR:::create_gene_level_scna_df(imielinski_scna_table)
+#' gene_scna_df <- driveR:::create_gene_level_scna_df(example_scna_table)
 #' }
 create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
     ### argument checks
@@ -200,7 +200,7 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 #'
 #' @examples
 #' \dontrun{
-#' SCNA_scores_df <- driveR:::create_SCNA_score_df(imielinski_scna_table)
+#' SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table)
 #' }
 create_SCNA_score_df <- function(scna_df,
                                  log2_ratio_threshold = 0.25,
@@ -291,7 +291,7 @@ create_SCNA_score_df <- function(scna_df,
 #' @return vector of gene symbols of genes containing hotspot mutation(s)
 #'
 #' @examples
-#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+#' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
 #'                                 package = "driveR")
 #' hotspot_genes <- driveR:::determine_hotspot_genes(path2annovar_csv)
 determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
@@ -345,10 +345,10 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
 #' non-synonymous mutation + homozygous CN loss
 #'
 #' @examples
-#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+#' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
 #'                                 package = "driveR")
 #' \dontrun{
-#' dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, imielinski_scna_table)
+#' dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, example_scna_table)
 #' }
 determine_double_hit_genes <- function(annovar_csv_path,
                                        scna_df,

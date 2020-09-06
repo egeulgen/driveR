@@ -50,6 +50,6 @@ SCNA density (SCNA/Mb) values as proxy SCNA scores.
 }
 \examples{
 \dontrun{
-SCNA_scores_df <- driveR:::create_SCNA_score_df(imielinski_scna_table)
+SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table)
 }
 }

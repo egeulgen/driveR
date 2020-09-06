@@ -25,7 +25,7 @@
 #' @source \url{https://pubmed.ncbi.nlm.nih.gov/23132910/}
 "MCR_table"
 
-#' Somatic Copy Number Alteration Table for Imielinski et al.
+#' Example Somatic Copy Number Alteration Table
 #'
 #' A data set containing the somatic copy number alteration data for the lung
 #' adenocarcinoma patient studied in Imielinski M, Greulich H, Kaplan B, et al.
@@ -41,7 +41,7 @@
 #'   the segment}
 #' }
 #' @source \url{https://pubmed.ncbi.nlm.nih.gov/24569458/}
-"imielinski_scna_table"
+"example_scna_table"
 
 #' KEGG "Pathways in cancer"-related Pathways - Gene Sets
 #'

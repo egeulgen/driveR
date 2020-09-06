@@ -28,6 +28,6 @@ Create Gene-level SCNA Data Frame
 }
 \examples{
 \dontrun{
-gene_scna_df <- driveR:::create_gene_level_scna_df(imielinski_scna_table)
+gene_scna_df <- driveR:::create_gene_level_scna_df(example_scna_table)
 }
 }
