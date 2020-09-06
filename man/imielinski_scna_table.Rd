@@ -10,7 +10,8 @@ A data frame with 3160 rows and 4 variables:
 \item{chr}{chromosome the segment is located in}
 \item{start}{start position of the segment}
 \item{end}{end position of the segment}
-\item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of the segment}
+\item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of
+the segment}
 }
 }
 \source{
