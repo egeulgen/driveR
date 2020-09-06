@@ -19,9 +19,10 @@ Cancer genomes contain large numbers of somatic alterations but few
 genes drive tumor development. Identifying molecular cancer driver genes
 is critical for precision oncology. Most of current approaches either
 identify driver genes based on mutational recurrence or using estimated
-scores predicting the functional consequences of mutations. driveR is a
-tool for scoring and ranking genes from individual somatic whole
-exome/genome sequencing data according to cancer driverness. As
+scores predicting the functional consequences of mutations.
+
+`driveR` is a tool for scoring and ranking genes from individual somatic
+whole exome/genome sequencing data according to cancer driverness. As
 features, driveR uses coding impact metaprediction scores, non-coding
 impact scores, somatic copy number alteration scores, hotspot
 gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships
@@ -31,7 +32,7 @@ task of a multi-task learning model.
 
 ## Installation
 
-You can install the development version of driveR from
+You can install the development version of `driveR` from
 [GitHub](https://github.com/) with:
 
 ``` r
