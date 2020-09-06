@@ -18,7 +18,7 @@ Description: Cancer genomes contain large numbers of somatic alterations but few
     coding impact metaprediction scores, non-coding impact scores, somatic copy 
     number alteration scores, hotspot gene/double-hit gene condition, 
     'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It 
-    uses these features to calculate cancer-type-specific driverness scores for 
+    uses these features to estimate cancer-type-specific driverness probability for 
     each gene using the related task of a multi-task learning model.
 License: MIT + file LICENSE
 Encoding: UTF-8

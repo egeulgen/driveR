@@ -26,9 +26,9 @@ whole exome/genome sequencing data according to cancer driverness. As
 features, driveR uses coding impact metaprediction scores, non-coding
 impact scores, somatic copy number alteration scores, hotspot
 gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships
-to cancer-related KEGG pathways. It uses these features to calculate
-cancer-type-specific driverness scores for each gene using the related
-task of a multi-task learning model.
+to cancer-related KEGG pathways. It uses these features to estimate
+cancer-type-specific driverness probabilities for each gene using the
+related task of a multi-task learning model.
 
 ## Installation
 
