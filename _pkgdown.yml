@@ -1,0 +1,44 @@
+destination: docs
+template:
+  params:
+    bootswatch: journal
+    # docsearch:
+    #   api_key: 7f13d388d59fea08d4add29291ea2896
+    #   index_name: pathfindr
+url: https://egeulgen.github.io/driveR/
+news:
+- one_page: false
+reference:
+  - title: "driveR"
+    desc: >
+      driveR package
+    contents:
+      - driveR
+  - title: "Main functions"
+    desc: >
+      Main functions of driveR
+    contents:
+      - create_features_df
+      - calculate_driverness_probs
+  - title: "Utility Functions"
+    desc: >
+      Utility functions for generating the features
+    contents:
+      - create_metaprediction_score_df
+      - create_noncoding_impact_score_df
+      - create_gene_level_scna_df
+      - create_SCNA_score_df
+      - determine_hotspot_genes
+      - determine_double_hit_genes
+  - title: "Built-in Data"
+    desc: >
+      Data within the package
+    contents:
+      - metapredictor_model
+      - TCGA_MTL_fit
+      - MTL_submodel_descriptions
+      - MCR_table
+      - KEGG_cancer_pathways
+      - KEGG_cancer_pathways_descriptions
+      - example_scna_table
+      - example_features_table

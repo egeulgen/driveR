@@ -5,3 +5,6 @@
 ^misc$
 ^codecov\.yml$
 ^\.travis\.yml$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
