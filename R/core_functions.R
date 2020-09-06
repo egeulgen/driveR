@@ -1,0 +1,113 @@
+#' Create Data Frame of Features for Driverness Scoring
+#'
+#' @inheritParams create_metaprediction_score_df
+#' @inheritParams create_gene_level_scna_df
+#' @param phenolyzer_annotated_gene_list_path path to 'phenolyzer'
+#' "annotated_gene_list" file
+#' @param prep_phenolyzer_input boolean to indicate whether or not to create
+#' a vector of genes for use as the input of 'phenolyzer' (default = \code{FALSE}).
+#' If \code{TRUE}, the features data frame is not created and instead the vector
+#' of gene symbols (union of all genes for which scores are available) is
+#' returned.
+#' @inheritParams create_SCNA_score_df
+#' @inheritParams determine_hotspot_genes
+#' @inheritParams determine_double_hit_genes
+#'
+#' @return If \code{prep_phenolyzer_input=FALSE} (default), a data frame of
+#' features for scoring cancer driverness of each gene (\code{gene_symbol} as
+#' the first column and 26 other columns containing features). If
+#' \code{prep_phenolyzer_input=TRUE}, the functions returns a vector gene symbols
+#' (union of all gene symbols for which scores are available) to be used as the
+#' input for performing 'phenolyzer' analysis.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
+#'                                 package = "driveR")
+#' path2phenolyzer_out <- system.file("extdata/imielinski.annotated_gene_list",
+#'                                    package = "driveR")
+#' features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
+#'                                   scna_df = imielinski_scna_table,
+#'                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
+#' }
+create_features_df <- function(annovar_csv_path,
+                               scna_df,
+                               phenolyzer_annotated_gene_list_path,
+                               prep_phenolyzer_input = FALSE,
+                               log2_ratio_threshold = 0.25,
+                               gene_overlap_threshold = 25,
+                               MCR_overlap_threshold = 25,
+                               hotspot_threshold = 5L,
+                               log2_hom_loss_threshold = -1) {
+    ### determine individual features
+    # coding variant impact metaprediction scores
+    metaprediction_scores_df <- driveR:::create_metaprediction_score_df(annovar_csv_path = annovar_csv_path)
+
+    # non-coding variant impact metaprediction scores
+    noncoding_scores_df <- driveR:::create_noncoding_impact_score_df(annovar_csv_path = annovar_csv_path)
+
+    # SCNA scores
+    scna_scores_df <- driveR:::create_SCNA_score_df(scna_df = scna_df,
+                                                    log2_ratio_threshold = log2_ratio_threshold,
+                                                    gene_overlap_threshold = gene_overlap_threshold,
+                                                    MCR_overlap_threshold = MCR_overlap_threshold)
+
+    # hotspot or double-hit genes
+    hotspot_genes <- driveR:::determine_hotspot_genes(annovar_csv_path = annovar_csv_path,
+                                                      hotspot_threshold = hotspot_threshold)
+    double_hit_genes <- driveR:::determine_double_hit_genes(annovar_csv_path = annovar_csv_path,
+                                                            scna_df = scna_df,
+                                                            gene_overlap_threshold = gene_overlap_threshold,
+                                                            log2_hom_loss_threshold = log2_hom_loss_threshold)
+    hotspot_dhit_genes <- unique(c(hotspot_genes, double_hit_genes))
+
+    # return `all_genes` if phenolyzer input is required
+    all_genes <- unique(c(metaprediction_scores_df$gene_symbol,
+                          noncoding_scores_df$gene_symbol,
+                          scna_scores_df$gene_symbol,
+                          hotspot_dhit_genes))
+    if (prep_phenolyzer_input)
+        return(all_genes)
+
+    # phenolyzer scores
+    phenolyzer_df <- utils::read.delim(phenolyzer_annotated_gene_list_path)
+    phenolyzer_df <- phenolyzer_df[phenolyzer_df$Gene %in% all_genes, ]
+
+    ### combine all into features data frame
+    # create df
+    all_genes <- unique(c(metaprediction_scores_df$gene_symbol,
+                          noncoding_scores_df$gene_symbol,
+                          scna_scores_df$gene_symbol,
+                          hotspot_dhit_genes,
+                          phenolyzer_df$Gene))
+    features_df <- data.frame(gene_symbol = all_genes,
+                              metaprediction_score = 0,
+                              noncoding_score = 0,
+                              scna_score = 0,
+                              hotspot_double_hit = all_genes %in% hotspot_dhit_genes,
+                              phenolyzer_score = 0)
+
+    # populate with scores
+    features_df$metaprediction_score <- metaprediction_scores_df$metaprediction_score[match(features_df$gene_symbol,
+                                                                                            metaprediction_scores_df$gene_symbol)]
+    features_df$noncoding_score <- noncoding_scores_df$CADD_score[match(features_df$gene_symbol,
+                                                                        noncoding_scores_df$gene_symbol)]
+    features_df$scna_score <- scna_scores_df$SCNA_density[match(features_df$gene_symbol,
+                                                                scna_scores_df$gene_symbol)]
+    features_df$phenolyzer_score <- phenolyzer_df$Score[match(features_df$gene_symbol,
+                                                              phenolyzer_df$Gene)]
+    # replace NAs w/ 0s
+    features_df$metaprediction_score <- ifelse(is.na(features_df$metaprediction_score), 0, features_df$metaprediction_score)
+    features_df$noncoding_score <- ifelse(is.na(features_df$noncoding_score), 0, features_df$noncoding_score)
+    features_df$scna_score <- ifelse(is.na(features_df$scna_score), 0, features_df$scna_score)
+    features_df$phenolyzer_score <- ifelse(is.na(features_df$phenolyzer_score), 0, features_df$phenolyzer_score)
+
+    ### add KEGG cancer pathway memberships as features
+    tmp <- lapply(driveR:::KEGG_cancer_pathways, function(x) features_df$gene_symbol %in% x)
+    tmp <- as.data.frame(tmp)
+    features_df <- cbind(features_df, tmp)
+
+    return(features_df)
+}
