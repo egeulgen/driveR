@@ -42,3 +42,27 @@
 #' }
 #' @source \url{https://pubmed.ncbi.nlm.nih.gov/24569458/}
 "imielinski_scna_table"
+
+#' KEGG "Pathways in cancer"-related Pathways - Gene Sets
+#'
+#' A list containing the genes involved in each Homo sapiens KEGG "Pathways in
+#' cancer" (hsa05200)-related Pathways. Each element is a vector of gene symbols
+#' located in the given pathway. Names correspond to the KEGG ID of the pathway.
+#' \emph{Generated on Sep 6, 2020.}
+#'
+#' @format list containing 21 vectors of gene symbols. Each vector corresponds
+#'   to a pathway.
+"KEGG_cancer_pathways"
+
+#' KEGG "Pathways in cancer"-related Pathways - Descriptions
+#'
+#' A data frame containing descriptions for KEGG "Pathways in cancer"
+#' (hsa05200)-related Pathways.
+#' \emph{Generated on Sep 6, 2020.}
+#'
+#' @format A data frame with 21 rows and 2 variables:
+#' \describe{
+#'   \item{id}{KEGG pathway ID}
+#'   \item{description}{KEGG pathway description}
+#' }
+"KEGG_cancer_pathways_descriptions"
