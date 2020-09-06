@@ -31,3 +31,33 @@ test_that("`create_features_df` argument check works", {
     expect_error(create_features_df(prep_phenolyzer_input = "INVALID"),
                  "`prep_phenolyzer_input` should be logical")
 })
+
+# calculate_driverness_probs ----------------------------------------------
+test_that("`calculate_driverness_probs` works", {
+    expect_is(driverness_df <- calculate_driverness_probs(example_features_table, "LUAD"),
+              "data.frame")
+})
+
+test_that("`calculate_driverness_probs` argument check works", {
+    expect_error(calculate_driverness_probs(example_features_table, "INVALID"),
+                 "`cancer_type` should be one of the short names in `MTL_submodel_descriptions`")
+
+    expect_error(calculate_driverness_probs(matrix()),
+                 "`features_df` should be a data frame")
+
+    expect_error(calculate_driverness_probs(example_features_table[, -1], "LUAD"),
+                 "`features_df` should contain exactly 27 columns")
+
+    req_names <- c("gene_symbol", "metaprediction_score", "noncoding_score",
+                   "scna_score", "hotspot_double_hit", "phenolyzer_score",
+                   "hsa03320", "hsa04010", "hsa04020", "hsa04024", "hsa04060",
+                   "hsa04066", "hsa04110", "hsa04115", "hsa04150", "hsa04151",
+                   "hsa04210", "hsa04310", "hsa04330", "hsa04340", "hsa04350",
+                   "hsa04370", "hsa04510", "hsa04512", "hsa04520", "hsa04630",
+                   "hsa04915")
+    tmp <- example_features_table
+    colnames(tmp)[1] <- "INVALID"
+    expect_error(calculate_driverness_probs(tmp, "LUAD"),
+                 paste0("`features_df` should contain the following columns: ",
+                        paste(dQuote(req_names), collapse = ", ")))
+})

@@ -107,4 +107,9 @@ features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
                                   scna_df = example_scna_table,
                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
 }
+
+}
+\seealso{
+\code{\link{calculate_driverness_probs}} for calculating driverness
+probabilites for each gene.
 }

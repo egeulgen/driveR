@@ -63,6 +63,9 @@
 #'                                   scna_df = example_scna_table,
 #'                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
 #' }
+#'
+#' @seealso \code{\link{calculate_driverness_probs}} for calculating driverness
+#' probabilites for each gene.
 create_features_df <- function(annovar_csv_path,
                                scna_df,
                                phenolyzer_annotated_gene_list_path,
@@ -145,4 +148,86 @@ create_features_df <- function(annovar_csv_path,
     features_df <- cbind(features_df, tmp)
 
     return(features_df)
+}
+
+#' Calculate Driverness Probabilities
+#'
+#' @param features_df the features data frame for all genes, containing the following columns:
+#' \describe{
+#'   \item{gene_symbol}{HGNC gene symbol}
+#'   \item{metaprediction_score}{the maximum metapredictor (coding) impact score for the gene}
+#'   \item{noncoding_score}{the maximum non-coding PHRED-scaled CADD score for the gene}
+#'   \item{scna_score}{SCNA proxy score. SCNA density (SCNA/Mb) of the minimal common region (MCR) in which the gene is located}
+#'   \item{hotspot_double_hit}{boolean indicating whether the gene is a hotspot gene (indication of oncogenes) or subject to double-hit (indication of tumor-suppressor genes)}
+#'   \item{phenolyzer_score}{'phenolyzer' score for the gene}
+#'   \item{hsa03320}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04010}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04020}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04024}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04060}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04066}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04110}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04115}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04150}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04151}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04210}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04310}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04330}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04340}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04350}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04370}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04510}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04512}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04520}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04630}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#'   \item{hsa04915}{boolean indicating whether or not the gene takes part in this KEGG pathway}
+#' }
+#' @param cancer_type short name of the cancer type. All available cancer types
+#' are listed in \code{\link{MTL_submodel_descriptions}}
+#'
+#' @return estimated cancer driverness probability for each gene in
+#' \code{features_df}. The probabilities are calculated using the selected (via
+#' \code{cancer_type}) cancer type's sub-model.
+#' @export
+#'
+#' @examples
+#' driverness_df <- calculate_driverness_probs(example_features_table, "LUAD")
+#'
+#' @seealso \code{\link{create_features_df}} for creating the features table.
+#' \code{\link{TCGA_MTL_fit}} for details on the MTL model used for prediction.
+calculate_driverness_probs <- function(features_df, cancer_type) {
+    # argument checks
+    if (!is.data.frame(features_df))
+        stop("`features_df` should be a data frame")
+
+    if (ncol(features_df) != 27)
+        stop("`features_df` should contain exactly 27 columns")
+    req_names <- c("gene_symbol", "metaprediction_score", "noncoding_score",
+                   "scna_score", "hotspot_double_hit", "phenolyzer_score",
+                   "hsa03320", "hsa04010", "hsa04020", "hsa04024", "hsa04060",
+                   "hsa04066", "hsa04110", "hsa04115", "hsa04150", "hsa04151",
+                   "hsa04210", "hsa04310", "hsa04330", "hsa04340", "hsa04350",
+                   "hsa04370", "hsa04510", "hsa04512", "hsa04520", "hsa04630",
+                   "hsa04915")
+    if (!all(colnames(features_df) == req_names))
+        stop("`features_df` should contain the following columns: ",
+             paste(dQuote(req_names), collapse = ", "))
+
+    if (!cancer_type %in% driveR::MTL_submodel_descriptions$short_name)
+        stop("`cancer_type` should be one of the short names in `MTL_submodel_descriptions`")
+
+    # determine which model to use
+    idx <- which(driveR::MTL_submodel_descriptions$short_name == cancer_type)
+
+    # calculate probabilities
+    newX <- as.matrix(features_df[, -1])
+    score <- newX %*% TCGA_MTL_fit$W[, idx] + TCGA_MTL_fit$C[idx]
+    yhat <- exp(score)
+    yhat <- yhat / (1 + yhat)
+
+    # turn into data frame
+    prob_df <- data.frame(gene_symbol = features_df$gene_symbol,
+                          driverness_prob = yhat[, 1])
+    prob_df <- prob_df[order(prob_df$driverness_prob, decreasing = TRUE), ]
+    return(prob_df)
 }
