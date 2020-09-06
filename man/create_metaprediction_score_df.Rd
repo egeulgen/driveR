@@ -7,7 +7,7 @@
 create_metaprediction_score_df(annovar_csv_path)
 }
 \arguments{
-\item{annovar_csv_path}{path to ANNOVAR csv output file}
+\item{annovar_csv_path}{path to 'ANNOVAR' csv output file}
 }
 \value{
 data frame of meta-prediction scores containing 2 columns: \describe{

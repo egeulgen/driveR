@@ -1,6 +1,6 @@
 #' Create Coding Impact Meta-prediction Score Data Frame
 #'
-#' @param annovar_csv_path path to ANNOVAR csv output file
+#' @param annovar_csv_path path to 'ANNOVAR' csv output file
 #'
 #' @return data frame of meta-prediction scores containing 2 columns: \describe{
 #'   \item{gene_symbol}{HGNC gene symbol}

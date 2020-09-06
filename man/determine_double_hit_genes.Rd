@@ -12,7 +12,7 @@ determine_double_hit_genes(
 )
 }
 \arguments{
-\item{annovar_csv_path}{path to ANNOVAR csv output file}
+\item{annovar_csv_path}{path to 'ANNOVAR' csv output file}
 
 \item{scna_df}{the SCNA segments data frame. Must contain: \describe{
 \item{chr}{chromosome the segment is located in}

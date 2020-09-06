@@ -7,7 +7,7 @@
 determine_hotspot_genes(annovar_csv_path, hotspot_threshold = 5L)
 }
 \arguments{
-\item{annovar_csv_path}{path to ANNOVAR csv output file}
+\item{annovar_csv_path}{path to 'ANNOVAR' csv output file}
 
 \item{hotspot_threshold}{to determine hotspot genes, the (integer) threshold
 for the minimum number of cases with certain mutation in COSMIC (default = 5)}
