@@ -79,7 +79,7 @@ create_metaprediction_score_df <- function(annovar_csv_path) {
 #' @examples
 #' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
 #'                                 package = "driveR")
-#' metapred_df <- driveR:::create_noncoding_impact_score_df(path2annovar_csv)
+#' noncoding_df <- driveR:::create_noncoding_impact_score_df(path2annovar_csv)
 create_noncoding_impact_score_df <- function(annovar_csv_path) {
     annovar_df <- utils::read.csv(annovar_csv_path)
     noncoding_df <- annovar_df[annovar_df$Func.refGene != "exonic", ]
