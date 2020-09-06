@@ -72,8 +72,9 @@ test_that("`determine_hotspot_genes` works", {
 })
 
 test_that("`determine_hotspot_genes` arg check works", {
-    expect_error(driveR:::determine_hotspot_genes(path2annovar_csv, threshold = "INVALID"),
-                 "`threshold` should be numeric")
+    expect_error(driveR:::determine_hotspot_genes(path2annovar_csv,
+                                                  hotspot_threshold = "INVALID"),
+                 "`hotspot_threshold` should be numeric")
 })
 
 # determine_double_hit_genes ----------------------------------------------
@@ -88,6 +89,6 @@ test_that("`determine_double_hit_genes` argument checks work", {
                                     package = "driveR")
     expect_error(driveR:::determine_double_hit_genes(path2annovar_csv,
                                                      imielinski_scna_table,
-                                                     log2_threshold = "INVALID"),
-                 "`log2_threshold` should be numberic")
+                                                     log2_hom_loss_threshold = "INVALID"),
+                 "`log2_hom_loss_threshold` should be numberic")
 })

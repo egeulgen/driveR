@@ -285,8 +285,8 @@ create_SCNA_score_df <- function(scna_df,
 #' Determine Hotspot Containing Genes
 #'
 #' @inheritParams create_metaprediction_score_df
-#' @param threshold (integer) threshold for the minimum number of cases with
-#' a certain mutation in COSMIC (default = 5)
+#' @param hotspot_threshold to determine hotspot genes, the (integer) threshold
+#' for the minimum number of cases with certain mutation in COSMIC (default = 5)
 #'
 #' @return vector of gene symbols of genes containing hotspot mutation(s)
 #'
@@ -294,10 +294,10 @@ create_SCNA_score_df <- function(scna_df,
 #' path2annovar_csv <- system.file("extdata/imielinski.hg19_multianno.csv",
 #'                                 package = "driveR")
 #' hotspot_genes <- driveR:::determine_hotspot_genes(path2annovar_csv)
-determine_hotspot_genes <- function(annovar_csv_path, threshold = 5L) {
+determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
     # argument check
-    if (!is.numeric(threshold))
-        stop("`threshold` should be numeric")
+    if (!is.numeric(hotspot_threshold))
+        stop("`hotspot_threshold` should be numeric")
 
     annovar_df <- utils::read.csv(annovar_csv_path)
 
@@ -327,7 +327,7 @@ determine_hotspot_genes <- function(annovar_csv_path, threshold = 5L) {
     annovar_df$Gene.refGene[grepl(";", annovar_df$Gene.refGene)] <- vapply(annovar_df$Gene.refGene[grepl(";", annovar_df$Gene.refGene)], function(x) unlist(strsplit(x, ";"))[1], "char")
 
     # determine genes containing hotspot mutation
-    cond <- (annovar_df$coding_occurence > threshold) | (annovar_df$noncoding_occurence > threshold)
+    cond <- (annovar_df$coding_occurence > hotspot_threshold) | (annovar_df$noncoding_occurence > hotspot_threshold)
     hotspot_genes <- unique(annovar_df$Gene.refGene[cond])
 
     return(hotspot_genes)
@@ -337,8 +337,9 @@ determine_hotspot_genes <- function(annovar_csv_path, threshold = 5L) {
 #'
 #' @inheritParams create_metaprediction_score_df
 #' @inheritParams create_gene_level_scna_df
-#' @param log2_threshold \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold
-#' for determining homozygous loss events (default = -1)
+#' @param log2_hom_loss_threshold to determine double-hit events, the
+#' \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold for identifying
+#' homozygous loss events (default = -1).
 #'
 #' @return vector of gene symbols that are subject to double-hit event(s), i.e.
 #' non-synonymous mutation + homozygous CN loss
@@ -352,20 +353,20 @@ determine_hotspot_genes <- function(annovar_csv_path, threshold = 5L) {
 determine_double_hit_genes <- function(annovar_csv_path,
                                        scna_df,
                                        gene_overlap_threshold = 25,
-                                       log2_threshold = -1) {
+                                       log2_hom_loss_threshold = -1) {
     ### argument checks
-    if (!is.numeric(log2_threshold))
-        stop("`log2_threshold` should be numberic")
+    if (!is.numeric(log2_hom_loss_threshold))
+        stop("`log2_hom_loss_threshold` should be numberic")
 
     ### gene-level hom. loss df
     genes_df <- create_gene_level_scna_df(scna_df = scna_df,
                                           gene_overlap_threshold = gene_overlap_threshold)
     # keep only hom. loss
-    loss_genes_df <- genes_df[genes_df$log2ratio < log2_threshold, ]
+    loss_genes_df <- genes_df[genes_df$log2ratio < log2_hom_loss_threshold, ]
 
     ### non-synonymous mutations df
     annovar_df <- utils::read.csv(annovar_csv_path)
-    # exclude synonymous muts
+    # exclude synonymous mutatios
     non_syn_df <- annovar_df[annovar_df$ExonicFunc.refGene != "synonymous SNV", ]
     # keep first symbol if multiple symbols exist
     non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)] <- vapply(non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)], function(x) unlist(strsplit(x, ";"))[1], "char")

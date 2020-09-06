@@ -8,7 +8,7 @@ determine_double_hit_genes(
   annovar_csv_path,
   scna_df,
   gene_overlap_threshold = 25,
-  log2_threshold = -1
+  log2_hom_loss_threshold = -1
 )
 }
 \arguments{
@@ -26,8 +26,9 @@ a segment and a transcript (default = 25). This means that if only a segment
 overlaps a transcript more than this threshold, the transcript is assigned
 the segment's SCNA event.}
 
-\item{log2_threshold}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold
-for determining homozygous loss events (default = -1)}
+\item{log2_hom_loss_threshold}{to determine double-hit events, the
+\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold for identifying
+homozygous loss events (default = -1).}
 }
 \value{
 vector of gene symbols that are subject to double-hit event(s), i.e.
