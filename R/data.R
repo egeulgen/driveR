@@ -7,6 +7,16 @@
 #' @format model object
 "metapredictor_model"
 
+#' Multi-Task Learning Model for Predicting Cancer Driverness of Genes
+#'
+#' A Multi-Task Learning (MTL) classification model object for determining
+#' cancer driverness of genes based on 26 features. The model was trained using
+#' TCGA data (obtained from ICGC release 28) with lasso regularization. It contains
+#' 21 sub-models for different cancer types.
+#'
+#' @format MTL model object
+"TCGA_MTL_fit"
+
 #' Table of Pan-Cancer Minimal Common Regions
 #'
 #' A data set containing the minimal common regions (MCRs) across all cancer
