@@ -43,24 +43,24 @@ create_features_df <- function(annovar_csv_path,
                                log2_hom_loss_threshold = -1) {
     ### determine individual features
     # coding variant impact metaprediction scores
-    metaprediction_scores_df <- driveR:::create_metaprediction_score_df(annovar_csv_path = annovar_csv_path)
+    metaprediction_scores_df <- create_metaprediction_score_df(annovar_csv_path = annovar_csv_path)
 
     # non-coding variant impact metaprediction scores
-    noncoding_scores_df <- driveR:::create_noncoding_impact_score_df(annovar_csv_path = annovar_csv_path)
+    noncoding_scores_df <- create_noncoding_impact_score_df(annovar_csv_path = annovar_csv_path)
 
     # SCNA scores
-    scna_scores_df <- driveR:::create_SCNA_score_df(scna_df = scna_df,
-                                                    log2_ratio_threshold = log2_ratio_threshold,
-                                                    gene_overlap_threshold = gene_overlap_threshold,
-                                                    MCR_overlap_threshold = MCR_overlap_threshold)
+    scna_scores_df <- create_SCNA_score_df(scna_df = scna_df,
+                                           log2_ratio_threshold = log2_ratio_threshold,
+                                           gene_overlap_threshold = gene_overlap_threshold,
+                                           MCR_overlap_threshold = MCR_overlap_threshold)
 
     # hotspot or double-hit genes
-    hotspot_genes <- driveR:::determine_hotspot_genes(annovar_csv_path = annovar_csv_path,
-                                                      hotspot_threshold = hotspot_threshold)
-    double_hit_genes <- driveR:::determine_double_hit_genes(annovar_csv_path = annovar_csv_path,
-                                                            scna_df = scna_df,
-                                                            gene_overlap_threshold = gene_overlap_threshold,
-                                                            log2_hom_loss_threshold = log2_hom_loss_threshold)
+    hotspot_genes <- determine_hotspot_genes(annovar_csv_path = annovar_csv_path,
+                                             hotspot_threshold = hotspot_threshold)
+    double_hit_genes <- determine_double_hit_genes(annovar_csv_path = annovar_csv_path,
+                                                   scna_df = scna_df,
+                                                   gene_overlap_threshold = gene_overlap_threshold,
+                                                   log2_hom_loss_threshold = log2_hom_loss_threshold)
     hotspot_dhit_genes <- unique(c(hotspot_genes, double_hit_genes))
 
     # return `all_genes` if phenolyzer input is required
@@ -105,7 +105,7 @@ create_features_df <- function(annovar_csv_path,
     features_df$phenolyzer_score <- ifelse(is.na(features_df$phenolyzer_score), 0, features_df$phenolyzer_score)
 
     ### add KEGG cancer pathway memberships as features
-    tmp <- lapply(driveR:::KEGG_cancer_pathways, function(x) features_df$gene_symbol %in% x)
+    tmp <- lapply(KEGG_cancer_pathways, function(x) features_df$gene_symbol %in% x)
     tmp <- as.data.frame(tmp)
     features_df <- cbind(features_df, tmp)
 
