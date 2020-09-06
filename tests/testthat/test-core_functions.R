@@ -26,3 +26,8 @@ test_that("`create_features_df` works", {
                                  prep_phenolyzer_input = TRUE),
               "character")
 })
+
+test_that("`create_features_df` argument check works", {
+    expect_error(create_features_df(prep_phenolyzer_input = "INVALID"),
+                 "`prep_phenolyzer_input` should be logical")
+})

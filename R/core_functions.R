@@ -72,6 +72,10 @@ create_features_df <- function(annovar_csv_path,
                                MCR_overlap_threshold = 25,
                                hotspot_threshold = 5L,
                                log2_hom_loss_threshold = -1) {
+    ### argument check
+    if (!is.logical(prep_phenolyzer_input))
+        stop("`prep_phenolyzer_input` should be logical")
+
     ### determine individual features
     # coding variant impact metaprediction scores
     metaprediction_scores_df <- create_metaprediction_score_df(annovar_csv_path = annovar_csv_path)
