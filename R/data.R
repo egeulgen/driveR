@@ -44,12 +44,14 @@
 #'
 #' @format list containing 21 vectors of gene symbols. Each vector corresponds
 #'   to a pathway.
+#' @seealso \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
+#'  KEGG "Pathways in cancer"-related pathways.
 "KEGG_cancer_pathways"
 
 #' KEGG "Pathways in cancer"-related Pathways - Descriptions
 #'
 #' A data frame containing descriptions for KEGG "Pathways in cancer"
-#' (hsa05200)-related Pathways.
+#' (hsa05200)-related pathways.
 #' \emph{Generated on Sep 6, 2020.}
 #'
 #' @format A data frame with 21 rows and 2 variables:
@@ -114,4 +116,7 @@
 #'   \item{hsa04630}{boolean indicating whether or not the gene takes part in this KEGG pathway}
 #'   \item{hsa04915}{boolean indicating whether or not the gene takes part in this KEGG pathway}
 #' }
+#'
+#' @seealso \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
+#'  KEGG "Pathways in cancer"-related pathways.
 "example_features_table"

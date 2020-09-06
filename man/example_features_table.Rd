@@ -45,4 +45,8 @@ the lung adenocarcinoma patient studied in Imielinski M, Greulich H, Kaplan B, e
 Oncogenic and sorafenib-sensitive ARAF mutations in lung adenocarcinoma.
 J Clin Invest. 2014;124(4):1582-6.
 }
+\seealso{
+\code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
+KEGG "Pathways in cancer"-related pathways.
+}
 \keyword{datasets}

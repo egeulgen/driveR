@@ -16,7 +16,7 @@ KEGG_cancer_pathways_descriptions
 }
 \description{
 A data frame containing descriptions for KEGG "Pathways in cancer"
-(hsa05200)-related Pathways.
+(hsa05200)-related pathways.
 \emph{Generated on Sep 6, 2020.}
 }
 \keyword{datasets}

@@ -17,4 +17,8 @@ cancer" (hsa05200)-related Pathways. Each element is a vector of gene symbols
 located in the given pathway. Names correspond to the KEGG ID of the pathway.
 \emph{Generated on Sep 6, 2020.}
 }
+\seealso{
+\code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
+KEGG "Pathways in cancer"-related pathways.
+}
 \keyword{datasets}
