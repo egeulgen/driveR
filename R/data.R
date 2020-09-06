@@ -15,7 +15,21 @@
 #' 21 sub-models for different cancer types.
 #'
 #' @format MTL model object
+#' @seealso \code{\link{MTL_submodel_descriptions}} for short names and descriptions
+#' of all sub-models.
 "TCGA_MTL_fit"
+
+#' MTL Sub-model Descriptions
+#'
+#' A data frame containing descriptions for all sub-models of the MTL model.
+#'
+#' @format A data frame with 21 rows and 2 variables:
+#' \describe{
+#'   \item{short_name}{short name for the cancer type}
+#'   \item{description}{description of the cancer type}
+#' }
+#' @seealso \code{\link{TCGA_MTL_fit}} for the MTL model.
+"MTL_submodel_descriptions"
 
 #' Table of Pan-Cancer Minimal Common Regions
 #'

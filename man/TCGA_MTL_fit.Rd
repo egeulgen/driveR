@@ -16,4 +16,8 @@ cancer driverness of genes based on 26 features. The model was trained using
 TCGA data (obtained from ICGC release 28) with lasso regularization. It contains
 21 sub-models for different cancer types.
 }
+\seealso{
+\code{\link{MTL_submodel_descriptions}} for short names and descriptions
+of all sub-models.
+}
 \keyword{datasets}
