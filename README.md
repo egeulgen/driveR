@@ -37,5 +37,10 @@ You can install the development version of `driveR` from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("egeulgen/driveR")
+devtools::install_github("egeulgen/driveR", build_vignettes = TRUE)
 ```
+
+## Usage
+
+For detailed information on how to use `driveR`, please see the vignette
+“How to use driveR” via `vignette("how_to_use")`
