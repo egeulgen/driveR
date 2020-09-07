@@ -2,9 +2,9 @@ destination: docs
 template:
   params:
     bootswatch: journal
-    # docsearch:
-    #   api_key: 7f13d388d59fea08d4add29291ea2896
-    #   index_name: pathfindr
+    docsearch:
+      api_key: 21b3b36a9d378c47ddeef07e523fb44b
+      index_name: egeulgen_driver
 url: https://egeulgen.github.io/driveR/
 news:
 - one_page: false
