@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • driveR</title>
+<title>Example Cohort-level Somatic Copy Number Alteration Table — example_cohort_scna_table • driveR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,7 +52,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Example Cohort-level Somatic Copy Number Alteration Table — example_cohort_scna_table" />
+<meta property="og:description" content="A data set containing the somatic copy number alteration data for 10 randomly
+selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort" />
 
 
 
@@ -71,7 +73,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -136,183 +138,38 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Example Cohort-level Somatic Copy Number Alteration Table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/egeulgen/driveR/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>example_cohort_scna_table.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>A data set containing the somatic copy number alteration data for 10 randomly
+selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='no'>example_cohort_scna_table</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-driver" class="hasAnchor"><a href="#section-driver" class="anchor"></a>driveR</h2>
-          <p class="section-desc"><p>driveR package</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="driveR.html">driveR</a></code> </p>
-        </td>
-        <td><p>driveR: A package for Ranking Genes According to Cancer Driverness using Individual Sequencing Results</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-main-functions" class="hasAnchor"><a href="#section-main-functions" class="anchor"></a>Main functions</h2>
-          <p class="section-desc"><p>Main functions of driveR</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="create_features_df.html">create_features_df()</a></code> </p>
-        </td>
-        <td><p>Create Data Frame of Features for Driverness Scoring</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="calculate_driverness_probs.html">calculate_driverness_probs()</a></code> </p>
-        </td>
-        <td><p>Calculate Driverness Probabilities</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-utility-functions" class="hasAnchor"><a href="#section-utility-functions" class="anchor"></a>Utility Functions</h2>
-          <p class="section-desc"><p>Utility functions for generating the features</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="create_metaprediction_score_df.html">create_metaprediction_score_df()</a></code> </p>
-        </td>
-        <td><p>Create Coding Impact Meta-prediction Score Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_noncoding_impact_score_df.html">create_noncoding_impact_score_df()</a></code> </p>
-        </td>
-        <td><p>Create Non-coding Impact Score Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_gene_level_scna_df.html">create_gene_level_scna_df()</a></code> </p>
-        </td>
-        <td><p>Create Gene-level SCNA Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_SCNA_score_df.html">create_SCNA_score_df()</a></code> </p>
-        </td>
-        <td><p>Create SCNA Score Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="determine_hotspot_genes.html">determine_hotspot_genes()</a></code> </p>
-        </td>
-        <td><p>Determine Hotspot Containing Genes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="determine_double_hit_genes.html">determine_double_hit_genes()</a></code> </p>
-        </td>
-        <td><p>Determine Double-Hit Genes</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-built-in-data" class="hasAnchor"><a href="#section-built-in-data" class="anchor"></a>Built-in Data</h2>
-          <p class="section-desc"><p>Data within the package</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="metapredictor_model.html">metapredictor_model</a></code> </p>
-        </td>
-        <td><p>Random Forest Model for Coding Impact Metaprediction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="TCGA_MTL_fit.html">TCGA_MTL_fit</a></code> </p>
-        </td>
-        <td><p>Multi-Task Learning Model for Predicting Cancer Driverness of Genes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="MTL_submodel_descriptions.html">MTL_submodel_descriptions</a></code> </p>
-        </td>
-        <td><p>MTL Sub-model Descriptions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="MCR_table.html">MCR_table</a></code> </p>
-        </td>
-        <td><p>Table of Pan-Cancer Minimal Common Regions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KEGG_cancer_pathways.html">KEGG_cancer_pathways</a></code> </p>
-        </td>
-        <td><p>KEGG "Pathways in cancer"-related Pathways - Gene Sets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KEGG_cancer_pathways_descriptions.html">KEGG_cancer_pathways_descriptions</a></code> </p>
-        </td>
-        <td><p>KEGG "Pathways in cancer"-related Pathways - Descriptions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="example_scna_table.html">example_scna_table</a></code> </p>
-        </td>
-        <td><p>Example Somatic Copy Number Alteration Table</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="example_features_table.html">example_features_table</a></code> </p>
-        </td>
-        <td><p>Example Features Table for Driverness Scoring</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="example_cohort_scna_table.html">example_cohort_scna_table</a></code> </p>
-        </td>
-        <td><p>Example Cohort-level Somatic Copy Number Alteration Table</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 126147 rows and 5 variables:</p><dl'>
+<dt>chr</dt><dd><p>chromosome the segment is located in</p></dd>
+<dt>start</dt><dd><p>start position of the segment</p></dd>
+<dt>end</dt><dd><p>end position of the segment</p></dd>
+<dt>log2ratio</dt><dd><p>log<sub>2</sub> ratio of
+the segment</p></dd>
+<dt>tumor_id</dt><dd><p>ID for the tumor containing the SCNA segment</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://dcc.icgc.org/releases/release_28'>https://dcc.icgc.org/releases/release_28</a></p>
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
