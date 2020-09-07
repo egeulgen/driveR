@@ -149,10 +149,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>determine_double_hit_genes</span>(
-  <span class='no'>annovar_csv_path</span>,
-  <span class='no'>scna_df</span>,
-  <span class='kw'>gene_overlap_threshold</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='kw'>log2_hom_loss_threshold</span> <span class='kw'>=</span> -<span class='fl'>1</span>
+  <span class='kw'>annovar_csv_path</span>,
+  <span class='kw'>scna_df</span>,
+  gene_overlap_threshold = <span class='fl'>25</span>,
+  log2_hom_loss_threshold = <span class='op'>-</span><span class='fl'>1</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -164,7 +164,7 @@
     </tr>
     <tr>
       <th>scna_df</th>
-      <td><p>the SCNA segments data frame. Must contain:</p><dl'>
+      <td><p>the SCNA segments data frame. Must contain:</p><dl>
 <dt>chr</dt><dd><p>chromosome the segment is located in</p></dd>
 <dt>start</dt><dd><p>start position of the segment</p></dd>
 <dt>end</dt><dd><p>end position of the segment</p></dd>
@@ -193,11 +193,12 @@ homozygous loss events (default = -1).</p></td>
 non-synonymous mutation + homozygous CN loss</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>path2annovar_csv</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
-                                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"driveR"</span>)
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>dhit_genes</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>driveR</span><span class='kw ns'>:::</span><span class='fu'>determine_double_hit_genes</span>(<span class='no'>path2annovar_csv</span>, <span class='no'>example_scna_table</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>path2annovar_csv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
+                                package = <span class='st'>"driveR"</span>)
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>dhit_genes</span> <span class='op'>&lt;-</span> <span class='kw'>driveR</span>:::<span class='fu'>determine_double_hit_genes</span>(<span class='kw'>path2annovar_csv</span>, <span class='kw'>example_scna_table</span>)
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -213,7 +214,7 @@ non-synonymous mutation + homozygous CN loss</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

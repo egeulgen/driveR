@@ -149,10 +149,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>create_SCNA_score_df</span>(
-  <span class='no'>scna_df</span>,
-  <span class='kw'>log2_ratio_threshold</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>gene_overlap_threshold</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='kw'>MCR_overlap_threshold</span> <span class='kw'>=</span> <span class='fl'>25</span>
+  <span class='kw'>scna_df</span>,
+  log2_ratio_threshold = <span class='fl'>0.25</span>,
+  gene_overlap_threshold = <span class='fl'>25</span>,
+  MCR_overlap_threshold = <span class='fl'>25</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -160,7 +160,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>scna_df</th>
-      <td><p>the SCNA segments data frame. Must contain:</p><dl'>
+      <td><p>the SCNA segments data frame. Must contain:</p><dl>
 <dt>chr</dt><dd><p>chromosome the segment is located in</p></dd>
 <dt>start</dt><dd><p>start position of the segment</p></dd>
 <dt>end</dt><dd><p>end position of the segment</p></dd>
@@ -191,7 +191,7 @@ MCR's SCNA density</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data frame of SCNA proxy scores containing 2 columns:</p><dl'>
+    <p>data frame of SCNA proxy scores containing 2 columns:</p><dl>
 <dt>gene_symbol</dt><dd><p>HGNC gene symbol</p></dd>
 <dt>SCNA_density</dt><dd><p>SCNA proxy score. SCNA density (SCNA/Mb) of the minimal common region (MCR) in which the gene is located.</p></dd>
 
@@ -206,9 +206,10 @@ minimal common regions (MCRs) that the genes overlap and finally assigns the
 SCNA density (SCNA/Mb) values as proxy SCNA scores.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>SCNA_scores_df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>driveR</span><span class='kw ns'>:::</span><span class='fu'>create_SCNA_score_df</span>(<span class='no'>example_scna_table</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>SCNA_scores_df</span> <span class='op'>&lt;-</span> <span class='kw'>driveR</span>:::<span class='fu'>create_SCNA_score_df</span>(<span class='kw'>example_scna_table</span>)
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -224,7 +225,7 @@ SCNA density (SCNA/Mb) values as proxy SCNA scores.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

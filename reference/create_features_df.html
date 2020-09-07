@@ -149,15 +149,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>create_features_df</span>(
-  <span class='no'>annovar_csv_path</span>,
-  <span class='no'>scna_df</span>,
-  <span class='no'>phenolyzer_annotated_gene_list_path</span>,
-  <span class='kw'>prep_phenolyzer_input</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>log2_ratio_threshold</span> <span class='kw'>=</span> <span class='fl'>0.25</span>,
-  <span class='kw'>gene_overlap_threshold</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='kw'>MCR_overlap_threshold</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-  <span class='kw'>hotspot_threshold</span> <span class='kw'>=</span> <span class='fl'>5L</span>,
-  <span class='kw'>log2_hom_loss_threshold</span> <span class='kw'>=</span> -<span class='fl'>1</span>
+  <span class='kw'>annovar_csv_path</span>,
+  <span class='kw'>scna_df</span>,
+  <span class='kw'>phenolyzer_annotated_gene_list_path</span>,
+  prep_phenolyzer_input = <span class='fl'>FALSE</span>,
+  log2_ratio_threshold = <span class='fl'>0.25</span>,
+  gene_overlap_threshold = <span class='fl'>25</span>,
+  MCR_overlap_threshold = <span class='fl'>25</span>,
+  hotspot_threshold = <span class='fl'>5L</span>,
+  log2_hom_loss_threshold = <span class='op'>-</span><span class='fl'>1</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -169,7 +169,7 @@
     </tr>
     <tr>
       <th>scna_df</th>
-      <td><p>the SCNA segments data frame. Must contain:</p><dl'>
+      <td><p>the SCNA segments data frame. Must contain:</p><dl>
 <dt>chr</dt><dd><p>chromosome the segment is located in</p></dd>
 <dt>start</dt><dd><p>start position of the segment</p></dd>
 <dt>end</dt><dd><p>end position of the segment</p></dd>
@@ -230,7 +230,7 @@ the first column and 26 other columns containing features). If
 <code>prep_phenolyzer_input=TRUE</code>, the functions returns a vector gene symbols
 (union of all gene symbols for which scores are available) to be used as the
 input for performing 'phenolyzer' analysis.</p>
-<p>The features data frame contains the following columns:</p><dl'>
+<p>The features data frame contains the following columns:</p><dl>
 <dt>gene_symbol</dt><dd><p>HGNC gene symbol</p></dd>
 <dt>metaprediction_score</dt><dd><p>the maximum metapredictor (coding) impact score for the gene</p></dd>
 <dt>noncoding_score</dt><dd><p>the maximum non-coding PHRED-scaled CADD score for the gene</p></dd>
@@ -267,15 +267,17 @@ input for performing 'phenolyzer' analysis.</p>
 probabilites for each gene.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>path2annovar_csv</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
-                                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"driveR"</span>)
-<span class='no'>path2phenolyzer_out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.annotated_gene_list"</span>,
-                                   <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"driveR"</span>)
-<span class='no'>features_df</span> <span class='kw'>&lt;-</span> <span class='fu'>create_features_df</span>(<span class='kw'>annovar_csv_path</span> <span class='kw'>=</span> <span class='no'>path2annovar_csv</span>,
-                                  <span class='kw'>scna_df</span> <span class='kw'>=</span> <span class='no'>example_scna_table</span>,
-                                  <span class='kw'>phenolyzer_annotated_gene_list_path</span> <span class='kw'>=</span> <span class='no'>path2phenolyzer_out</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>path2annovar_csv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
+                                package = <span class='st'>"driveR"</span>)
+<span class='kw'>path2phenolyzer_out</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.annotated_gene_list"</span>,
+                                   package = <span class='st'>"driveR"</span>)
+<span class='kw'>features_df</span> <span class='op'>&lt;-</span> <span class='fu'>create_features_df</span>(annovar_csv_path = <span class='kw'>path2annovar_csv</span>,
+                                  scna_df = <span class='kw'>example_scna_table</span>,
+                                  phenolyzer_annotated_gene_list_path = <span class='kw'>path2phenolyzer_out</span>)
+}
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -291,7 +293,7 @@ probabilites for each gene.</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

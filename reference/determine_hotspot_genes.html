@@ -148,7 +148,7 @@
     <p>Determine Hotspot Containing Genes</p>
     </div>
 
-    <pre class="usage"><span class='fu'>determine_hotspot_genes</span>(<span class='no'>annovar_csv_path</span>, <span class='kw'>hotspot_threshold</span> <span class='kw'>=</span> <span class='fl'>5L</span>)</pre>
+    <pre class="usage"><span class='fu'>determine_hotspot_genes</span>(<span class='kw'>annovar_csv_path</span>, hotspot_threshold = <span class='fl'>5L</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,9 +169,10 @@ for the minimum number of cases with certain mutation in COSMIC (default = 5)</p
     <p>vector of gene symbols of genes containing hotspot mutation(s)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>path2annovar_csv</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
-                                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"driveR"</span>)
-<span class='no'>hotspot_genes</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>driveR</span><span class='kw ns'>:::</span><span class='fu'>determine_hotspot_genes</span>(<span class='no'>path2annovar_csv</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>path2annovar_csv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
+                                package = <span class='st'>"driveR"</span>)
+<span class='kw'>hotspot_genes</span> <span class='op'>&lt;-</span> <span class='kw'>driveR</span>:::<span class='fu'>determine_hotspot_genes</span>(<span class='kw'>path2annovar_csv</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -187,7 +188,7 @@ for the minimum number of cases with certain mutation in COSMIC (default = 5)</p
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

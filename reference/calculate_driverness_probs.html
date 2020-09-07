@@ -148,14 +148,14 @@
     <p>Calculate Driverness Probabilities</p>
     </div>
 
-    <pre class="usage"><span class='fu'>calculate_driverness_probs</span>(<span class='no'>features_df</span>, <span class='no'>cancer_type</span>)</pre>
+    <pre class="usage"><span class='fu'>calculate_driverness_probs</span>(<span class='kw'>features_df</span>, <span class='kw'>cancer_type</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>features_df</th>
-      <td><p>the features data frame for all genes, containing the following columns:</p><dl'>
+      <td><p>the features data frame for all genes, containing the following columns:</p><dl>
 <dt>gene_symbol</dt><dd><p>HGNC gene symbol</p></dd>
 <dt>metaprediction_score</dt><dd><p>the maximum metapredictor (coding) impact score for the gene</p></dd>
 <dt>noncoding_score</dt><dd><p>the maximum non-coding PHRED-scaled CADD score for the gene</p></dd>
@@ -204,7 +204,9 @@ are listed in <code><a href='MTL_submodel_descriptions.html'>MTL_submodel_descri
 <code><a href='TCGA_MTL_fit.html'>TCGA_MTL_fit</a></code> for details on the MTL model used for prediction.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>driverness_df</span> <span class='kw'>&lt;-</span> <span class='fu'>calculate_driverness_probs</span>(<span class='no'>example_features_table</span>, <span class='st'>"LUAD"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>driverness_df</span> <span class='op'>&lt;-</span> <span class='fu'>calculate_driverness_probs</span>(<span class='kw'>example_features_table</span>, <span class='st'>"LUAD"</span>)
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -220,7 +222,7 @@ are listed in <code><a href='MTL_submodel_descriptions.html'>MTL_submodel_descri
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
