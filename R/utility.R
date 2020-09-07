@@ -372,9 +372,26 @@ determine_double_hit_genes <- function(annovar_csv_path,
     non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)] <- vapply(non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)], function(x) unlist(strsplit(x, ";"))[1], "char")
 
     ### determine double-hit genes
-    tmp <- unique(loss_genes_df$symbol)
-    tmp2 <- unique(non_syn_df$Gene.refGene)
-    dhit_genes <- tmp[tmp %in% tmp2]
+    if ("tumor_id" %in% colnames(non_syn_df) & "tumor_id" %in% colnames(loss_genes_df)) {
+        all_donors <- unique(non_syn_df$tumor_id)
+        all_donors <- all_donors[all_donors %in% loss_genes_df$tumor_id]
 
+        dhit_genes <- c()
+        for (donor in all_donors) {
+            tmp <- loss_genes_df[loss_genes_df$tumor_id == donor, ]
+            tmp <- unique(tmp$symbol)
+
+            tmp2 <- non_syn_df$Gene.refGene[non_syn_df$tumor_id == donor]
+
+            dhit <- tmp[tmp %in% tmp2]
+            if (length(dhit) != 0)
+                dhit_genes <- c(dhit_genes, dhit)
+        }
+        dhit_genes <- unique(dhit_genes)
+    } else {
+        tmp <- unique(loss_genes_df$symbol)
+        tmp2 <- unique(non_syn_df$Gene.refGene)
+        dhit_genes <- tmp[tmp %in% tmp2]
+    }
     return(dhit_genes)
 }

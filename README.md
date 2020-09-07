@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driveR_logo.png?raw=true" align="left" height=150/> driveR: An R Package for Ranking Genes According to Cancer Driverness using Individual Sequencing Results
+# <img src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driveR_logo.png?raw=true" align="left" height=150/> driveR: An R Package for Ranking Genes According to Cancer Driverness
 
 <!-- badges: start -->
 
@@ -21,14 +21,14 @@ is critical for precision oncology. Most of current approaches either
 identify driver genes based on mutational recurrence or using estimated
 scores predicting the functional consequences of mutations.
 
-`driveR` is a tool for scoring and ranking genes from individual somatic
-whole exome/genome sequencing data according to cancer driverness. As
-features, driveR uses coding impact metaprediction scores, non-coding
-impact scores, somatic copy number alteration scores, hotspot
-gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships
-to cancer-related KEGG pathways. It uses these features to estimate
-cancer-type-specific driverness probabilities for each gene using the
-related task of a multi-task learning model.
+`driveR` is a tool for scoring and ranking genes from individual or
+cohort-level somatic whole exome/genome sequencing data according to
+cancer driverness. As features, driveR uses coding impact metaprediction
+scores, non-coding impact scores, somatic copy number alteration scores,
+hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and
+memberships to cancer-related KEGG pathways. It uses these features to
+estimate cancer-type-specific driverness probabilities for each gene
+using the related task of a multi-task learning model.
 
 ## Installation
 

@@ -81,7 +81,15 @@ test_that("`determine_hotspot_genes` arg check works", {
 test_that("`determine_double_hit_genes` works", {
     path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                     package = "driveR")
-    expect_is(dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, example_scna_table), "character")
+    expect_is(dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv,
+                                                                example_scna_table),
+              "character")
+
+    path2annovar_csv <- system.file("extdata/example_cohort.hg19_multianno.csv",
+                                    package = "driveR")
+    expect_is(dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv,
+                                                                example_cohort_scna_table),
+              "character")
 })
 
 test_that("`determine_double_hit_genes` argument checks work", {
