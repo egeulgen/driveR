@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driveR_logo.png?raw=true" align="left" height=150/> driveR: An R Package for Ranking Genes According to Cancer Driverness
+# <img src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driveR_logo.png?raw=true" align="left" height=150/> driveR: An R Package for Prioritizing Cancer Driver Genes Using Genomics Data
 
 <!-- badges: start -->
 
@@ -21,7 +21,7 @@ is critical for precision oncology. Most of current approaches either
 identify driver genes based on mutational recurrence or using estimated
 scores predicting the functional consequences of mutations.
 
-`driveR` is a tool for scoring and ranking genes from individual or
+`driveR` is a tool for scoring and prioritizing genes from individual or
 cohort-level somatic whole exome/genome sequencing data according to
 cancer driverness. As features, driveR uses coding impact metaprediction
 scores, non-coding impact scores, somatic copy number alteration scores,
