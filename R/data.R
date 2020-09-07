@@ -134,3 +134,21 @@
 #' @seealso \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
 #'  KEGG "Pathways in cancer"-related pathways.
 "example_features_table"
+
+
+#' Example Cohort-level Somatic Copy Number Alteration Table
+#'
+#' A data set containing the somatic copy number alteration data for 10 randomly
+#' selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort
+#'
+#' @format A data frame with 126147 rows and 5 variables:
+#' \describe{
+#'   \item{chr}{chromosome the segment is located in}
+#'   \item{start}{start position of the segment}
+#'   \item{end}{end position of the segment}
+#'   \item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of
+#'   the segment}
+#'   \item{tumor_id}{ID for the tumor containing the SCNA segment}
+#' }
+#' @source \url{https://dcc.icgc.org/releases/release_28}
+"example_cohort_scna_table"

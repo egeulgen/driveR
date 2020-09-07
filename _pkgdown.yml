@@ -42,3 +42,4 @@ reference:
       - KEGG_cancer_pathways_descriptions
       - example_scna_table
       - example_features_table
+      - example_cohort_scna_table
