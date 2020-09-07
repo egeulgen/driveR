@@ -14,15 +14,19 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Overview
+
 Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying molecular cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence (across a cohort) or using estimated scores predicting the functional consequences of mutations. 
 
 `driveR` is a tool for scoring and ranking genes from individual somatic whole exome/genome sequencing data according to cancer driverness. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to calculate cancer-type-specific driverness scores for each gene using the related task of a multi-task learning model.
 
-Below, a step-by-step work flow for `driveR` is provided. Note that some steps require operations outside of R. The example data provided within the package are for a lung adenocarcinoma patient studied in Imielinski et al. [^1]
+# Example I - Individual Tumor Sample Sequencing Data
+
+Below, a step-by-step work flow for `driveR` for an individual tumor sample is provided. Note that some steps require operations outside of R. The example data provided within the package are for a lung adenocarcinoma patient studied in Imielinski et al. [^1]
 
 [^1]: Imielinski M, Greulich H, Kaplan B, et al. Oncogenic and sorafenib-sensitive ARAF mutations in lung adenocarcinoma. J Clin Invest. 2014;124(4):1582-6.
 
-# Load the package and prepare input data
+## Load the package and prepare input data
 
 ```{r setup}
 library(driveR)
@@ -34,7 +38,8 @@ As input, `create_features_df()`, the function used to create the features table
 - `scna_df`: a data frame containing SCNA segments, containing the columns "chr", "start", "end" and "log2ratio"
 - `phenolyzer_annotated_gene_list_path`: the `/path/to/phenolyzer/annotated_gene_list/output/file`
 
-## ANNOVAR CSV output
+### ANNOVAR CSV output
+
 We first run ANNOVAR. An example command provided below:
 
 ```{bash, eval=FALSE}
@@ -50,7 +55,7 @@ path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                  package = "driveR")
 ```
 
-## SCNA table
+### SCNA table
 
 Next, we prepare a SCNA data frame (GRCh37 is required). Again, an example data frame is provided within the package:
 
@@ -58,7 +63,7 @@ Next, we prepare a SCNA data frame (GRCh37 is required). Again, an example data 
 head(example_scna_table)
 ```
 
-## phenolyzer output
+### phenolyzer output
 
 Finally, for the phenolyzer annotated_gene_list output file, we first obtain the genes to be scored using `create_features_df` and setting `prep_phenolyzer_input=TRUE`:
 
@@ -87,7 +92,7 @@ path2phenolyzer_out <- system.file("extdata/example.annotated_gene_list",
                                     package = "driveR")
 ```
 
-# Create the features data frame
+## Create the features data frame
 
 After creating the necessary input data (as detailed above), we simply run `create_features_df()` to obtain the features data frame:
 
@@ -97,7 +102,7 @@ features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
 ```
 
-# Calculate cancer driverness probabilities
+## Calculate cancer driverness probabilities
 
 Finally, we can calculate the cancer driverness probability of each gene using `calculate_driverness_probs()`. For this function, `cancer_type` can be of the short names for the 21 different cancer types that was used to train the multi-task learning model utilized in this package:
 
@@ -114,3 +119,93 @@ head(driver_prob_df, 10)
 ```
 
 The function returns a data frame of genes with cancer driverness probabilities (using the selected sub-model of a multi-task learning model trained using 21 different cancer types). In the above example, the top 10 genes contain recognizable cancer driver genes.
+
+# Example II - Cohort-level Sequencing Data
+
+Below, a step-by-step work flow for `driveR` for a cohort of tumor samples is provided. Note that some steps require operations outside of R. The example data provided within the package are for 10 randomly-selected samples from The Cancer Genome Atlas (TCGA) program's LAML (Acute Myeloid Leukemia) cohort.
+
+## Load the package and prepare input data
+
+```{r setup2, eval = FALSE}
+library(driveR)
+```
+
+As before, as input, `create_features_df()`, the function used to create the features table for driverness prediction, requires the following:
+
+- `annovar_csv_path`: the `/path/to/ANNOVAR/csv/output/file`
+- `scna_df`: a data frame containing SCNA segments, containing the columns "chr", "start", "end", "log2ratio" and **"tumor_id"**
+- `phenolyzer_annotated_gene_list_path`: the `/path/to/phenolyzer/annotated_gene_list/output/file`
+
+### ANNOVAR CSV output
+
+The required filters are again, as listed in the example ANNOVAR command above, `refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding`. Additionally, for cohort-level analysis, a column named `tumor_id` is required, containing tumor id of each variant.
+
+With the package, an example cohort-level (modified) ANNOVAR csv output file is available:
+
+```{r example_av_csv2}
+path2annovar_csv <- system.file("extdata/example_cohort.hg19_multianno.csv",
+                                 package = "driveR")
+```
+
+### SCNA table
+
+Next, we prepare a SCNA data frame (GRCh37 is required). Again, an example data frame is provided within the package:
+
+```{r example_scna2}
+head(example_cohort_scna_table)
+```
+
+Again, for cohort-level analysis, it's crucial to have a column named `tumor_id` is required, containing tumor id for each SCNA segment.
+
+### phenolyzer output
+
+Finally, for the phenolyzer annotated_gene_list output file, we first obtain the genes to be scored using `create_features_df` and setting `prep_phenolyzer_input=TRUE`:
+
+```{r phenolyzer_input2}
+phenolyzer_genes <- create_features_df(annovar_csv_path = path2annovar_csv,
+                                       scna_df = example_cohort_scna_table,
+                                       prep_phenolyzer_input = TRUE)
+```
+
+Next, we save these genes to be used as input for phenolyzer:
+```{r save_phenolyzer_input2, eval=FALSE}
+write.table(x = data.frame(gene = phenolyzer_genes), 
+            file = "input_genes.txt", 
+            row.names = FALSE, col.names = FALSE, quote = FALSE)
+```
+
+We create another text file, named `phenolyzer_disease.txt`, containing the phenotype (i.e. cancer type. in this case "acute myeloid leukemia") to be used for scoring with phenolyzer. An example command for running phenolyzer is provided below:
+
+```{bash, eval=FALSE}
+perl ~/phenolyzer/disease_annotation.pl -f phenolyzer_disease.txt -prediction -phenotype -logistic --gene input_genes.txt -out phenolyzer_out/example
+```
+
+This should produce, among other outputs, the annotated_gene_list output file. An example annotated_gene_list output file for the cohort-level data is provided within the package:
+```{r example_phenoylzer2}
+path2phenolyzer_out <- system.file("extdata/example_cohort.annotated_gene_list",
+                                    package = "driveR")
+```
+
+## Create the features data frame
+
+After creating the necessary input data (as detailed above), we simply run `create_features_df()` to obtain the features data frame:
+
+```{r features_df2}
+features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
+                                  scna_df = example_scna_table, 
+                                  phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
+```
+
+## Calculate cancer driverness probabilities
+
+Finally, we can calculate the cancer driverness probability of each gene using `calculate_driverness_probs()`. 
+
+Below is the example run for the acute myeloid leukemia cohort:
+
+```{r driver_prob2}
+driver_prob_df <- calculate_driverness_probs(features_df = features_df,
+                                             cancer_type = "LAML")
+head(driver_prob_df, 10)
+```
+
+Once again, in the above example, the top 10 genes contain recognizable cancer driver genes.
