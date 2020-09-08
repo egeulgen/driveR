@@ -1,7 +1,7 @@
 destination: docs
 template:
   params:
-    bootswatch: journal
+    bootswatch: flatly
     docsearch:
       api_key: 21b3b36a9d378c47ddeef07e523fb44b
       index_name: egeulgen_driver
