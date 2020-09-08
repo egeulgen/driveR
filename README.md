@@ -22,8 +22,8 @@ identify driver genes based on mutational recurrence or using estimated
 scores predicting the functional consequences of mutations.
 
 `driveR` is a tool for scoring and prioritizing genes from individual or
-cohort-level somatic whole exome/genome sequencing data according to
-cancer driverness. As features, driveR uses coding impact metaprediction
+batch somatic whole exome/genome sequencing data according to cancer
+driverness. As features, driveR uses coding impact metaprediction
 scores, non-coding impact scores, somatic copy number alteration scores,
 hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and
 memberships to cancer-related KEGG pathways. It uses these features to

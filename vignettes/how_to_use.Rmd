@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying molecular cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence (across a cohort) or using estimated scores predicting the functional consequences of mutations. 
 
-`driveR` is a tool for scoring and prioritizing genes from individual somatic whole exome/genome sequencing data according to cancer driverness. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to calculate cancer-type-specific driverness scores for each gene using the related task of a multi-task learning model.
+`driveR` is a tool for scoring and prioritizing genes from individual or batch somatic whole exome/genome sequencing data according to cancer driverness. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to calculate cancer-type-specific driverness scores for each gene using the related task of a multi-task learning model.
 
 # Example I - Individual Tumor Sample Sequencing Data
 
@@ -124,7 +124,7 @@ head(driver_prob_df, 10)
 
 The function returns a data frame of genes with cancer driverness probabilities (using the selected sub-model of a multi-task learning model trained using 21 different cancer types). In the above example, the top 10 genes contain recognizable cancer driver genes.
 
-# Example II - Cohort-level Sequencing Data
+# Example II - Batch Sequencing Data
 
 Below, a step-by-step work flow for `driveR` for a cohort of tumor samples is provided. Note that some steps require operations outside of R. The example data provided within the package are for 10 randomly-selected samples from The Cancer Genome Atlas (TCGA) program's LAML (Acute Myeloid Leukemia) cohort.
 

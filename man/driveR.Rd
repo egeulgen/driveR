@@ -12,7 +12,7 @@ genes based on mutational recurrence or using estimated scores predicting
 the functional consequences of mutations.
 }
 \details{
-driveR is a tool for scoring and ranking genes from individual somatic whole
+driveR is a tool for scoring and ranking genes from individual or batch somatic whole
 exome/genome sequencing data according to cancer driverness. As features,
 driveR uses coding impact metaprediction scores, non-coding impact scores,
 somatic copy number alteration scores, hotspot gene/double-hit gene condition,
