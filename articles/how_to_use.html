@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -107,7 +107,7 @@
 <h1 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h1>
 <p>Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying molecular cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence (across a cohort) or using estimated scores predicting the functional consequences of mutations.</p>
-<p><code>driveR</code> is a tool for scoring and prioritizing genes from individual somatic whole exome/genome sequencing data according to cancer driverness. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships to cancer-related KEGG pathways. It uses these features to calculate cancer-type-specific driverness scores for each gene using the related task of a multi-task learning model.</p>
+<p><code>driveR</code> is a tool for scoring and prioritizing genes from individual or batch somatic whole exome/genome sequencing data according to cancer driverness. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships to cancer-related KEGG pathways. It uses these features to calculate cancer-type-specific driverness scores for each gene using the related task of a multi-task learning model.</p>
 </div>
 <div id="example-i---individual-tumor-sample-sequencing-data" class="section level1">
 <h1 class="hasAnchor">
@@ -117,7 +117,7 @@
 <h2 class="hasAnchor">
 <a href="#load-the-package-and-prepare-input-data" class="anchor"></a>Load the package and prepare input data</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/egeulgen/driveR">driveR</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://egeulgen.github.io/driveR">driveR</a></span>)
 </pre></div>
 <p>As input, <code><a href="../reference/create_features_df.html">create_features_df()</a></code>, the function used to create the features table for driverness prediction, requires the following:</p>
 <ul>
@@ -165,7 +165,6 @@
 <span class="kw">phenolyzer_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_features_df.html">create_features_df</a></span>(annovar_csv_path = <span class="kw">path2annovar_csv</span>,
                                        scna_df = <span class="kw">example_scna_table</span>,
                                        prep_phenolyzer_input = <span class="fl">TRUE</span>)
-<span class="co">#&gt; </span>
 </pre></div>
 <p>Next, we save these genes to be used as input for phenolyzer:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
@@ -311,15 +310,15 @@
 <p>The function returns a data frame of genes with cancer driverness probabilities (using the selected sub-model of a multi-task learning model trained using 21 different cancer types). In the above example, the top 10 genes contain recognizable cancer driver genes.</p>
 </div>
 </div>
-<div id="example-ii---cohort-level-sequencing-data" class="section level1">
+<div id="example-ii---batch-sequencing-data" class="section level1">
 <h1 class="hasAnchor">
-<a href="#example-ii---cohort-level-sequencing-data" class="anchor"></a>Example II - Cohort-level Sequencing Data</h1>
+<a href="#example-ii---batch-sequencing-data" class="anchor"></a>Example II - Batch Sequencing Data</h1>
 <p>Below, a step-by-step work flow for <code>driveR</code> for a cohort of tumor samples is provided. Note that some steps require operations outside of R. The example data provided within the package are for 10 randomly-selected samples from The Cancer Genome Atlas (TCGA) program’s LAML (Acute Myeloid Leukemia) cohort.</p>
 <div id="load-the-package-and-prepare-input-data-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#load-the-package-and-prepare-input-data-1" class="anchor"></a>Load the package and prepare input data</h2>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/egeulgen/driveR">driveR</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://egeulgen.github.io/driveR">driveR</a></span>)
 </pre></div>
 <p>As before, as input, <code><a href="../reference/create_features_df.html">create_features_df()</a></code>, the function used to create the features table for driverness prediction, requires the following:</p>
 <ul>

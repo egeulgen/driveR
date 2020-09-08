@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -25,8 +25,8 @@
     critical for precision oncology. Most of current approaches either identify 
     driver genes based on mutational recurrence or using estimated scores 
     predicting the functional consequences of mutations. driveR is a tool for 
-    scoring and prioritizing genes from indiviual or cohort somatic whole exome/genome 
-    sequencing data  according to cancer driverness. As features, driveR uses 
+    scoring and prioritizing genes from indiviual or batch somatic whole exome/genome 
+    sequencing data according to cancer driverness. As features, driveR uses 
     coding impact metaprediction scores, non-coding impact scores, somatic copy 
     number alteration scores, hotspot gene/double-hit gene condition, 
     phenolyzer gene scores and memberships to cancer-related KEGG pathways. It 
@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
 <!-- badges: start -->
 
 <p>Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying molecular cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence or using estimated scores predicting the functional consequences of mutations.</p>
-<p><code>driveR</code> is a tool for scoring and prioritizing genes from individual or cohort-level somatic whole exome/genome sequencing data according to cancer driverness. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific driverness probabilities for each gene using the related task of a multi-task learning model.</p>
+<p><code>driveR</code> is a tool for scoring and prioritizing genes from individual or batch somatic whole exome/genome sequencing data according to cancer driverness. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific driverness probabilities for each gene using the related task of a multi-task learning model.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
