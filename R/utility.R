@@ -59,7 +59,7 @@ create_metaprediction_score_df <- function(annovar_csv_path) {
     colnames(metapred_scores_df) <- c("gene_symbol", "metaprediction_score")
 
     # keep first symbol if multiple symbols exist
-    metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)] <- sapply(metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)], function(x) unlist(strsplit(x, ";"))[1])
+    metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)] <- vapply(metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)], function(x) unlist(strsplit(x, ";"))[1], "gene sym")
 
     # keep highest score
     metapred_scores_df <- metapred_scores_df[order(metapred_scores_df$metaprediction_score, decreasing = TRUE), ]
