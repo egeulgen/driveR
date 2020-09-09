@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create Non-coding Impact Score Data Frame — create_noncoding_impact_score_df • driveR</title>
+<title>News • driveR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,8 +52,7 @@
 
 
 
-<meta property="og:title" content="Create Non-coding Impact Score Data Frame — create_noncoding_impact_score_df" />
-<meta property="og:description" content="Create Non-coding Impact Score Data Frame" />
+<meta property="og:title" content="News" />
 
 
 
@@ -72,7 +71,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -140,49 +139,16 @@
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>Create Non-coding Impact Score Data Frame</h1>
-    <small class="dont-index">Source: <a href='https://github.com/egeulgen/driveR/blob/master/R/utility.R'><code>R/utility.R</code></a></small>
-    <div class="hidden name"><code>create_noncoding_impact_score_df.Rd</code></div>
+      <h1>Release notes</h1>
     </div>
-
-    <div class="ref-description">
-    <p>Create Non-coding Impact Score Data Frame</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>create_noncoding_impact_score_df</span>(<span class='kw'>annovar_csv_path</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>annovar_csv_path</th>
-      <td><p>path to 'ANNOVAR' csv output file</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>data frame of meta-prediction scores containing 2 columns:</p><dl>
-<dt>gene_symbol</dt><dd><p>HGNC gene symbol</p></dd>
-<dt>CADD_phred</dt><dd><p>PHRED-scaled CADD score</p></dd>
-
-</dl>
-
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>path2annovar_csv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
-                                package = <span class='st'>"driveR"</span>)
-<span class='kw'>noncoding_df</span> <span class='op'>&lt;-</span> <span class='kw'>driveR</span>:::<span class='fu'>create_noncoding_impact_score_df</span>(<span class='kw'>path2annovar_csv</span>)
-</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <nav id="toc" data-toggle="toc" class="sticky-top">
-      <h2 data-toc-skip>Contents</h2>
-    </nav>
+    <ul>
+    <li><a href="news-dev.html">Version dev</a></li>
+    </ul>
   </div>
 </div>
+
 
 
       <footer>
