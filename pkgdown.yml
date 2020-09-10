@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.6.0
 pkgdown_sha: ~
 articles: []
-last_built: 2020-09-10T13:47Z
+last_built: 2020-09-10T14:20Z
 urls:
   reference: https://egeulgen.github.io/driveR//reference
   article: https://egeulgen.github.io/driveR//articles
