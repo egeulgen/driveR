@@ -47,6 +47,11 @@ test_that("`create_gene_level_scna_df` argument checks work", {
 test_that("`create_SCNA_score_df` works", {
     expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table), "data.frame")
     expect_equal(ncol(SCNA_scores_df), 2)
+
+    # corner case
+    expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table[1:10, ]), "data.frame")
+    expect_equal(ncol(SCNA_scores_df), 2)
+    expect_equal(nrow(SCNA_scores_df), 0)
 })
 
 test_that("`create_SCNA_score_df` argument checks work", {
