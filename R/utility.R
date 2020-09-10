@@ -251,6 +251,12 @@ create_SCNA_score_df <- function(scna_df,
                                         MCR_gr,
                                         type="any", select="all")
 
+    # return empty data frame if no overlap
+    if (length(hits) == 0) {
+        df <- data.frame(symbol = character(), SCNA_density = numeric())
+        return(df)
+    }
+
     # obtain overlap data frame between MCR regions and gene-level SCNA
     ranges <- MCR_gr[S4Vectors::subjectHits(hits)]
     S4Vectors::mcols(ranges) <- c(S4Vectors::mcols(ranges), S4Vectors::mcols(agg_gr[S4Vectors::queryHits(hits)]))
