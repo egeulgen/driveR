@@ -4,4 +4,4 @@
 ## Major Changes
 
 ## Minor changes and bug fixes
-- Fixed issue in `create_metaprediction_score_df()` where `sapply` was causing an issue. changed into `vapply`
+- Fixed issue in `create_metaprediction_score_df()` where gene symbols were turned into vectors
