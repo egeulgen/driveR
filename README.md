@@ -21,9 +21,9 @@ is critical for precision oncology. Most of current approaches either
 identify driver genes based on mutational recurrence or using estimated
 scores predicting the functional consequences of mutations.
 
-`driveR` is a tool for individual or batch analysis of genomics data for
-driver gene prioritization by combining genomic information and prior
-biological knowledge. As features, driveR uses coding impact
+`driveR` is a tool for personalized or batch analysis of genomics data
+for driver gene prioritization by combining genomic information and
+prior biological knowledge. As features, driveR uses coding impact
 metaprediction scores, non-coding impact scores, somatic copy number
 alteration scores, hotspot gene/double-hit gene condition, ‘phenolyzer’
 gene scores and memberships to cancer-related KEGG pathways. It uses
