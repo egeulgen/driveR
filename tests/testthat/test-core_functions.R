@@ -6,6 +6,14 @@
 ## Author: Ege Ulgen
 ##################################################
 
+# predict_coding_impact ---------------------------------------------------s
+test_that("`predict_coding_impact` works", {
+    path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
+                                    package = "driveR")
+    expect_is(metapred_df <- predict_coding_impact(path2annovar_csv), "data.frame")
+    expect_equal(ncol(metapred_df), 2)
+})
+
 # create_features_df ------------------------------------------------------
 test_that("`create_features_df` works", {
     path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",

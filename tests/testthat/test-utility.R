@@ -2,17 +2,9 @@
 ## Project: driveR
 ## Script purpose: Testthat testing script for
 ## utility functions
-## Date: Sep 6, 2020
+## Date: Sep 13, 2020
 ## Author: Ege Ulgen
 ##################################################
-
-# create_metaprediction_score_df ------------------------------------------
-test_that("`create_metaprediction_score_df` works", {
-    path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-                                    package = "driveR")
-    expect_is(metapred_df <- driveR:::create_metaprediction_score_df(path2annovar_csv), "data.frame")
-    expect_equal(ncol(metapred_df), 2)
-})
 
 # create_noncoding_impact_score_df ----------------------------------------
 test_that("`create_noncoding_impact_score_df` works", {

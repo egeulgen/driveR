@@ -18,13 +18,13 @@ reference:
     desc: >
       Main functions of driveR
     contents:
+      - predict_coding_impact
       - create_features_df
       - prioritize_driver_genes
   - title: "Utility Functions"
     desc: >
       Utility functions for generating the features
     contents:
-      - create_metaprediction_score_df
       - create_noncoding_impact_score_df
       - create_gene_level_scna_df
       - create_SCNA_score_df

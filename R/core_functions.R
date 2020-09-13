@@ -1,6 +1,79 @@
+#' Create Coding Impact Meta-prediction Score Data Frame
+#'
+#' @param annovar_csv_path path to 'ANNOVAR' csv output file
+#'
+#' @return data frame of meta-prediction scores containing 2 columns: \describe{
+#'   \item{gene_symbol}{HGNC gene symbol}
+#'   \item{metaprediction_score}{metapredictor impact score}
+#' }
+#'
+#' @export
+#'
+#' @examples
+#' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
+#'                                 package = "driveR")
+#' metapred_df <- predict_coding_impact(path2annovar_csv)
+predict_coding_impact <- function(annovar_csv_path) {
+    annovar_df <- utils::read.csv(annovar_csv_path)
+
+    # filter out missing scores
+    annovar_df <- annovar_df[annovar_df$SIFT_score != ".", ]
+    annovar_df$SIFT_score <- as.numeric(annovar_df$SIFT_score)
+
+    annovar_df <- annovar_df[annovar_df$Polyphen2_HDIV_score != ".", ]
+    annovar_df$Polyphen2_HDIV_score <- as.numeric(annovar_df$Polyphen2_HDIV_score)
+
+    annovar_df <- annovar_df[annovar_df$LRT_score != ".", ]
+    annovar_df$LRT_score <- as.numeric(annovar_df$LRT_score)
+
+    annovar_df <- annovar_df[annovar_df$MutationTaster_score != ".", ]
+    annovar_df$MutationTaster_score <- as.numeric(annovar_df$MutationTaster_score)
+
+    annovar_df <- annovar_df[annovar_df$MutationAssessor_score != ".", ]
+    annovar_df$MutationAssessor_score <- as.numeric(annovar_df$MutationAssessor_score)
+
+    annovar_df <- annovar_df[annovar_df$FATHMM_score != ".", ]
+    annovar_df$FATHMM_score <- as.numeric(annovar_df$FATHMM_score)
+
+    annovar_df <- annovar_df[annovar_df$GERP.._RS != ".", ]
+    annovar_df$GERP.._RS <- as.numeric(annovar_df$GERP.._RS)
+
+    annovar_df <- annovar_df[annovar_df$phyloP7way_vertebrate != ".", ]
+    annovar_df$phyloP7way_vertebrate <- as.numeric(annovar_df$phyloP7way_vertebrate)
+
+    annovar_df <- annovar_df[annovar_df$CADD_phred != ".", ]
+    annovar_df$CADD_phred <- as.numeric(annovar_df$CADD_phred)
+
+    annovar_df <- annovar_df[annovar_df$VEST3_score != ".", ]
+    annovar_df$VEST3_score <- as.numeric(annovar_df$VEST3_score)
+
+    annovar_df <- annovar_df[annovar_df$SiPhy_29way_logOdds != ".", ]
+    annovar_df$SiPhy_29way_logOdds <- as.numeric(annovar_df$SiPhy_29way_logOdds)
+
+    annovar_df <- annovar_df[annovar_df$DANN_score != ".", ]
+    annovar_df$DANN_score <- as.numeric(annovar_df$DANN_score)
+
+    # Predict metapredictor probabilities
+    pred_df <- stats::predict(metapredictor_model, newdata = annovar_df, type = "prob")
+    annovar_df$metaprediction_score <- pred_df$non.neutral
+
+    metapred_scores_df <- annovar_df[, c("Gene.refGene", "metaprediction_score")]
+    colnames(metapred_scores_df) <- c("gene_symbol", "metaprediction_score")
+
+    # keep first symbol if multiple symbols exist
+    metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)] <- vapply(metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)], function(x) unlist(strsplit(x, ";"))[1], "gene sym")
+
+    # keep highest score
+    metapred_scores_df <- metapred_scores_df[order(metapred_scores_df$metaprediction_score, decreasing = TRUE), ]
+    metapred_scores_df <- metapred_scores_df[!duplicated(metapred_scores_df$gene_symbol), ]
+    return(metapred_scores_df)
+}
+
+
+
 #' Create Data Frame of Features for Driver Gene Prioritization
 #'
-#' @inheritParams create_metaprediction_score_df
+#' @inheritParams predict_coding_impact
 #' @inheritParams create_gene_level_scna_df
 #' @param phenolyzer_annotated_gene_list_path path to 'phenolyzer'
 #' "annotated_gene_list" file
@@ -80,7 +153,7 @@ create_features_df <- function(annovar_csv_path,
 
     ### determine individual features
     # coding variant impact metaprediction scores
-    metaprediction_scores_df <- create_metaprediction_score_df(annovar_csv_path = annovar_csv_path)
+    metaprediction_scores_df <- predict_coding_impact(annovar_csv_path = annovar_csv_path)
 
     # non-coding variant impact metaprediction scores
     noncoding_scores_df <- create_noncoding_impact_score_df(annovar_csv_path = annovar_csv_path)
