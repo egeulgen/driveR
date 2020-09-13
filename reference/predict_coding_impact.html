@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • driveR</title>
+<title>Create Coding Impact Meta-prediction Score Data Frame — predict_coding_impact • driveR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,7 +52,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Create Coding Impact Meta-prediction Score Data Frame — predict_coding_impact" />
+<meta property="og:description" content="Create Coding Impact Meta-prediction Score Data Frame" />
 
 
 
@@ -71,7 +72,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -136,189 +137,58 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Create Coding Impact Meta-prediction Score Data Frame</h1>
+    <small class="dont-index">Source: <a href='https://github.com/egeulgen/driveR/blob/master/R/core_functions.R'><code>R/core_functions.R</code></a></small>
+    <div class="hidden name"><code>predict_coding_impact.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Create Coding Impact Meta-prediction Score Data Frame</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>predict_coding_impact</span>(
+  <span class='kw'>annovar_csv_path</span>,
+  keep_highest_score = <span class='fl'>TRUE</span>,
+  keep_single_symbol = <span class='fl'>TRUE</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-driver" class="hasAnchor"><a href="#section-driver" class="anchor"></a>driveR</h2>
-          <p class="section-desc"><p>driveR package</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="driveR.html">driveR</a></code> </p>
-        </td>
-        <td><p>driveR: An R Package for Prioritizing Cancer Driver Genes Using Genomics Data</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-main-functions" class="hasAnchor"><a href="#section-main-functions" class="anchor"></a>Main functions</h2>
-          <p class="section-desc"><p>Main functions of driveR</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="predict_coding_impact.html">predict_coding_impact()</a></code> </p>
-        </td>
-        <td><p>Create Coding Impact Meta-prediction Score Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_features_df.html">create_features_df()</a></code> </p>
-        </td>
-        <td><p>Create Data Frame of Features for Driver Gene Prioritization</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="prioritize_driver_genes.html">prioritize_driver_genes()</a></code> </p>
-        </td>
-        <td><p>Prioritize Cancer Driver Genes</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-utility-functions" class="hasAnchor"><a href="#section-utility-functions" class="anchor"></a>Utility Functions</h2>
-          <p class="section-desc"><p>Utility functions for generating the features</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="create_noncoding_impact_score_df.html">create_noncoding_impact_score_df()</a></code> </p>
-        </td>
-        <td><p>Create Non-coding Impact Score Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_gene_level_scna_df.html">create_gene_level_scna_df()</a></code> </p>
-        </td>
-        <td><p>Create Gene-level SCNA Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_SCNA_score_df.html">create_SCNA_score_df()</a></code> </p>
-        </td>
-        <td><p>Create SCNA Score Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="determine_hotspot_genes.html">determine_hotspot_genes()</a></code> </p>
-        </td>
-        <td><p>Determine Hotspot Containing Genes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="determine_double_hit_genes.html">determine_double_hit_genes()</a></code> </p>
-        </td>
-        <td><p>Determine Double-Hit Genes</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-built-in-data" class="hasAnchor"><a href="#section-built-in-data" class="anchor"></a>Built-in Data</h2>
-          <p class="section-desc"><p>Data within the package</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="metapredictor_model.html">metapredictor_model</a></code> </p>
-        </td>
-        <td><p>Random Forest Model for Coding Impact Metaprediction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="TCGA_MTL_fit.html">TCGA_MTL_fit</a></code> </p>
-        </td>
-        <td><p>Multi-Task Learning Model for Predicting Cancer Driver Genes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="MTL_submodel_descriptions.html">MTL_submodel_descriptions</a></code> </p>
-        </td>
-        <td><p>MTL Sub-model Descriptions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="MCR_table.html">MCR_table</a></code> </p>
-        </td>
-        <td><p>Table of Pan-Cancer Minimal Common Regions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KEGG_cancer_pathways.html">KEGG_cancer_pathways</a></code> </p>
-        </td>
-        <td><p>KEGG "Pathways in cancer"-related Pathways - Gene Sets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KEGG_cancer_pathways_descriptions.html">KEGG_cancer_pathways_descriptions</a></code> </p>
-        </td>
-        <td><p>KEGG "Pathways in cancer"-related Pathways - Descriptions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="example_scna_table.html">example_scna_table</a></code> </p>
-        </td>
-        <td><p>Example Somatic Copy Number Alteration Table</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="example_cohort_scna_table.html">example_cohort_scna_table</a></code> </p>
-        </td>
-        <td><p>Example Cohort-level Somatic Copy Number Alteration Table</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="example_features_table.html">example_features_table</a></code> </p>
-        </td>
-        <td><p>Example Features Table for Driver Prioritization</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="example_cohort_features_table.html">example_cohort_features_table</a></code> </p>
-        </td>
-        <td><p>Example Cohort-level Features Table for Driver Prioritization</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>annovar_csv_path</th>
+      <td><p>path to 'ANNOVAR' csv output file</p></td>
+    </tr>
+    <tr>
+      <th>keep_highest_score</th>
+      <td><p>boolean to indicate whether to keep only the maximal
+impact score per gene (default = <code>TRUE</code>)</p></td>
+    </tr>
+    <tr>
+      <th>keep_single_symbol</th>
+      <td><p>in ANNOVAR outputs, a variant may be annotated as
+exonic in multiple genes. This boolean argument controls whether or not to
+keep only the first encountered symbol for a variant (default = <code>TRUE</code>)</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>data frame of meta-prediction scores containing 2 columns:</p><dl>
+<dt>gene_symbol</dt><dd><p>HGNC gene symbol</p></dd>
+<dt>metaprediction_score</dt><dd><p>metapredictor impact score</p></dd>
+
+</dl>
+
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>path2annovar_csv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
+                                package = <span class='st'>"driveR"</span>)
+<span class='kw'>metapred_df</span> <span class='op'>&lt;-</span> <span class='fu'>predict_coding_impact</span>(<span class='kw'>path2annovar_csv</span>)
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
