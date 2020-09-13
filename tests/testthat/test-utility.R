@@ -86,8 +86,10 @@ test_that("`determine_double_hit_genes` works", {
 
     path2annovar_csv <- system.file("extdata/example_cohort.hg19_multianno.csv",
                                     package = "driveR")
+    gene_SCNA_df2 <- driveR:::create_gene_level_scna_df(example_cohort_scna_table)
+
     expect_is(dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv,
-                                                                gene_SCNA_df),
+                                                                gene_SCNA_df2),
               "character")
 })
 
@@ -95,7 +97,7 @@ test_that("`determine_double_hit_genes` argument checks work", {
     path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                     package = "driveR")
     expect_error(driveR:::determine_double_hit_genes(path2annovar_csv,
-                                                     gene_SCNA_dfs,
+                                                     gene_SCNA_df,
                                                      log2_hom_loss_threshold = "INVALID"),
                  "`log2_hom_loss_threshold` should be numberic")
 })
