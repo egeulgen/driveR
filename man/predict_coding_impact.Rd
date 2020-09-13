@@ -7,7 +7,7 @@
 predict_coding_impact(
   annovar_csv_path,
   keep_highest_score = TRUE,
-  keep_single_symbol
+  keep_single_symbol = TRUE
 )
 }
 \arguments{

@@ -20,9 +20,28 @@
 #' metapred_df <- predict_coding_impact(path2annovar_csv)
 predict_coding_impact <- function(annovar_csv_path,
                                   keep_highest_score = TRUE,
-                                  keep_single_symbol) {
-    # read CSV
+                                  keep_single_symbol = TRUE) {
+    # argument checks
+    if (!file.exists(annovar_csv_path))
+        stop("The file used for `annovar_csv_path` does not exist")
+
     annovar_df <- utils::read.csv(annovar_csv_path)
+
+    nec_cols <- c("Gene.refGene",
+                  "SIFT_score", "Polyphen2_HDIV_score", "LRT_score",
+                  "MutationTaster_score", "MutationAssessor_score",
+                  "FATHMM_score", "GERP.._RS", "phyloP7way_vertebrate",
+                  "CADD_phred", "VEST3_score", "SiPhy_29way_logOdds",
+                  "DANN_score")
+    if (!all(nec_cols %in% colnames(annovar_df)))
+        stop("The table in `annovar_csv_path` should contain all of the following columns: ",
+             paste(dQuote(nec_cols), collapse = ", "))
+
+    if (!is.logical(keep_highest_score))
+        stop("`keep_highest_score` should be logical")
+
+    if (!is.logical(keep_single_symbol))
+        stop("`keep_single_symbol` should be logical")
 
     # filter out missing scores
     annovar_df <- annovar_df[annovar_df$SIFT_score != ".", ]

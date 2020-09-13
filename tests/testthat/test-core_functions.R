@@ -14,6 +14,37 @@ test_that("`predict_coding_impact` works", {
     expect_equal(ncol(metapred_df), 2)
 })
 
+test_that("`predict_coding_impact` argument checks work", {
+    expect_error(predict_coding_impact("invalid/path/to/csv"),
+                 "The file used for `annovar_csv_path` does not exist")
+
+    path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
+                                    package = "driveR")
+    annovar_df <- read.csv(path2annovar_csv)
+    annovar_df$Gene.refGene <- NULL
+    path2annovar_csv <- tempfile()
+    write.csv(annovar_df, path2annovar_csv, row.names = FALSE)
+    nec_cols <- c("Gene.refGene",
+                  "SIFT_score", "Polyphen2_HDIV_score", "LRT_score",
+                  "MutationTaster_score", "MutationAssessor_score",
+                  "FATHMM_score", "GERP.._RS", "phyloP7way_vertebrate",
+                  "CADD_phred", "VEST3_score", "SiPhy_29way_logOdds",
+                  "DANN_score")
+    expect_error(predict_coding_impact(path2annovar_csv),
+                 paste0("The table in `annovar_csv_path` should contain all of the following columns: ",
+                        paste(dQuote(nec_cols), collapse = ", ")))
+
+    path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
+                                    package = "driveR")
+    expect_error(predict_coding_impact(path2annovar_csv,
+                                       keep_highest_score = "INVALID"),
+                 "`keep_highest_score` should be logical")
+
+    expect_error(predict_coding_impact(path2annovar_csv,
+                                       keep_single_symbol = "INVALID"),
+                 "`keep_single_symbol` should be logical")
+})
+
 # create_features_df ------------------------------------------------------
 test_that("`create_features_df` works", {
     path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
