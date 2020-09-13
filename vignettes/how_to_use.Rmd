@@ -27,6 +27,7 @@ Below are some example usage cases for `driveR`:
 For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP version 3.0a via ANNOVAR. We provide with the package 2 example (modified) ANNOVAR outputs (see next sections): 
 
 ```{r metapred1}
+library(driveR)
 path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                  package = "driveR")
 ```
@@ -60,7 +61,7 @@ Below, a step-by-step work flow for `driveR` for an individual tumor sample is p
 
 ## Load the package and prepare input data
 
-```{r setup}
+```{r setup, eval=FALSE}
 library(driveR)
 ```
 
