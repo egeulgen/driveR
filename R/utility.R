@@ -186,16 +186,15 @@ create_SCNA_score_df <- function(gene_SCNA_df,
     final_scna_df <- data.frame(chr = as.vector(GenomeInfoDb::seqnames(ranges)),
                                 as.data.frame(S4Vectors::mcols(ranges)))
 
-    `%>%` <- dplyr::`%>%`
-    final_scna_df <- as.data.frame(final_scna_df %>%
-                                       dplyr::mutate(transcript_start = as.integer(GenomicRanges::start(GenomicRanges::ranges(agg_gr[S4Vectors::queryHits(hits)])))) %>%
-                                       dplyr::mutate(transcript_end = as.integer(GenomicRanges::end(GenomicRanges::ranges(agg_gr[S4Vectors::queryHits(hits)])))) %>%
-                                       dplyr::mutate(MCR_start = GenomicRanges::start(ranges)) %>%
-                                       dplyr::mutate(MCR_end = GenomicRanges::end(ranges)) %>%
-                                       dplyr::mutate(chrom = as.character(GenomeInfoDb::seqnames(ranges))) %>%
-                                       dplyr::rowwise() %>%
-                                       dplyr::mutate(MCR_overlap_percent =
-                                                         round(as.numeric((min(.data$MCR_end, .data$transcript_end) - max(.data$transcript_start, .data$MCR_start)) / (.data$MCR_end - .data$MCR_start)) * 100, digits = 2)))
+    final_scna_df$transcript_start <- GenomicRanges::start(GenomicRanges::ranges(agg_gr[S4Vectors::queryHits(hits)]))
+    final_scna_df$transcript_end <- GenomicRanges::end(GenomicRanges::ranges(agg_gr[S4Vectors::queryHits(hits)]))
+    final_scna_df$MCR_start <- GenomicRanges::start(ranges)
+    final_scna_df$MCR_end <- GenomicRanges::end(ranges)
+
+    tmp1 <- apply(final_scna_df[, c("MCR_end", "transcript_end")], 1, min)
+    tmp2 <- apply(final_scna_df[, c("transcript_start", "MCR_start")], 1, max)
+    final_scna_df$transcript_overlap_percent <- (tmp1 - tmp2) / (final_scna_df$MCR_end - final_scna_df$MCR_start) * 100
+
     # filter for `MCR_overlap_threshold`
     final_scna_df <- final_scna_df[final_scna_df$MCR_overlap_percent >= MCR_overlap_threshold, ]
 
