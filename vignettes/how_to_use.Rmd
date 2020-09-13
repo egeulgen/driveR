@@ -229,7 +229,7 @@ After creating the necessary input data (as detailed above), we simply run `crea
 
 ```{r features_df2, eval=FALSE}
 features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
-                                  scna_df = example_scna_table, 
+                                  scna_df = example_cohort_scna_table, 
                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
 ```
 
