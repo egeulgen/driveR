@@ -1,6 +1,11 @@
 #' Create Coding Impact Meta-prediction Score Data Frame
 #'
 #' @param annovar_csv_path path to 'ANNOVAR' csv output file
+#' @param keep_highest_score boolean to indicate whether to keep only the maximal
+#' impact score per gene (default = \code{TRUE})
+#' @param keep_single_symbol in ANNOVAR outputs, a variant may be annotated as
+#' exonic in multiple genes. This boolean argument controls whether or not to
+#' keep only the first encountered symbol for a variant (default = \code{TRUE})
 #'
 #' @return data frame of meta-prediction scores containing 2 columns: \describe{
 #'   \item{gene_symbol}{HGNC gene symbol}
@@ -13,7 +18,10 @@
 #' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
 #'                                 package = "driveR")
 #' metapred_df <- predict_coding_impact(path2annovar_csv)
-predict_coding_impact <- function(annovar_csv_path) {
+predict_coding_impact <- function(annovar_csv_path,
+                                  keep_highest_score = TRUE,
+                                  keep_single_symbol) {
+    # read CSV
     annovar_df <- utils::read.csv(annovar_csv_path)
 
     # filter out missing scores
@@ -61,11 +69,14 @@ predict_coding_impact <- function(annovar_csv_path) {
     colnames(metapred_scores_df) <- c("gene_symbol", "metaprediction_score")
 
     # keep first symbol if multiple symbols exist
-    metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)] <- vapply(metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)], function(x) unlist(strsplit(x, ";"))[1], "gene sym")
+    if (keep_single_symbol)
+        metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)] <- vapply(metapred_scores_df$gene_symbol[grepl(";", metapred_scores_df$gene_symbol)], function(x) unlist(strsplit(x, ";"))[1], "gene sym")
 
     # keep highest score
     metapred_scores_df <- metapred_scores_df[order(metapred_scores_df$metaprediction_score, decreasing = TRUE), ]
-    metapred_scores_df <- metapred_scores_df[!duplicated(metapred_scores_df$gene_symbol), ]
+    if (keep_highest_score)
+        metapred_scores_df <- metapred_scores_df[!duplicated(metapred_scores_df$gene_symbol), ]
+
     return(metapred_scores_df)
 }
 
