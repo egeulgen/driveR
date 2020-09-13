@@ -20,7 +20,39 @@ Cancer genomes contain large numbers of somatic alterations but few genes drive 
 
 `driveR` is a tool for personalized or batch analysis of genomic data for driver gene prioritization by combining genomic information and prior biological knowledge. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific probabilities for each gene of being a cancer driver using the related task of a multi-task learning classification model.
 
-# Example I - Individual Tumor Sample Sequencing Data
+Below are some example usage cases for `driveR`:
+
+# Predicting Impact of Coding Variants
+
+For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP version 3.0a via ANNOVAR. We provide with the package 2 example (modified) ANNOVAR outputs (see next sections): 
+
+```{r metapred1}
+path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
+                                 package = "driveR")
+```
+
+We can calculate impact scores for all coding variants in this ANNOVAR file via `predict_coding_impact()`:
+
+```{r metaapred2}
+metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv)
+head(metaprediction_df)
+```
+
+By default, `predict_coding_impact()` keeps only the maximal score per gene. This behavior can be altered by setting `keep_highest_score = FALSE`:
+
+```{r metaapred3, eval=FALSE}
+metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv, 
+                                           keep_highest_score = FALSE)
+```
+
+Also by default, `predict_coding_impact()` keeps only the first gene symbol for genes where multiple symbols were annotated. This behavior can be altered by setting `keep_single_symbol = FALSE`:
+
+```{r metaapred4s, eval=FALSE}
+metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv, 
+                                           keep_single_symbol = FALSE)
+```
+
+# Driver Gene Prioritization - Personalized Analysis
 
 Below, a step-by-step work flow for `driveR` for an individual tumor sample is provided. Note that some steps require operations outside of R. The example data provided within the package are for a lung adenocarcinoma patient studied in Imielinski et al. [^1]
 
@@ -124,7 +156,7 @@ head(driver_prob_df, 10)
 
 The function returns a data frame of genes with probabilities of being cancer driver genes (using the selected sub-model of a multi-task learning model trained using 21 different cancer types). In the above example, the top 10 genes contain recognizable cancer driver genes.
 
-# Example II - Batch Sequencing Data
+# Driver Gene Prioritization - Batch Analysis
 
 Below, a step-by-step work flow for `driveR` for a cohort of tumor samples is provided. Note that some steps require operations outside of R. The example data provided within the package are for 10 randomly-selected samples from The Cancer Genome Atlas (TCGA) program's LAML (Acute Myeloid Leukemia) cohort.
 
