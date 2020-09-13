@@ -79,13 +79,14 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 
     # obtain overlap data frame between SCNA segments and gene transcripts
     ranges <- genes_gr[S4Vectors::subjectHits(hits)]
+    q_hits <- S4Vectors::queryHits(hits)
     S4Vectors::mcols(ranges) <- c(S4Vectors::mcols(ranges),
-                                  S4Vectors::mcols(scna_gr[S4Vectors::queryHits(hits)]))
+                                  S4Vectors::mcols(scna_gr[q_hits]))
 
     genes_df <- data.frame(chr = as.vector(GenomeInfoDb::seqnames(ranges)),
                            as.data.frame(S4Vectors::mcols(ranges)))
-    genes_df$segment_start <- GenomicRanges::start(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)]))
-    genes_df$segment_end <- GenomicRanges::end(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)]))
+    genes_df$segment_start <- GenomicRanges::start(GenomicRanges::ranges(scna_gr[q_hits]))
+    genes_df$segment_end <- GenomicRanges::end(GenomicRanges::ranges(scna_gr[q_hits]))
     genes_df$transcript_start <- GenomicRanges::start(ranges)
     genes_df$transcript_end <- GenomicRanges::end(ranges)
 
@@ -181,13 +182,14 @@ create_SCNA_score_df <- function(gene_SCNA_df,
 
     # obtain overlap data frame between MCR regions and gene-level SCNA
     ranges <- MCR_gr[S4Vectors::subjectHits(hits)]
-    S4Vectors::mcols(ranges) <- c(S4Vectors::mcols(ranges), S4Vectors::mcols(agg_gr[S4Vectors::queryHits(hits)]))
+    q_hits <- S4Vectors::queryHits(hits)
+    S4Vectors::mcols(ranges) <- c(S4Vectors::mcols(ranges), S4Vectors::mcols(agg_gr[q_hits]))
 
     final_scna_df <- data.frame(chr = as.vector(GenomeInfoDb::seqnames(ranges)),
                                 as.data.frame(S4Vectors::mcols(ranges)))
 
-    final_scna_df$transcript_start <- GenomicRanges::start(GenomicRanges::ranges(agg_gr[S4Vectors::queryHits(hits)]))
-    final_scna_df$transcript_end <- GenomicRanges::end(GenomicRanges::ranges(agg_gr[S4Vectors::queryHits(hits)]))
+    final_scna_df$transcript_start <- GenomicRanges::start(GenomicRanges::ranges(agg_gr[q_hits]))
+    final_scna_df$transcript_end <- GenomicRanges::end(GenomicRanges::ranges(agg_gr[q_hits]))
     final_scna_df$MCR_start <- GenomicRanges::start(ranges)
     final_scna_df$MCR_end <- GenomicRanges::end(ranges)
 
