@@ -196,7 +196,7 @@ create_features_df <- function(annovar_csv_path,
 
     # gene-level SCNA df
     if (verbose)
-        message("Determining gene-level SCNAs (This will take a while)")
+        message("Determining gene-level SCNAs (This may take a while)")
     gene_SCNA_df <- create_gene_level_scna_df(scna_df = scna_df,
                                               gene_overlap_threshold = gene_overlap_threshold)
 
