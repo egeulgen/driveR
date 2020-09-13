@@ -16,7 +16,9 @@
 #' driver using the related task of a multi-task learning classification model.
 #'
 #'
-#' @seealso \code{\link{create_features_df}} for creating the features table to
+#' @seealso \code{\link{predict_coding_impact}} for metaprediction of impact of
+#' coding variants.
+#' \code{\link{create_features_df}} for creating the features table to
 #' be used to prioritize cancer driver genes.
 #' See \code{\link{prioritize_driver_genes}} for prioritizing cancer driver genes
 #'
