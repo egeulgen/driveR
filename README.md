@@ -43,5 +43,15 @@ devtools::install_github("egeulgen/driveR", build_vignettes = TRUE)
 
 ## Usage
 
+`driveR` has two main objectives:
+
+1.  Prediction of **impact of coding variants** (achieved via
+    `predict_coding_impact()`)
+2.  **Prioritization of cancer driver genes** (achieved via
+    `create_features_df()` and `prioritize_driver_genes()`)
+
+Note that `driveR` require operations outside of R and depends on the
+outputs from the external tools `ANNOVAR` and `phenolyzer`.
+
 For detailed information on how to use `driveR`, please see the vignette
 “How to use driveR” via `vignette("how_to_use")`
