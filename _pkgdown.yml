@@ -19,7 +19,7 @@ reference:
       Main functions of driveR
     contents:
       - create_features_df
-      - calculate_driverness_probs
+      - prioritize_driver_genes
   - title: "Utility Functions"
     desc: >
       Utility functions for generating the features

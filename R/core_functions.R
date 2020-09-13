@@ -64,7 +64,7 @@
 #'                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
 #' }
 #'
-#' @seealso \code{\link{calculate_driverness_probs}} for calculating driverness
+#' @seealso \code{\link{prioritize_driver_genes}} for calculating driverness
 #' probabilites for each gene.
 create_features_df <- function(annovar_csv_path,
                                scna_df,
@@ -150,7 +150,7 @@ create_features_df <- function(annovar_csv_path,
     return(features_df)
 }
 
-#' Calculate Driverness Probabilities
+#' Prioritize Cancer Driver Genes
 #'
 #' @param features_df the features data frame for all genes, containing the following columns:
 #' \describe{
@@ -185,17 +185,17 @@ create_features_df <- function(annovar_csv_path,
 #' @param cancer_type short name of the cancer type. All available cancer types
 #' are listed in \code{\link{MTL_submodel_descriptions}}
 #'
-#' @return estimated cancer driverness probability for each gene in
-#' \code{features_df}. The probabilities are calculated using the selected (via
+#' @return estimated probability for each gene in \code{features_df} of being a
+#' cancer driver. The probabilities are calculated using the selected (via
 #' \code{cancer_type}) cancer type's sub-model.
 #' @export
 #'
 #' @examples
-#' driverness_df <- calculate_driverness_probs(example_features_table, "LUAD")
+#' driverness_df <- prioritize_driver_genes(example_features_table, "LUAD")
 #'
 #' @seealso \code{\link{create_features_df}} for creating the features table.
 #' \code{\link{TCGA_MTL_fit}} for details on the MTL model used for prediction.
-calculate_driverness_probs <- function(features_df, cancer_type) {
+prioritize_driver_genes <- function(features_df, cancer_type) {
     # argument checks
     if (!is.data.frame(features_df))
         stop("`features_df` should be a data frame")

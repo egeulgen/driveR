@@ -17,8 +17,7 @@
 #'
 #' @seealso \code{\link{create_features_df}} for creating the features table to
 #' be used to calculate cancer driverness probabilities.
-#' See \code{\link{calculate_driverness_probs}} for calculating cancer driverness
-#' probabilites for each gene.
+#' See \code{\link{prioritize_driver_genes}} for prioritizing cancer driver genes
 #'
 #' @docType package
 #' @name driveR

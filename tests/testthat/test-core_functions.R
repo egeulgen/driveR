@@ -2,7 +2,7 @@
 ## Project: driveR
 ## Script purpose: Testthat testing script for
 ## core functions
-## Date: Sep 6, 2020
+## Date: Sep 13, 2020
 ## Author: Ege Ulgen
 ##################################################
 
@@ -32,20 +32,20 @@ test_that("`create_features_df` argument check works", {
                  "`prep_phenolyzer_input` should be logical")
 })
 
-# calculate_driverness_probs ----------------------------------------------
-test_that("`calculate_driverness_probs` works", {
-    expect_is(driverness_df <- calculate_driverness_probs(example_features_table, "LUAD"),
+# prioritize_driver_genes ----------------------------------------------
+test_that("`prioritize_driver_genes` works", {
+    expect_is(driverness_df <- prioritize_driver_genes(example_features_table, "LUAD"),
               "data.frame")
 })
 
-test_that("`calculate_driverness_probs` argument check works", {
-    expect_error(calculate_driverness_probs(example_features_table, "INVALID"),
+test_that("`prioritize_driver_genes` argument check works", {
+    expect_error(prioritize_driver_genes(example_features_table, "INVALID"),
                  "`cancer_type` should be one of the short names in `MTL_submodel_descriptions`")
 
-    expect_error(calculate_driverness_probs(matrix()),
+    expect_error(prioritize_driver_genes(matrix()),
                  "`features_df` should be a data frame")
 
-    expect_error(calculate_driverness_probs(example_features_table[, -1], "LUAD"),
+    expect_error(prioritize_driver_genes(example_features_table[, -1], "LUAD"),
                  "`features_df` should contain exactly 27 columns")
 
     req_names <- c("gene_symbol", "metaprediction_score", "noncoding_score",
@@ -57,7 +57,7 @@ test_that("`calculate_driverness_probs` argument check works", {
                    "hsa04915")
     tmp <- example_features_table
     colnames(tmp)[1] <- "INVALID"
-    expect_error(calculate_driverness_probs(tmp, "LUAD"),
+    expect_error(prioritize_driver_genes(tmp, "LUAD"),
                  paste0("`features_df` should contain the following columns: ",
                         paste(dQuote(req_names), collapse = ", ")))
 })

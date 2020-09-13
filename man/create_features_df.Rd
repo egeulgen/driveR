@@ -110,6 +110,6 @@ features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
 
 }
 \seealso{
-\code{\link{calculate_driverness_probs}} for calculating driverness
+\code{\link{prioritize_driver_genes}} for calculating driverness
 probabilites for each gene.
 }

@@ -108,7 +108,7 @@ features_df <- example_features_table
 
 ## Calculate cancer driverness probabilities
 
-Finally, we can calculate the cancer driverness probability of each gene using `calculate_driverness_probs()`. For this function, `cancer_type` can be of the short names for the 21 different cancer types that was used to train the multi-task learning model utilized in this package:
+Finally, we can calculate the cancer driverness probability of each gene using `prioritize_driver_genes()`. For this function, `cancer_type` can be of the short names for the 21 different cancer types that was used to train the multi-task learning model utilized in this package:
 
 ```{r cancer_types}
 knitr::kable(MTL_submodel_descriptions)
@@ -117,8 +117,8 @@ knitr::kable(MTL_submodel_descriptions)
 Below is the example run for the lung adenocarcinoma patient:
 
 ```{r driver_prob}
-driver_prob_df <- calculate_driverness_probs(features_df = features_df,
-                                             cancer_type = "LUAD")
+driver_prob_df <- prioritize_driver_genes(features_df = features_df,
+                                          cancer_type = "LUAD")
 head(driver_prob_df, 10)
 ```
 
@@ -206,13 +206,13 @@ features_df <- example_cohort_features_table
 
 ## Calculate cancer driverness probabilities
 
-Finally, we can calculate the cancer driverness probability of each gene using `calculate_driverness_probs()`. 
+Finally, we can calculate the cancer driverness probability of each gene using `prioritize_driver_genes()`. 
 
 Below is the example run for the acute myeloid leukemia cohort:
 
 ```{r driver_prob2}
-driver_prob_df <- calculate_driverness_probs(features_df = features_df,
-                                             cancer_type = "LAML")
+driver_prob_df <- prioritize_driver_genes(features_df = features_df,
+                                          cancer_type = "LAML")
 head(driver_prob_df, 10)
 ```
 
