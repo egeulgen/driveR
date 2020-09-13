@@ -3,7 +3,7 @@
 \docType{data}
 \name{TCGA_MTL_fit}
 \alias{TCGA_MTL_fit}
-\title{Multi-Task Learning Model for Predicting Cancer Driverness of Genes}
+\title{Multi-Task Learning Model for Predicting Cancer Driver Genes}
 \format{
 MTL model object
 }
@@ -12,7 +12,7 @@ TCGA_MTL_fit
 }
 \description{
 A Multi-Task Learning (MTL) classification model object for determining
-cancer driverness of genes based on 26 features. The model was trained using
+cancer driver genes based on 26 features. The model was trained using
 TCGA data (obtained from ICGC release 28) with lasso regularization. It contains
 21 sub-models for different cancer types.
 }

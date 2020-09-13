@@ -50,7 +50,7 @@ cancer driver. The probabilities are calculated using the selected (via
 Prioritize Cancer Driver Genes
 }
 \examples{
-driverness_df <- prioritize_driver_genes(example_features_table, "LUAD")
+drivers_df <- prioritize_driver_genes(example_features_table, "LUAD")
 
 }
 \seealso{

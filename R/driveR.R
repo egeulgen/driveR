@@ -1,4 +1,4 @@
-#' driveR: A package for Ranking Genes According to Cancer Driverness using Individual Sequencing Results
+#' driveR: An R Package for Prioritizing Cancer Driver Genes Using Genomics Data
 #'
 #' Cancer genomes contain large numbers of somatic alterations but few genes
 #' drive tumor development. Identifying molecular cancer driver genes is critical
@@ -6,17 +6,18 @@
 #' genes based on mutational recurrence or using estimated scores predicting
 #' the functional consequences of mutations.
 #'
-#' driveR is a tool for scoring and ranking genes from individual or batch somatic whole
-#' exome/genome sequencing data according to cancer driverness. As features,
-#' driveR uses coding impact metaprediction scores, non-coding impact scores,
-#' somatic copy number alteration scores, hotspot gene/double-hit gene condition,
-#' ‘phenolyzer’ gene scores and memberships to cancer-related KEGG pathways. It
-#' uses these features to calculate cancer-type-specific driverness probabilities
-#' for each gene using the related task of a multi-task learning model.
+#' driveR is a tool for personalized or batch analysis of genomic data for
+#' driver gene prioritization by combining genomic information and prior
+#' biological knowledge. As features, driveR uses coding impact metaprediction
+#' scores, non-coding impact scores, somatic copy number alteration scores,
+#' hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and
+#' memberships to cancer-related KEGG pathways. It uses these features to
+#' estimate cancer-type-specific probabilities for each gene of being a cancer
+#' driver using the related task of a multi-task learning classification model.
 #'
 #'
 #' @seealso \code{\link{create_features_df}} for creating the features table to
-#' be used to calculate cancer driverness probabilities.
+#' be used to prioritize cancer driver genes.
 #' See \code{\link{prioritize_driver_genes}} for prioritizing cancer driver genes
 #'
 #' @docType package

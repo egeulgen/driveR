@@ -3,7 +3,7 @@
 \docType{data}
 \name{example_features_table}
 \alias{example_features_table}
-\title{Example Features Table for Driverness Scoring}
+\title{Example Features Table for Driver Prioritization}
 \format{
 A data frame with 4901 rows and 27 variables:
 \describe{
@@ -40,7 +40,7 @@ A data frame with 4901 rows and 27 variables:
 example_features_table
 }
 \description{
-The example dataset containing features for scoring driverness of genes for
+The example dataset containing features for prioritizing cancer driver genes for
 the lung adenocarcinoma patient studied in Imielinski M, Greulich H, Kaplan B, et al.
 Oncogenic and sorafenib-sensitive ARAF mutations in lung adenocarcinoma.
 J Clin Invest. 2014;124(4):1582-6.

@@ -7,10 +7,10 @@
 #' @format model object
 "metapredictor_model"
 
-#' Multi-Task Learning Model for Predicting Cancer Driverness of Genes
+#' Multi-Task Learning Model for Predicting Cancer Driver Genes
 #'
 #' A Multi-Task Learning (MTL) classification model object for determining
-#' cancer driverness of genes based on 26 features. The model was trained using
+#' cancer driver genes based on 26 features. The model was trained using
 #' TCGA data (obtained from ICGC release 28) with lasso regularization. It contains
 #' 21 sub-models for different cancer types.
 #'
@@ -93,9 +93,9 @@
 #' @source \url{https://pubmed.ncbi.nlm.nih.gov/24569458/}
 "example_scna_table"
 
-#' Example Features Table for Driverness Scoring
+#' Example Features Table for Driver Prioritization
 #'
-#' The example dataset containing features for scoring driverness of genes for
+#' The example dataset containing features for prioritizing cancer driver genes for
 #' the lung adenocarcinoma patient studied in Imielinski M, Greulich H, Kaplan B, et al.
 #' Oncogenic and sorafenib-sensitive ARAF mutations in lung adenocarcinoma.
 #' J Clin Invest. 2014;124(4):1582-6.
@@ -152,9 +152,9 @@
 #' @source \url{https://dcc.icgc.org/releases/release_28}
 "example_cohort_scna_table"
 
-#' Example Cohort-level Features Table for Driverness Scoring
+#' Example Cohort-level Features Table for Driver Prioritization
 #'
-#' The example dataset containing features for scoring driverness of genes for 10 randomly
+#' The example dataset containing features for prioritizing cancer driver genes for 10 randomly
 #' selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort
 #'
 #' @format A data frame with 349 rows and 27 variables:

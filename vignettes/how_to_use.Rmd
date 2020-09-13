@@ -16,9 +16,9 @@ knitr::opts_chunk$set(
 
 # Overview
 
-Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying molecular cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence (across a cohort) or using estimated scores predicting the functional consequences of mutations. 
+Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying molecular cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence or using estimated scores predicting the functional consequences of mutations. 
 
-`driveR` is a tool for scoring and prioritizing genes from individual or batch somatic whole exome/genome sequencing data according to cancer driverness. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to calculate cancer-type-specific driverness scores for each gene using the related task of a multi-task learning model.
+`driveR` is a tool for personalized or batch analysis of genomic data for driver gene prioritization by combining genomic information and prior biological knowledge. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific probabilities for each gene of being a cancer driver using the related task of a multi-task learning classification model.
 
 # Example I - Individual Tumor Sample Sequencing Data
 
@@ -32,7 +32,7 @@ Below, a step-by-step work flow for `driveR` for an individual tumor sample is p
 library(driveR)
 ```
 
-As input, `create_features_df()`, the function used to create the features table for driverness prediction, requires the following:
+As input, `create_features_df()`, the function used to create the features table for driver gene prioritization, requires the following:
 
 - `annovar_csv_path`: the `/path/to/ANNOVAR/csv/output/file`
 - `scna_df`: a data frame containing SCNA segments, containing the columns "chr", "start", "end" and "log2ratio"
@@ -106,9 +106,9 @@ features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
 features_df <- example_features_table
 ```
 
-## Calculate cancer driverness probabilities
+## Prioritize cancer driver genes
 
-Finally, we can calculate the cancer driverness probability of each gene using `prioritize_driver_genes()`. For this function, `cancer_type` can be of the short names for the 21 different cancer types that was used to train the multi-task learning model utilized in this package:
+Finally, we can prioritize cancer driver genes using `prioritize_driver_genes()`. For this function, `cancer_type` can be of the short names for the 21 different cancer types that was used to train the multi-task learning model utilized in this package:
 
 ```{r cancer_types}
 knitr::kable(MTL_submodel_descriptions)
@@ -122,7 +122,7 @@ driver_prob_df <- prioritize_driver_genes(features_df = features_df,
 head(driver_prob_df, 10)
 ```
 
-The function returns a data frame of genes with cancer driverness probabilities (using the selected sub-model of a multi-task learning model trained using 21 different cancer types). In the above example, the top 10 genes contain recognizable cancer driver genes.
+The function returns a data frame of genes with probabilities of being cancer driver genes (using the selected sub-model of a multi-task learning model trained using 21 different cancer types). In the above example, the top 10 genes contain recognizable cancer driver genes.
 
 # Example II - Batch Sequencing Data
 
@@ -134,7 +134,7 @@ Below, a step-by-step work flow for `driveR` for a cohort of tumor samples is pr
 library(driveR)
 ```
 
-As before, as input, `create_features_df()`, the function used to create the features table for driverness prediction, requires the following:
+As before, as input, `create_features_df()`, the function used to create the features table for driver gene prioritization, requires the following:
 
 - `annovar_csv_path`: the `/path/to/ANNOVAR/csv/output/file`
 - `scna_df`: a data frame containing SCNA segments, containing the columns "chr", "start", "end", "log2ratio" and **"tumor_id"**
@@ -204,9 +204,9 @@ features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
 features_df <- example_cohort_features_table
 ```
 
-## Calculate cancer driverness probabilities
+## Prioritize cancer driver genes
 
-Finally, we can calculate the cancer driverness probability of each gene using `prioritize_driver_genes()`. 
+Finally, we can prioritize cancer driver genes using `prioritize_driver_genes()`. 
 
 Below is the example run for the acute myeloid leukemia cohort:
 

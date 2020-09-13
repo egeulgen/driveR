@@ -3,7 +3,7 @@
 \docType{data}
 \name{example_cohort_features_table}
 \alias{example_cohort_features_table}
-\title{Example Cohort-level Features Table for Driverness Scoring}
+\title{Example Cohort-level Features Table for Driver Prioritization}
 \format{
 A data frame with 349 rows and 27 variables:
 \describe{
@@ -40,7 +40,7 @@ A data frame with 349 rows and 27 variables:
 example_cohort_features_table
 }
 \description{
-The example dataset containing features for scoring driverness of genes for 10 randomly
+The example dataset containing features for prioritizing cancer driver genes for 10 randomly
 selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort
 }
 \seealso{

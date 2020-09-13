@@ -1,4 +1,4 @@
-#' Create Data Frame of Features for Driverness Scoring
+#' Create Data Frame of Features for Driver Gene Prioritization
 #'
 #' @inheritParams create_metaprediction_score_df
 #' @inheritParams create_gene_level_scna_df
@@ -14,7 +14,7 @@
 #' @inheritParams determine_double_hit_genes
 #'
 #' @return If \code{prep_phenolyzer_input=FALSE} (default), a data frame of
-#' features for scoring cancer driverness of each gene (\code{gene_symbol} as
+#' features for prioritizing cancer driver genes (\code{gene_symbol} as
 #' the first column and 26 other columns containing features). If
 #' \code{prep_phenolyzer_input=TRUE}, the functions returns a vector gene symbols
 #' (union of all gene symbols for which scores are available) to be used as the
@@ -64,8 +64,7 @@
 #'                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
 #' }
 #'
-#' @seealso \code{\link{prioritize_driver_genes}} for calculating driverness
-#' probabilites for each gene.
+#' @seealso \code{\link{prioritize_driver_genes}} for prioritizing cancer driver genes
 create_features_df <- function(annovar_csv_path,
                                scna_df,
                                phenolyzer_annotated_gene_list_path,
@@ -191,7 +190,7 @@ create_features_df <- function(annovar_csv_path,
 #' @export
 #'
 #' @examples
-#' driverness_df <- prioritize_driver_genes(example_features_table, "LUAD")
+#' drivers_df <- prioritize_driver_genes(example_features_table, "LUAD")
 #'
 #' @seealso \code{\link{create_features_df}} for creating the features table.
 #' \code{\link{TCGA_MTL_fit}} for details on the MTL model used for prediction.

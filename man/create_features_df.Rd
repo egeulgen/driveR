@@ -2,7 +2,7 @@
 % Please edit documentation in R/core_functions.R
 \name{create_features_df}
 \alias{create_features_df}
-\title{Create Data Frame of Features for Driverness Scoring}
+\title{Create Data Frame of Features for Driver Gene Prioritization}
 \usage{
 create_features_df(
   annovar_csv_path,
@@ -57,7 +57,7 @@ homozygous loss events (default = -1).}
 }
 \value{
 If \code{prep_phenolyzer_input=FALSE} (default), a data frame of
-features for scoring cancer driverness of each gene (\code{gene_symbol} as
+features for prioritizing cancer driver genes (\code{gene_symbol} as
 the first column and 26 other columns containing features). If
 \code{prep_phenolyzer_input=TRUE}, the functions returns a vector gene symbols
 (union of all gene symbols for which scores are available) to be used as the
@@ -95,7 +95,7 @@ The features data frame contains the following columns:
 }
 }
 \description{
-Create Data Frame of Features for Driverness Scoring
+Create Data Frame of Features for Driver Gene Prioritization
 }
 \examples{
 \dontrun{
@@ -110,6 +110,5 @@ features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
 
 }
 \seealso{
-\code{\link{prioritize_driver_genes}} for calculating driverness
-probabilites for each gene.
+\code{\link{prioritize_driver_genes}} for prioritizing cancer driver genes
 }

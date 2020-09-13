@@ -34,7 +34,7 @@ test_that("`create_features_df` argument check works", {
 
 # prioritize_driver_genes ----------------------------------------------
 test_that("`prioritize_driver_genes` works", {
-    expect_is(driverness_df <- prioritize_driver_genes(example_features_table, "LUAD"),
+    expect_is(drivers_df <- prioritize_driver_genes(example_features_table, "LUAD"),
               "data.frame")
 })
 
