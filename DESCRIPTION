@@ -33,7 +33,6 @@ Imports:
     caret,
     randomForest,
     Homo.sapiens,
-    dplyr,
     GenomicRanges,
     GenomeInfoDb,
     GenomicFeatures,
