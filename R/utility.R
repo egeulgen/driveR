@@ -84,16 +84,14 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 
     genes_df <- data.frame(chr = as.vector(GenomeInfoDb::seqnames(ranges)),
                            as.data.frame(S4Vectors::mcols(ranges)))
+    genes_df$segment_start <- GenomicRanges::start(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)]))
+    genes_df$segment_end <- GenomicRanges::end(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)]))
+    genes_df$transcript_start <- GenomicRanges::start(ranges)
+    genes_df$transcript_end <- GenomicRanges::end(ranges)
 
-    `%>%` <- dplyr::`%>%`
-    genes_df <- as.data.frame(genes_df %>%
-                                  dplyr::mutate(segment_start = GenomicRanges::start(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)]))) %>%
-                                  dplyr::mutate(segment_end = GenomicRanges::end(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)]))) %>%
-                                  dplyr::mutate(transcript_start = GenomicRanges::start(ranges)) %>%
-                                  dplyr::mutate(transcript_end = GenomicRanges::end(ranges)) %>%
-                                  dplyr::rowwise() %>%
-                                  dplyr::mutate(transcript_overlap_percent =
-                                                    (min(.data$transcript_end, .data$segment_end) - max(.data$segment_start, .data$transcript_start)) / (.data$transcript_end - .data$transcript_start)) * 100)
+    tmp1 <- apply(genes_df[, c("transcript_end", "segment_end")], 1, min)
+    tmp2 <- apply(genes_df[, c("segment_start", "transcript_start")], 1, max)
+    genes_df$transcript_overlap_percent <- (tmp1 - tmp2) / (genes_df$transcript_end - genes_df$transcript_start) * 100
 
     # filter for `gene_overlap_threshold`
     genes_df <- genes_df[genes_df$transcript_overlap_percent >= gene_overlap_threshold, ]
