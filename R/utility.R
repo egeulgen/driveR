@@ -87,15 +87,13 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 
     `%>%` <- dplyr::`%>%`
     genes_df <- as.data.frame(genes_df %>%
-                                  dplyr::mutate(segment_start = as.integer(GenomicRanges::start(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)])))) %>%
-                                  dplyr::mutate(segment_end = as.integer(GenomicRanges::end(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)])))) %>%
-                                  dplyr::mutate(segment_length_Mb = round((as.numeric((.data$segment_end - .data$segment_start + 1) / 1e6)), digits = 4)) %>%
+                                  dplyr::mutate(segment_start = GenomicRanges::start(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)]))) %>%
+                                  dplyr::mutate(segment_end = GenomicRanges::end(GenomicRanges::ranges(scna_gr[S4Vectors::queryHits(hits)]))) %>%
                                   dplyr::mutate(transcript_start = GenomicRanges::start(ranges)) %>%
                                   dplyr::mutate(transcript_end = GenomicRanges::end(ranges)) %>%
-                                  dplyr::mutate(chrom = as.character(GenomeInfoDb::seqnames(ranges))) %>%
                                   dplyr::rowwise() %>%
                                   dplyr::mutate(transcript_overlap_percent =
-                                                    round(as.numeric((min(.data$transcript_end, .data$segment_end) - max(.data$segment_start, .data$transcript_start)) / (.data$transcript_end - .data$transcript_start)) * 100, digits = 2)))
+                                                    (min(.data$transcript_end, .data$segment_end) - max(.data$segment_start, .data$transcript_start)) / (.data$transcript_end - .data$transcript_start)) * 100)
 
     # filter for `gene_overlap_threshold`
     genes_df <- genes_df[genes_df$transcript_overlap_percent >= gene_overlap_threshold, ]
@@ -158,7 +156,7 @@ create_SCNA_score_df <- function(gene_SCNA_df,
         return(-max_val)
     })
 
-    gene_agg_df <- gene_SCNA_df[, c("symbol", "chrom", "transcript_start", "transcript_end")]
+    gene_agg_df <- gene_SCNA_df[, c("symbol", "chr", "transcript_start", "transcript_end")]
     gene_agg_df <- gene_agg_df[!duplicated(gene_agg_df$symbol), ]
     gene_agg_df$agg_log2_ratio <- agg_ratios[match(gene_agg_df$symbol, names(agg_ratios))]
 
@@ -168,7 +166,7 @@ create_SCNA_score_df <- function(gene_SCNA_df,
     ### assign MCR score to overlapping genes
     MCR_gr <- GenomicRanges::makeGRangesFromDataFrame(MCR_table, keep.extra.columns = TRUE)
     agg_gr <- GenomicRanges::makeGRangesFromDataFrame(gene_agg_df,
-                                                      seqnames.field = "chrom",
+                                                      seqnames.field = "chr",
                                                       start.field = "transcript_start",
                                                       end.field = "transcript_end",
                                                       keep.extra.columns = TRUE)
