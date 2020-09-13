@@ -149,9 +149,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>create_SCNA_score_df</span>(
-  <span class='kw'>scna_df</span>,
+  <span class='kw'>gene_SCNA_df</span>,
   log2_ratio_threshold = <span class='fl'>0.25</span>,
-  gene_overlap_threshold = <span class='fl'>25</span>,
   MCR_overlap_threshold = <span class='fl'>25</span>
 )</pre>
 
@@ -159,26 +158,13 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>scna_df</th>
-      <td><p>the SCNA segments data frame. Must contain:</p><dl>
-<dt>chr</dt><dd><p>chromosome the segment is located in</p></dd>
-<dt>start</dt><dd><p>start position of the segment</p></dd>
-<dt>end</dt><dd><p>end position of the segment</p></dd>
-<dt>log2ratio</dt><dd><p>log<sub>2</sub> ratio of the segment</p></dd>
-
-</dl></td>
+      <th>gene_SCNA_df</th>
+      <td><p>data frame of gene-level SCNAs (output of <code><a href='create_gene_level_scna_df.html'>create_gene_level_scna_df</a></code>)</p></td>
     </tr>
     <tr>
       <th>log2_ratio_threshold</th>
       <td><p>the log<sub>2</sub>
 ratio threshold for keeping high-confidence SCNA events (default = 0.25)</p></td>
-    </tr>
-    <tr>
-      <th>gene_overlap_threshold</th>
-      <td><p>the percentage threshold for the overlap between
-a segment and a transcript (default = 25). This means that if only a segment
-overlaps a transcript more than this threshold, the transcript is assigned
-the segment's SCNA event.</p></td>
     </tr>
     <tr>
       <th>MCR_overlap_threshold</th>
