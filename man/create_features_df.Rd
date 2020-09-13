@@ -13,7 +13,8 @@ create_features_df(
   gene_overlap_threshold = 25,
   MCR_overlap_threshold = 25,
   hotspot_threshold = 5L,
-  log2_hom_loss_threshold = -1
+  log2_hom_loss_threshold = -1,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -54,6 +55,8 @@ for the minimum number of cases with certain mutation in COSMIC (default = 5)}
 \item{log2_hom_loss_threshold}{to determine double-hit events, the
 \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold for identifying
 homozygous loss events (default = -1).}
+
+\item{verbose}{boolean controlling verbosity (default = \code{TRUE})}
 }
 \value{
 If \code{prep_phenolyzer_input=FALSE} (default), a data frame of

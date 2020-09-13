@@ -115,6 +115,7 @@ predict_coding_impact <- function(annovar_csv_path,
 #' @inheritParams create_SCNA_score_df
 #' @inheritParams determine_hotspot_genes
 #' @inheritParams determine_double_hit_genes
+#' @param verbose boolean controlling verbosity (default = \code{TRUE})
 #'
 #' @return If \code{prep_phenolyzer_input=FALSE} (default), a data frame of
 #' features for prioritizing cancer driver genes (\code{gene_symbol} as
@@ -176,25 +177,34 @@ create_features_df <- function(annovar_csv_path,
                                gene_overlap_threshold = 25,
                                MCR_overlap_threshold = 25,
                                hotspot_threshold = 5L,
-                               log2_hom_loss_threshold = -1) {
+                               log2_hom_loss_threshold = -1,
+                               verbose = TRUE) {
     ### argument check
     if (!is.logical(prep_phenolyzer_input))
         stop("`prep_phenolyzer_input` should be logical")
 
     ### determine individual features
     # coding variant impact metaprediction scores
+    if (verbose)
+        message("Predicting impact of coding variants")
     metaprediction_scores_df <- predict_coding_impact(annovar_csv_path = annovar_csv_path)
 
     # non-coding variant impact metaprediction scores
+    if (verbose)
+        message("Predicting impact of non-coding variants")
     noncoding_scores_df <- create_noncoding_impact_score_df(annovar_csv_path = annovar_csv_path)
 
     # SCNA scores
+    if (verbose)
+        message("Scoring SCNA events")
     scna_scores_df <- create_SCNA_score_df(scna_df = scna_df,
                                            log2_ratio_threshold = log2_ratio_threshold,
                                            gene_overlap_threshold = gene_overlap_threshold,
                                            MCR_overlap_threshold = MCR_overlap_threshold)
 
     # hotspot or double-hit genes
+    if (verbose)
+        message("Determining hotspot/double-hit genes")
     hotspot_genes <- determine_hotspot_genes(annovar_csv_path = annovar_csv_path,
                                              hotspot_threshold = hotspot_threshold)
     double_hit_genes <- determine_double_hit_genes(annovar_csv_path = annovar_csv_path,
@@ -212,6 +222,8 @@ create_features_df <- function(annovar_csv_path,
         return(all_genes)
 
     # phenolyzer scores
+    if (verbose)
+        message("Parsing 'phenolyzer' gene scores")
     phenolyzer_df <- utils::read.delim(phenolyzer_annotated_gene_list_path)
     phenolyzer_df <- phenolyzer_df[phenolyzer_df$Gene %in% all_genes, ]
 
@@ -245,6 +257,8 @@ create_features_df <- function(annovar_csv_path,
     features_df$phenolyzer_score <- ifelse(is.na(features_df$phenolyzer_score), 0, features_df$phenolyzer_score)
 
     ### add KEGG cancer pathway memberships as features
+    if (verbose)
+        message("Assessing memberships to KEGG - cancer-related pathways")
     tmp <- lapply(KEGG_cancer_pathways, function(x) features_df$gene_symbol %in% x)
     tmp <- as.data.frame(tmp)
     features_df <- cbind(features_df, tmp)
