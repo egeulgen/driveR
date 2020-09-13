@@ -19,9 +19,6 @@
     <loc>https://egeulgen.github.io/driveR//reference/TCGA_MTL_fit.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/calculate_driverness_probs.html</loc>
-  </url>
-  <url>
     <loc>https://egeulgen.github.io/driveR//reference/create_SCNA_score_df.html</loc>
   </url>
   <url>
@@ -59,6 +56,9 @@
   </url>
   <url>
     <loc>https://egeulgen.github.io/driveR//reference/metapredictor_model.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR//reference/prioritize_driver_genes.html</loc>
   </url>
   <url>
     <loc>https://egeulgen.github.io/driveR//articles/how_to_use.html</loc>
