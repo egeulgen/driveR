@@ -194,12 +194,17 @@ create_features_df <- function(annovar_csv_path,
         message("Predicting impact of non-coding variants")
     noncoding_scores_df <- create_noncoding_impact_score_df(annovar_csv_path = annovar_csv_path)
 
+    # gene-level SCNA df
+    if (verbose)
+        message("Determining gene-level SCNAs")
+    gene_SCNA_df <- create_gene_level_scna_df(scna_df = scna_df,
+                                              gene_overlap_threshold = gene_overlap_threshold)
+
     # SCNA scores
     if (verbose)
         message("Scoring SCNA events")
-    scna_scores_df <- create_SCNA_score_df(scna_df = scna_df,
+    scna_scores_df <- create_SCNA_score_df(gene_SCNA_df = gene_SCNA_df,
                                            log2_ratio_threshold = log2_ratio_threshold,
-                                           gene_overlap_threshold = gene_overlap_threshold,
                                            MCR_overlap_threshold = MCR_overlap_threshold)
 
     # hotspot or double-hit genes
@@ -208,8 +213,7 @@ create_features_df <- function(annovar_csv_path,
     hotspot_genes <- determine_hotspot_genes(annovar_csv_path = annovar_csv_path,
                                              hotspot_threshold = hotspot_threshold)
     double_hit_genes <- determine_double_hit_genes(annovar_csv_path = annovar_csv_path,
-                                                   scna_df = scna_df,
-                                                   gene_overlap_threshold = gene_overlap_threshold,
+                                                   gene_SCNA_df = gene_SCNA_df,
                                                    log2_hom_loss_threshold = log2_hom_loss_threshold)
     hotspot_dhit_genes <- unique(c(hotspot_genes, double_hit_genes))
 

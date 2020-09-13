@@ -36,27 +36,29 @@ test_that("`create_gene_level_scna_df` argument checks work", {
 })
 
 # create_SCNA_score_df ----------------------------------------------------
+gene_SCNA_df <- driveR:::create_gene_level_scna_df(example_scna_table)
+
 test_that("`create_SCNA_score_df` works", {
-    expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table), "data.frame")
+    expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(gene_SCNA_df), "data.frame")
     expect_equal(ncol(SCNA_scores_df), 2)
 
     # corner case
-    expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table[1:10, ]), "data.frame")
+    expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(gene_SCNA_df[1:2, ]), "data.frame")
     expect_equal(ncol(SCNA_scores_df), 2)
     expect_equal(nrow(SCNA_scores_df), 0)
 })
 
 test_that("`create_SCNA_score_df` argument checks work", {
-    expect_error(driveR:::create_SCNA_score_df(example_scna_table,
+    expect_error(driveR:::create_SCNA_score_df(gene_SCNA_df,
                                                log2_ratio_threshold = "INVALID"),
                  "`log2_ratio_threshold` should be numberic")
 
 
-    expect_error(driveR:::create_SCNA_score_df(example_scna_table,
+    expect_error(driveR:::create_SCNA_score_df(gene_SCNA_df,
                                                MCR_overlap_threshold = "INVALID"),
                  "`MCR_overlap_threshold` should be numberic")
 
-    expect_error(driveR:::create_SCNA_score_df(example_scna_table,
+    expect_error(driveR:::create_SCNA_score_df(gene_SCNA_df,
                                                     MCR_overlap_threshold = -1),
                  "`MCR_overlap_threshold` should be between 0-100")
 })
@@ -79,13 +81,13 @@ test_that("`determine_double_hit_genes` works", {
     path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                     package = "driveR")
     expect_is(dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv,
-                                                                example_scna_table),
+                                                                gene_SCNA_df),
               "character")
 
     path2annovar_csv <- system.file("extdata/example_cohort.hg19_multianno.csv",
                                     package = "driveR")
     expect_is(dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv,
-                                                                example_cohort_scna_table),
+                                                                gene_SCNA_df),
               "character")
 })
 
@@ -93,7 +95,7 @@ test_that("`determine_double_hit_genes` argument checks work", {
     path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                     package = "driveR")
     expect_error(driveR:::determine_double_hit_genes(path2annovar_csv,
-                                                     example_scna_table,
+                                                     gene_SCNA_dfs,
                                                      log2_hom_loss_threshold = "INVALID"),
                  "`log2_hom_loss_threshold` should be numberic")
 })

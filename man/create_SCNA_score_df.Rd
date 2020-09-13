@@ -5,27 +5,16 @@
 \title{Create SCNA Score Data Frame}
 \usage{
 create_SCNA_score_df(
-  scna_df,
+  gene_SCNA_df,
   log2_ratio_threshold = 0.25,
-  gene_overlap_threshold = 25,
   MCR_overlap_threshold = 25
 )
 }
 \arguments{
-\item{scna_df}{the SCNA segments data frame. Must contain: \describe{
-\item{chr}{chromosome the segment is located in}
-\item{start}{start position of the segment}
-\item{end}{end position of the segment}
-\item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of the segment}
-}}
+\item{gene_SCNA_df}{data frame of gene-level SCNAs (output of \code{\link{create_gene_level_scna_df}})}
 
 \item{log2_ratio_threshold}{the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
 ratio threshold for keeping high-confidence SCNA events (default = 0.25)}
-
-\item{gene_overlap_threshold}{the percentage threshold for the overlap between
-a segment and a transcript (default = 25). This means that if only a segment
-overlaps a transcript more than this threshold, the transcript is assigned
-the segment's SCNA event.}
 
 \item{MCR_overlap_threshold}{the percentage threshold for the overlap between
 a gene and an MCR region (default = 25). This means that if only a gene

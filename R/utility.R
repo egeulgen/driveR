@@ -110,7 +110,7 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 
 #' Create SCNA Score Data Frame
 #'
-#' @inheritParams create_gene_level_scna_df
+#' @param gene_SCNA_df data frame of gene-level SCNAs (output of \code{\link{create_gene_level_scna_df}})
 #' @param log2_ratio_threshold the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
 #' ratio threshold for keeping high-confidence SCNA events (default = 0.25)
 #' @param MCR_overlap_threshold the percentage threshold for the overlap between
@@ -133,9 +133,8 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 #' \dontrun{
 #' SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table)
 #' }
-create_SCNA_score_df <- function(scna_df,
+create_SCNA_score_df <- function(gene_SCNA_df,
                                  log2_ratio_threshold = 0.25,
-                                 gene_overlap_threshold = 25,
                                  MCR_overlap_threshold = 25){
     ### argument checks
     if (!is.numeric(log2_ratio_threshold))
@@ -148,22 +147,18 @@ create_SCNA_score_df <- function(scna_df,
         stop("`MCR_overlap_threshold` should be between 0-100")
 
     #### determine gene-level log2-ratios
-    # gene-level SCNA df
-    genes_df <- create_gene_level_scna_df(scna_df = scna_df,
-                                          gene_overlap_threshold = gene_overlap_threshold)
-
     # discard sex chromosomes
-    genes_df <- genes_df[!genes_df$chr %in% c("chrX", "chrY"), ]
+    gene_SCNA_df <- gene_SCNA_df[!gene_SCNA_df$chr %in% c("chrX", "chrY"), ]
 
     # aggregate as max |log2-ratio| over all values per gene
-    agg_ratios <- tapply(genes_df$log2ratio, genes_df$symbol, function(x) {
+    agg_ratios <- tapply(gene_SCNA_df$log2ratio, gene_SCNA_df$symbol, function(x) {
         max_val <- max(abs(x))
         if (max_val %in% x)
             return(max_val)
         return(-max_val)
     })
 
-    gene_agg_df <- genes_df[, c("symbol", "chrom", "transcript_start", "transcript_end")]
+    gene_agg_df <- gene_SCNA_df[, c("symbol", "chrom", "transcript_start", "transcript_end")]
     gene_agg_df <- gene_agg_df[!duplicated(gene_agg_df$symbol), ]
     gene_agg_df$agg_log2_ratio <- agg_ratios[match(gene_agg_df$symbol, names(agg_ratios))]
 
@@ -273,7 +268,7 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
 #' Determine Double-Hit Genes
 #'
 #' @inheritParams predict_coding_impact
-#' @inheritParams create_gene_level_scna_df
+#' @inheritParams create_SCNA_score_df
 #' @param log2_hom_loss_threshold to determine double-hit events, the
 #' \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold for identifying
 #' homozygous loss events (default = -1).
@@ -288,18 +283,15 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
 #' dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, example_scna_table)
 #' }
 determine_double_hit_genes <- function(annovar_csv_path,
-                                       scna_df,
-                                       gene_overlap_threshold = 25,
+                                       gene_SCNA_df,
                                        log2_hom_loss_threshold = -1) {
     ### argument checks
     if (!is.numeric(log2_hom_loss_threshold))
         stop("`log2_hom_loss_threshold` should be numberic")
 
     ### gene-level hom. loss df
-    genes_df <- create_gene_level_scna_df(scna_df = scna_df,
-                                          gene_overlap_threshold = gene_overlap_threshold)
     # keep only hom. loss
-    loss_genes_df <- genes_df[genes_df$log2ratio < log2_hom_loss_threshold, ]
+    loss_genes_df <- gene_SCNA_df[gene_SCNA_df$log2ratio < log2_hom_loss_threshold, ]
 
     ### non-synonymous mutations df
     annovar_df <- utils::read.csv(annovar_csv_path)

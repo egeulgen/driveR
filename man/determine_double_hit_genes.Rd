@@ -6,25 +6,14 @@
 \usage{
 determine_double_hit_genes(
   annovar_csv_path,
-  scna_df,
-  gene_overlap_threshold = 25,
+  gene_SCNA_df,
   log2_hom_loss_threshold = -1
 )
 }
 \arguments{
 \item{annovar_csv_path}{path to 'ANNOVAR' csv output file}
 
-\item{scna_df}{the SCNA segments data frame. Must contain: \describe{
-\item{chr}{chromosome the segment is located in}
-\item{start}{start position of the segment}
-\item{end}{end position of the segment}
-\item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of the segment}
-}}
-
-\item{gene_overlap_threshold}{the percentage threshold for the overlap between
-a segment and a transcript (default = 25). This means that if only a segment
-overlaps a transcript more than this threshold, the transcript is assigned
-the segment's SCNA event.}
+\item{gene_SCNA_df}{data frame of gene-level SCNAs (output of \code{\link{create_gene_level_scna_df}})}
 
 \item{log2_hom_loss_threshold}{to determine double-hit events, the
 \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold for identifying
