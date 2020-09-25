@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   how_to_use: how_to_use.html
-last_built: 2020-09-25T09:14Z
+last_built: 2020-09-25T09:17Z
 urls:
   reference: https://egeulgen.github.io/driveR//reference
   article: https://egeulgen.github.io/driveR//articles
