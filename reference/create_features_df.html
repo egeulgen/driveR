@@ -274,7 +274,7 @@ input for performing 'phenolyzer' analysis.</p>
     <div class='dont-index'><p><code><a href='prioritize_driver_genes.html'>prioritize_driver_genes</a></code> for prioritizing cancer driver genes</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='kw'>path2annovar_csv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.hg19_multianno.csv"</span>,
                                 package = <span class='st'>"driveR"</span>)
 <span class='kw'>path2phenolyzer_out</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example.annotated_gene_list"</span>,
@@ -282,7 +282,7 @@ input for performing 'phenolyzer' analysis.</p>
 <span class='kw'>features_df</span> <span class='op'>&lt;-</span> <span class='fu'>create_features_df</span>(annovar_csv_path = <span class='kw'>path2annovar_csv</span>,
                                   scna_df = <span class='kw'>example_scna_table</span>,
                                   phenolyzer_annotated_gene_list_path = <span class='kw'>path2phenolyzer_out</span>)
-}
+</div><div class='output co'>#&gt; <span class='message'>Predicting impact of coding variants</span></div><div class='output co'>#&gt; <span class='message'>Predicting impact of non-coding variants</span></div><div class='output co'>#&gt; <span class='message'>Determining gene-level SCNAs (This may take a while)</span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt; <span class='message'>Scoring SCNA events</span></div><div class='output co'>#&gt; <span class='message'>Determining hotspot/double-hit genes</span></div><div class='output co'>#&gt; <span class='message'>Parsing 'phenolyzer' gene scores</span></div><div class='output co'>#&gt; <span class='message'>Assessing memberships to KEGG - cancer-related pathways</span></div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
