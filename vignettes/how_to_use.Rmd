@@ -20,6 +20,8 @@ Cancer genomes contain large numbers of somatic alterations but few genes drive 
 
 `driveR` is a tool for personalized or batch analysis of genomic data for driver gene prioritization by combining genomic information and prior biological knowledge. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific probabilities for each gene of being a cancer driver using the related task of a multi-task learning classification model.
 
+> For now, the package only supports hg19 genomic positions.
+
 Below are some example usage cases for `driveR`:
 
 # Predicting Impact of Coding Variants
