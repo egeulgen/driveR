@@ -26,8 +26,3 @@ by SCNA segments.
 \description{
 Create Gene-level SCNA Data Frame
 }
-\examples{
-\dontrun{
-gene_scna_df <- driveR:::create_gene_level_scna_df(example_scna_table)
-}
-}

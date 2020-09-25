@@ -6,11 +6,6 @@
 #'   \item{gene_symbol}{HGNC gene symbol}
 #'   \item{CADD_phred}{PHRED-scaled CADD score}
 #' }
-#'
-#' @examples
-#' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-#'                                 package = "driveR")
-#' noncoding_df <- driveR:::create_noncoding_impact_score_df(path2annovar_csv)
 create_noncoding_impact_score_df <- function(annovar_csv_path) {
     annovar_df <- utils::read.csv(annovar_csv_path)
     noncoding_df <- annovar_df[annovar_df$Func.refGene != "exonic", ]
@@ -46,11 +41,6 @@ create_noncoding_impact_score_df <- function(annovar_csv_path) {
 #' by SCNA segments.
 #'
 #' @importFrom rlang .data
-#'
-#' @examples
-#' \dontrun{
-#' gene_scna_df <- driveR:::create_gene_level_scna_df(example_scna_table)
-#' }
 create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
     ### argument checks
     nec_cols <- c("chr", "start", "end", "log2ratio")
@@ -125,11 +115,6 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 #' ratio over all the SCNA segments overlapping a gene). Next, it identifies the
 #' minimal common regions (MCRs) that the genes overlap and finally assigns the
 #' SCNA density (SCNA/Mb) values as proxy SCNA scores.
-#'
-#' @examples
-#' \dontrun{
-#' SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table)
-#' }
 create_SCNA_score_df <- function(gene_SCNA_df,
                                  log2_ratio_threshold = 0.25,
                                  MCR_overlap_threshold = 25){
@@ -218,11 +203,6 @@ create_SCNA_score_df <- function(gene_SCNA_df,
 #' for the minimum number of cases with certain mutation in COSMIC (default = 5)
 #'
 #' @return vector of gene symbols of genes containing hotspot mutation(s)
-#'
-#' @examples
-#' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-#'                                 package = "driveR")
-#' hotspot_genes <- driveR:::determine_hotspot_genes(path2annovar_csv)
 determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
     # argument check
     if (!is.numeric(hotspot_threshold))
@@ -272,13 +252,6 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
 #'
 #' @return vector of gene symbols that are subject to double-hit event(s), i.e.
 #' non-synonymous mutation + homozygous CN loss
-#'
-#' @examples
-#' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-#'                                 package = "driveR")
-#' \dontrun{
-#' dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, example_scna_table)
-#' }
 determine_double_hit_genes <- function(annovar_csv_path,
                                        gene_SCNA_df,
                                        log2_hom_loss_threshold = -1) {

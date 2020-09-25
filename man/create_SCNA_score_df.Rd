@@ -37,8 +37,3 @@ ratio over all the SCNA segments overlapping a gene). Next, it identifies the
 minimal common regions (MCRs) that the genes overlap and finally assigns the
 SCNA density (SCNA/Mb) values as proxy SCNA scores.
 }
-\examples{
-\dontrun{
-SCNA_scores_df <- driveR:::create_SCNA_score_df(example_scna_table)
-}
-}

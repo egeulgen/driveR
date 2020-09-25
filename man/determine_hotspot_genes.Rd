@@ -18,8 +18,3 @@ vector of gene symbols of genes containing hotspot mutation(s)
 \description{
 Determine Hotspot Containing Genes
 }
-\examples{
-path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-                                package = "driveR")
-hotspot_genes <- driveR:::determine_hotspot_genes(path2annovar_csv)
-}

@@ -26,10 +26,3 @@ non-synonymous mutation + homozygous CN loss
 \description{
 Determine Double-Hit Genes
 }
-\examples{
-path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-                                package = "driveR")
-\dontrun{
-dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv, example_scna_table)
-}
-}

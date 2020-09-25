@@ -18,8 +18,3 @@ data frame of meta-prediction scores containing 2 columns: \describe{
 \description{
 Create Non-coding Impact Score Data Frame
 }
-\examples{
-path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-                                package = "driveR")
-noncoding_df <- driveR:::create_noncoding_impact_score_df(path2annovar_csv)
-}
