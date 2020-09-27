@@ -83,6 +83,7 @@ predict_coding_impact <- function(annovar_csv_path,
     if (nrow(annovar_df) == 0) {
         empty_df <- as.data.frame(matrix("", nrow = 0, ncol = 2))
         colnames(empty_df) <- c("gene_symbol", "metaprediction_score")
+        warning("There were no mutations with prediction scores for all tools")
         return(empty_df)
     }
 
