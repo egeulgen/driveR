@@ -2,7 +2,7 @@
 ## Project: driveR
 ## Script purpose: Testthat testing script for
 ## core functions
-## Date: Sep 13, 2020
+## Date: Sep 28, 2020
 ## Author: Ege Ulgen
 ##################################################
 
@@ -11,6 +11,15 @@ test_that("`predict_coding_impact` works", {
     path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                     package = "driveR")
     expect_is(metapred_df <- predict_coding_impact(path2annovar_csv), "data.frame")
+    expect_equal(ncol(metapred_df), 2)
+
+    # corner case
+    tmp <- read.csv(path2annovar_csv)
+    tmp <- tmp[tmp$CADD_phred == ".", ]
+    path2corner <- tempfile()
+    write.csv(tmp, path2corner, row.names = FALSE)
+    expect_is(metapred_df <- predict_coding_impact(path2corner), "data.frame")
+    expect_equal(nrow(metapred_df), 0)
     expect_equal(ncol(metapred_df), 2)
 })
 
@@ -64,6 +73,17 @@ test_that("`create_features_df` works", {
                                  scna_df = example_scna_table,
                                  prep_phenolyzer_input = TRUE),
               "character")
+
+    # corner case
+    tmp <- read.csv(path2annovar_csv)
+    tmp <- tmp[tmp$CADD_phred == ".", ]
+    path2corner <- tempfile()
+    write.csv(tmp, path2corner, row.names = FALSE)
+    expect_is(features_df <- create_features_df(annovar_csv_path = path2corner,
+                                                scna_df = example_scna_table,
+                                                phenolyzer_annotated_gene_list_path = path2phenolyzer_out),
+              "data.frame")
+    expect_equal(ncol(features_df), 27)
 })
 
 test_that("`create_features_df` argument check works", {

@@ -80,6 +80,13 @@ predict_coding_impact <- function(annovar_csv_path,
     annovar_df <- annovar_df[annovar_df$DANN_score != ".", ]
     annovar_df$DANN_score <- as.numeric(annovar_df$DANN_score)
 
+    if (nrow(annovar_df) == 0) {
+        empty_df <- as.data.frame(matrix("", nrow = 0, ncol = 2))
+        colnames(empty_df) <- c("gene_symbol", "metaprediction_score")
+        return(empty_df)
+    }
+
+
     # Predict metapredictor probabilities
     pred_df <- stats::predict(metapredictor_model, newdata = annovar_df, type = "prob")
     annovar_df$metaprediction_score <- pred_df$non.neutral
