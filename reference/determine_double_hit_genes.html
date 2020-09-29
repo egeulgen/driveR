@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -154,7 +154,8 @@
     <pre class="usage"><span class='fu'>determine_double_hit_genes</span>(
   <span class='kw'>annovar_csv_path</span>,
   <span class='kw'>gene_SCNA_df</span>,
-  log2_hom_loss_threshold = <span class='op'>-</span><span class='fl'>1</span>
+  log2_hom_loss_threshold = <span class='op'>-</span><span class='fl'>1</span>,
+  batch_analysis = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -173,6 +174,13 @@
       <td><p>to determine double-hit events, the
 log<sub>2</sub> threshold for identifying
 homozygous loss events (default = -1).</p></td>
+    </tr>
+    <tr>
+      <th>batch_analysis</th>
+      <td><p>boolean to indicate whether to perform batch analysis
+(<code>TRUE</code>, default) or personalized analysis (<code>FALSE</code>). If <code>TRUE</code>,
+a column named 'tumor_id' should be present in both the ANNOVAR csv and the SCNA
+table.</p></td>
     </tr>
     </table>
 

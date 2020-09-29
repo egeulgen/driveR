@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -155,6 +155,7 @@
   <span class='kw'>annovar_csv_path</span>,
   <span class='kw'>scna_df</span>,
   <span class='kw'>phenolyzer_annotated_gene_list_path</span>,
+  batch_analysis = <span class='fl'>FALSE</span>,
   prep_phenolyzer_input = <span class='fl'>FALSE</span>,
   log2_ratio_threshold = <span class='fl'>0.25</span>,
   gene_overlap_threshold = <span class='fl'>25</span>,
@@ -185,6 +186,13 @@
       <th>phenolyzer_annotated_gene_list_path</th>
       <td><p>path to 'phenolyzer'
 "annotated_gene_list" file</p></td>
+    </tr>
+    <tr>
+      <th>batch_analysis</th>
+      <td><p>boolean to indicate whether to perform batch analysis
+(<code>TRUE</code>, default) or personalized analysis (<code>FALSE</code>). If <code>TRUE</code>,
+a column named 'tumor_id' should be present in both the ANNOVAR csv and the SCNA
+table.</p></td>
     </tr>
     <tr>
       <th>prep_phenolyzer_input</th>
