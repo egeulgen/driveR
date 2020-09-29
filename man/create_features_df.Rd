@@ -8,6 +8,7 @@ create_features_df(
   annovar_csv_path,
   scna_df,
   phenolyzer_annotated_gene_list_path,
+  batch_analysis = FALSE,
   prep_phenolyzer_input = FALSE,
   log2_ratio_threshold = 0.25,
   gene_overlap_threshold = 25,
@@ -29,6 +30,11 @@ create_features_df(
 
 \item{phenolyzer_annotated_gene_list_path}{path to 'phenolyzer'
 "annotated_gene_list" file}
+
+\item{batch_analysis}{boolean to indicate whether to perform batch analysis
+(\code{TRUE}, default) or personalized analysis (\code{FALSE}). If \code{TRUE},
+a column named 'tumor_id' should be present in both the ANNOVAR csv and the SCNA
+table.}
 
 \item{prep_phenolyzer_input}{boolean to indicate whether or not to create
 a vector of genes for use as the input of 'phenolyzer' (default = \code{FALSE}).

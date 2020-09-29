@@ -249,15 +249,23 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
 #' @param log2_hom_loss_threshold to determine double-hit events, the
 #' \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold for identifying
 #' homozygous loss events (default = -1).
+#' @param batch_analysis boolean to indicate whether to perform batch analysis
+#' (\code{TRUE}, default) or personalized analysis (\code{FALSE}). If \code{TRUE},
+#' a column named 'tumor_id' should be present in both the ANNOVAR csv and the SCNA
+#' table.
 #'
 #' @return vector of gene symbols that are subject to double-hit event(s), i.e.
 #' non-synonymous mutation + homozygous CN loss
 determine_double_hit_genes <- function(annovar_csv_path,
                                        gene_SCNA_df,
-                                       log2_hom_loss_threshold = -1) {
+                                       log2_hom_loss_threshold = -1,
+                                       batch_analysis = FALSE) {
     ### argument checks
     if (!is.numeric(log2_hom_loss_threshold))
         stop("`log2_hom_loss_threshold` should be numberic")
+
+    if (!is.logical(batch_analysis))
+        stop("`batch_analysis` should be `TRUE` or `FALSE`")
 
     ### gene-level hom. loss df
     # keep only hom. loss
@@ -271,7 +279,10 @@ determine_double_hit_genes <- function(annovar_csv_path,
     non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)] <- vapply(non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)], function(x) unlist(strsplit(x, ";"))[1], "char")
 
     ### determine double-hit genes
-    if ("tumor_id" %in% colnames(non_syn_df) & "tumor_id" %in% colnames(loss_genes_df)) {
+    if (batch_analysis) {
+        if (!("tumor_id" %in% colnames(non_syn_df) & "tumor_id" %in% colnames(loss_genes_df)))
+            stop("'tumor id' should be present in both ANNOVAR output and SCNA table if `tumor_id == TRUE`")
+
         all_donors <- unique(non_syn_df$tumor_id)
         all_donors <- all_donors[all_donors %in% loss_genes_df$tumor_id]
 

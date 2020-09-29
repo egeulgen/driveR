@@ -2,7 +2,7 @@
 ## Project: driveR
 ## Script purpose: Testthat testing script for
 ## utility functions
-## Date: Sep 13, 2020
+## Date: Sep 29, 2020
 ## Author: Ege Ulgen
 ##################################################
 
@@ -37,6 +37,7 @@ test_that("`create_gene_level_scna_df` argument checks work", {
 
 # create_SCNA_score_df ----------------------------------------------------
 gene_SCNA_df <- driveR:::create_gene_level_scna_df(example_scna_table)
+gene_SCNA_df_batch <- driveR:::create_gene_level_scna_df(example_cohort_scna_table)
 
 test_that("`create_SCNA_score_df` works", {
     expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(gene_SCNA_df), "data.frame")
@@ -86,10 +87,9 @@ test_that("`determine_double_hit_genes` works", {
 
     path2annovar_csv <- system.file("extdata/example_cohort.hg19_multianno.csv",
                                     package = "driveR")
-    gene_SCNA_df2 <- driveR:::create_gene_level_scna_df(example_cohort_scna_table)
-
     expect_is(dhit_genes <- driveR:::determine_double_hit_genes(path2annovar_csv,
-                                                                gene_SCNA_df2),
+                                                                gene_SCNA_df_batch,
+                                                                batch_analysis = TRUE),
               "character")
 })
 
@@ -100,4 +100,15 @@ test_that("`determine_double_hit_genes` argument checks work", {
                                                      gene_SCNA_df,
                                                      log2_hom_loss_threshold = "INVALID"),
                  "`log2_hom_loss_threshold` should be numberic")
+
+    expect_error(driveR:::determine_double_hit_genes(path2annovar_csv,
+                                                     gene_SCNA_df,
+                                                     batch_analysis = "INVALID"),
+                 "`batch_analysis` should be `TRUE` or `FALSE`")
+
+    expect_error(driveR:::determine_double_hit_genes(path2annovar_csv,
+                                                     gene_SCNA_df,
+                                                     batch_analysis = TRUE),
+                 "'tumor id' should be present in both ANNOVAR output and SCNA table if `tumor_id == TRUE`")
+
 })

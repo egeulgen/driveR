@@ -7,7 +7,8 @@
 determine_double_hit_genes(
   annovar_csv_path,
   gene_SCNA_df,
-  log2_hom_loss_threshold = -1
+  log2_hom_loss_threshold = -1,
+  batch_analysis = FALSE
 )
 }
 \arguments{
@@ -18,6 +19,11 @@ determine_double_hit_genes(
 \item{log2_hom_loss_threshold}{to determine double-hit events, the
 \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold for identifying
 homozygous loss events (default = -1).}
+
+\item{batch_analysis}{boolean to indicate whether to perform batch analysis
+(\code{TRUE}, default) or personalized analysis (\code{FALSE}). If \code{TRUE},
+a column named 'tumor_id' should be present in both the ANNOVAR csv and the SCNA
+table.}
 }
 \value{
 vector of gene symbols that are subject to double-hit event(s), i.e.

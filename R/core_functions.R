@@ -178,6 +178,7 @@ predict_coding_impact <- function(annovar_csv_path,
 create_features_df <- function(annovar_csv_path,
                                scna_df,
                                phenolyzer_annotated_gene_list_path,
+                               batch_analysis = FALSE,
                                prep_phenolyzer_input = FALSE,
                                log2_ratio_threshold = 0.25,
                                gene_overlap_threshold = 25,
@@ -220,7 +221,8 @@ create_features_df <- function(annovar_csv_path,
                                              hotspot_threshold = hotspot_threshold)
     double_hit_genes <- determine_double_hit_genes(annovar_csv_path = annovar_csv_path,
                                                    gene_SCNA_df = gene_SCNA_df,
-                                                   log2_hom_loss_threshold = log2_hom_loss_threshold)
+                                                   log2_hom_loss_threshold = log2_hom_loss_threshold,
+                                                   batch_analysis = batch_analysis)
     hotspot_dhit_genes <- unique(c(hotspot_genes, double_hit_genes))
 
     # return `all_genes` if phenolyzer input is required
