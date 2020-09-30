@@ -147,6 +147,13 @@ create_SCNA_score_df <- function(gene_SCNA_df,
     # filter for high confidence
     gene_agg_df <- gene_agg_df[abs(gene_agg_df$agg_log2_ratio) > log2_ratio_threshold, ]
 
+    # return empty data frame if no gene passing log2 threshold
+    if (nrow(gene_agg_df) == 0) {
+        df <- data.frame(symbol = character(), SCNA_density = numeric())
+        warning("No gene-level SCNA event passed the log2_ratio_threshold")
+        return(df)
+    }
+
     ### assign MCR score to overlapping genes
     MCR_gr <- GenomicRanges::makeGRangesFromDataFrame(MCR_table, keep.extra.columns = TRUE)
     agg_gr <- GenomicRanges::makeGRangesFromDataFrame(gene_agg_df,
@@ -162,6 +169,7 @@ create_SCNA_score_df <- function(gene_SCNA_df,
     # return empty data frame if no overlap
     if (length(hits) == 0) {
         df <- data.frame(symbol = character(), SCNA_density = numeric())
+        warning("No gene-level SCNA event overlapped any MCR region")
         return(df)
     }
 

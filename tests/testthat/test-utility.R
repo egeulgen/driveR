@@ -43,7 +43,14 @@ test_that("`create_SCNA_score_df` works", {
     expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(gene_SCNA_df), "data.frame")
     expect_equal(ncol(SCNA_scores_df), 2)
 
-    # corner case
+    # corner case 1
+    tmp <- gene_SCNA_df[1:2, ]
+    tmp$log2ratio <- 0.1
+    expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(tmp), "data.frame")
+    expect_equal(ncol(SCNA_scores_df), 2)
+    expect_equal(nrow(SCNA_scores_df), 0)
+
+    # corner case 2
     expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(gene_SCNA_df[1:2, ]), "data.frame")
     expect_equal(ncol(SCNA_scores_df), 2)
     expect_equal(nrow(SCNA_scores_df), 0)
