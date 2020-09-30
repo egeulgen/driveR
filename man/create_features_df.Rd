@@ -107,7 +107,7 @@ The features data frame contains the following columns:
 Create Data Frame of Features for Driver Gene Prioritization
 }
 \examples{
-\donttest {
+\donttest{
 path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                 package = "driveR")
 path2phenolyzer_out <- system.file("extdata/example.annotated_gene_list",
