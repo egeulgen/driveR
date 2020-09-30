@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9001</span>
       </span>
     </div>
 
@@ -198,9 +198,15 @@ are listed in <code><a href='MTL_submodel_descriptions.html'>MTL_submodel_descri
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>estimated probability for each gene in <code>features_df</code> of being a
+    <p>data frame with 3 columns:</p><dl>
+<dt>gene_symbol</dt><dd><p>HGNC gene symbol</p></dd>
+<dt>driverness_prob</dt><dd><p>estimated probability for each gene in <code>features_df</code> of being a
 cancer driver. The probabilities are calculated using the selected (via
-<code>cancer_type</code>) cancer type's sub-model.</p>
+<code>cancer_type</code>) cancer type's sub-model.</p></dd>
+<dt>prediction</dt><dd><p>prediction based on the cancer-type-specific threshold (either "driver" or "non-driver")</p></dd>
+
+</dl>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='create_features_df.html'>create_features_df</a></code> for creating the features table.

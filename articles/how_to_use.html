@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9001</span>
       </span>
     </div>
 
@@ -334,17 +334,17 @@
 <span class="kw">driver_prob_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prioritize_driver_genes.html">prioritize_driver_genes</a></span>(features_df = <span class="kw">features_df</span>,
                                           cancer_type = <span class="st">"LUAD"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">driver_prob_df</span>, <span class="fl">10</span>)
-<span class="co">#&gt;      gene_symbol driverness_prob</span>
-<span class="co">#&gt; 842         TP53       0.9234615</span>
-<span class="co">#&gt; 3211       CCND3       0.8428974</span>
-<span class="co">#&gt; 3654        EGFR       0.7790908</span>
-<span class="co">#&gt; 1966       EP300       0.6689176</span>
-<span class="co">#&gt; 510          KDR       0.5198660</span>
-<span class="co">#&gt; 386       IFNA10       0.4609264</span>
-<span class="co">#&gt; 679          ATM       0.4492011</span>
-<span class="co">#&gt; 4589       ERBB2       0.4488066</span>
-<span class="co">#&gt; 740         IL7R       0.4365209</span>
-<span class="co">#&gt; 3572      PIK3R2       0.3985520</span>
+<span class="co">#&gt;      gene_symbol driverness_prob prediction</span>
+<span class="co">#&gt; 842         TP53       0.9234615     driver</span>
+<span class="co">#&gt; 3211       CCND3       0.8428974     driver</span>
+<span class="co">#&gt; 3654        EGFR       0.7790908     driver</span>
+<span class="co">#&gt; 1966       EP300       0.6689176     driver</span>
+<span class="co">#&gt; 510          KDR       0.5198660     driver</span>
+<span class="co">#&gt; 386       IFNA10       0.4609264     driver</span>
+<span class="co">#&gt; 679          ATM       0.4492011     driver</span>
+<span class="co">#&gt; 4589       ERBB2       0.4488066     driver</span>
+<span class="co">#&gt; 740         IL7R       0.4365209     driver</span>
+<span class="co">#&gt; 3572      PIK3R2       0.3985520     driver</span>
 </pre></div>
 <p>The function returns a data frame of genes with probabilities of being cancer driver genes (using the selected sub-model of a multi-task learning model trained using 21 different cancer types). In the above example, the top 10 genes contain recognizable cancer driver genes.</p>
 </div>
@@ -442,17 +442,17 @@
 <span class="kw">driver_prob_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prioritize_driver_genes.html">prioritize_driver_genes</a></span>(features_df = <span class="kw">features_df</span>,
                                           cancer_type = <span class="st">"LAML"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">driver_prob_df</span>, <span class="fl">10</span>)
-<span class="co">#&gt;     gene_symbol driverness_prob</span>
-<span class="co">#&gt; 49         FLT3       0.9956395</span>
-<span class="co">#&gt; 5          TP53       0.9524657</span>
-<span class="co">#&gt; 291       EP300       0.7264070</span>
-<span class="co">#&gt; 18         FGF8       0.2882487</span>
-<span class="co">#&gt; 67         MDM4       0.2686515</span>
-<span class="co">#&gt; 11        SMC1A       0.2509370</span>
-<span class="co">#&gt; 20        U2AF1       0.2364059</span>
-<span class="co">#&gt; 12         IDH2       0.2317207</span>
-<span class="co">#&gt; 113       HSPA8       0.2099666</span>
-<span class="co">#&gt; 311      IFNGR1       0.2031727</span>
+<span class="co">#&gt;     gene_symbol driverness_prob prediction</span>
+<span class="co">#&gt; 49         FLT3       0.9956395     driver</span>
+<span class="co">#&gt; 5          TP53       0.9524657     driver</span>
+<span class="co">#&gt; 291       EP300       0.7264070     driver</span>
+<span class="co">#&gt; 18         FGF8       0.2882487 non-driver</span>
+<span class="co">#&gt; 67         MDM4       0.2686515 non-driver</span>
+<span class="co">#&gt; 11        SMC1A       0.2509370 non-driver</span>
+<span class="co">#&gt; 20        U2AF1       0.2364059 non-driver</span>
+<span class="co">#&gt; 12         IDH2       0.2317207 non-driver</span>
+<span class="co">#&gt; 113       HSPA8       0.2099666 non-driver</span>
+<span class="co">#&gt; 311      IFNGR1       0.2031727 non-driver</span>
 </pre></div>
 <p>Once again, in the above example, the top 10 genes contain recognizable cancer driver genes.</p>
 </div>
