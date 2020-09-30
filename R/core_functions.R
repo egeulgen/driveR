@@ -313,9 +313,16 @@ create_features_df <- function(annovar_csv_path,
 #' @param cancer_type short name of the cancer type. All available cancer types
 #' are listed in \code{\link{MTL_submodel_descriptions}}
 #'
-#' @return estimated probability for each gene in \code{features_df} of being a
-#' cancer driver. The probabilities are calculated using the selected (via
-#' \code{cancer_type}) cancer type's sub-model.
+#' @return data frame with 3 columns:
+#' \describe{
+#'   \item{gene_symbol}{HGNC gene symbol}
+#'   \item{driverness_prob}{estimated probability for each gene in \code{features_df} of being a
+#'    cancer driver. The probabilities are calculated using the selected (via
+#'    \code{cancer_type}) cancer type's sub-model.}
+#'   \item{prediction}{prediction based on the cancer-type-specific threshold (either "driver" or "non-driver")}
+#' }
+#'
+#'
 #' @export
 #'
 #' @examples
@@ -357,5 +364,9 @@ prioritize_driver_genes <- function(features_df, cancer_type) {
     prob_df <- data.frame(gene_symbol = features_df$gene_symbol,
                           driverness_prob = yhat[, 1])
     prob_df <- prob_df[order(prob_df$driverness_prob, decreasing = TRUE), ]
+
+    threshold <- specific_thresholds[cancer_type]
+    prob_df$prediction <- ifelse(prob_df$driverness_prob >= threshold, "driver", "non-driver")
+
     return(prob_df)
 }

@@ -19,6 +19,14 @@
 #' of all sub-models.
 "TCGA_MTL_fit"
 
+#' Tumor type specific probability thresholds
+#'
+#' Driver gene probability thresholds for all 21 cancer types (submodels).
+#'
+#' @format vector with 21 elements
+#' @seealso \code{\link{TCGA_MTL_fit}} for the Multi-Task Learning model.
+"specific_thresholds"
+
 #' MTL Sub-model Descriptions
 #'
 #' A data frame containing descriptions for all sub-models of the MTL model.

@@ -37,6 +37,7 @@ reference:
       - metapredictor_model
       - TCGA_MTL_fit
       - MTL_submodel_descriptions
+      - specific_thresholds
       - MCR_table
       - KEGG_cancer_pathways
       - KEGG_cancer_pathways_descriptions

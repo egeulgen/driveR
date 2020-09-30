@@ -42,9 +42,14 @@ prioritize_driver_genes(features_df, cancer_type)
 are listed in \code{\link{MTL_submodel_descriptions}}}
 }
 \value{
-estimated probability for each gene in \code{features_df} of being a
+data frame with 3 columns:
+\describe{
+\item{gene_symbol}{HGNC gene symbol}
+\item{driverness_prob}{estimated probability for each gene in \code{features_df} of being a
 cancer driver. The probabilities are calculated using the selected (via
-\code{cancer_type}) cancer type's sub-model.
+\code{cancer_type}) cancer type's sub-model.}
+\item{prediction}{prediction based on the cancer-type-specific threshold (either "driver" or "non-driver")}
+}
 }
 \description{
 Prioritize Cancer Driver Genes
