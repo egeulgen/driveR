@@ -365,7 +365,7 @@ prioritize_driver_genes <- function(features_df, cancer_type) {
                           driverness_prob = yhat[, 1])
     prob_df <- prob_df[order(prob_df$driverness_prob, decreasing = TRUE), ]
 
-    threshold <- specific_thresholds[cancer_type]
+    threshold <- driveR::specific_thresholds[cancer_type]
     prob_df$prediction <- ifelse(prob_df$driverness_prob >= threshold, "driver", "non-driver")
 
     return(prob_df)
