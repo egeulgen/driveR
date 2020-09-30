@@ -157,7 +157,7 @@ driver_prob_df <- prioritize_driver_genes(features_df = features_df,
 head(driver_prob_df, 10)
 ```
 
-The function returns a data frame of genes with probabilities of being cancer driver genes (using the selected sub-model of a multi-task learning model trained using 21 different cancer types). In the above example, the top 10 genes contain recognizable cancer driver genes.
+The function returns a data frame of genes with probabilities of being cancer driver genes (using the selected sub-model of a multi-task learning model trained using 21 different cancer types) and the prediction of driver genes based on a cancer type specific probability threshold. In the above example, the top 10 genes contain recognizable cancer driver genes.
 
 # Driver Gene Prioritization - Batch Analysis
 
