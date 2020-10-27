@@ -45,6 +45,10 @@ devtools::install_github("egeulgen/driveR", build_vignettes = TRUE)
 
 ## Usage
 
+![driveR
+workflow](https://github.com/egeulgen/driveR/blob/master/inst/extdata/driver_workflow.png?raw=true
+"driveR workflow")
+
 `driveR` has two main objectives:
 
 1.  Prediction of **impact of coding variants** (achieved via
