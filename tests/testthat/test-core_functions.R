@@ -2,7 +2,7 @@
 ## Project: driveR
 ## Script purpose: Testthat testing script for
 ## core functions
-## Date: Sep 29, 2020
+## Date: Oct 1, 2020
 ## Author: Ege Ulgen
 ##################################################
 
@@ -86,8 +86,7 @@ test_that("`create_features_df` works", {
               "data.frame")
     expect_equal(ncol(features_df), 27)
 
-
-    # corner case
+    # corner case 1
     tmp <- read.csv(path2annovar_csv)
     tmp <- tmp[tmp$CADD_phred == ".", ]
     path2corner <- tempfile()
@@ -97,6 +96,18 @@ test_that("`create_features_df` works", {
                                                 phenolyzer_annotated_gene_list_path = path2phenolyzer_out),
               "data.frame")
     expect_equal(ncol(features_df), 27)
+
+    # corner case 2
+    tmp <- tmp[1:2, ]
+    tmp$cosmic91_coding <- tmp$cosmic91_noncoding <- "."
+    path2corner <- tempfile()
+    write.csv(tmp, path2corner, row.names = FALSE)
+    tmp_scna_table <- example_scna_table[1:2, ]
+    tmp_scna_table$log2ratio <- .1
+    expect_warning(features_df <- create_features_df(annovar_csv_path = path2corner,
+                                                     scna_df = tmp_scna_table,
+                                                     phenolyzer_annotated_gene_list_path = path2phenolyzer_out))
+
 })
 
 test_that("`create_features_df` argument check works", {

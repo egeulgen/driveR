@@ -232,6 +232,10 @@ create_features_df <- function(annovar_csv_path,
                           noncoding_scores_df$gene_symbol,
                           scna_scores_df$gene_symbol,
                           hotspot_dhit_genes))
+    if (length(all_genes) == 0) {
+        warning("No genes with suitable alterations identified")
+        return(all_genes)
+    }
     if (prep_phenolyzer_input)
         return(all_genes)
 
