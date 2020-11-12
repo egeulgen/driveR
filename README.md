@@ -12,7 +12,7 @@ status](https://travis-ci.com/egeulgen/driveR.svg?branch=master)](https://travis
 [![Codecov test
 coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://codecov.io/gh/egeulgen/driveR?branch=master)
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
