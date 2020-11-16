@@ -22,11 +22,13 @@ Cancer genomes contain large numbers of somatic alterations but few genes drive 
 
 > For now, the package only supports hg19 genomic positions.
 
+The method is described in detail in _Ulgen E, Sezerman OU. 2020. driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data. bioRxiv. [https://doi.org/10.1101/2020.11.10.376707](https://doi.org/10.1101/2020.11.10.376707)_ 
+
 Below are some example usage cases for `driveR`:
 
 # Predicting Impact of Coding Variants
 
-For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP version 3.0a via ANNOVAR. We provide with the package 2 example (modified) ANNOVAR outputs (see next sections): 
+For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP version 3.0a via ANNOVAR. We provide with the package 2 example (shortened) ANNOVAR outputs (see next sections): 
 
 ```{r metapred1}
 library(driveR)
@@ -50,9 +52,16 @@ metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv,
 
 Also by default, `predict_coding_impact()` keeps only the first gene symbol for genes where multiple symbols were annotated. This behavior can be altered by setting `keep_single_symbol = FALSE`:
 
-```{r metaapred4s, eval=FALSE}
+```{r metaapred4, eval=FALSE}
 metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv, 
                                            keep_single_symbol = FALSE)
+```
+
+The default `na.string` (string that was used to indicate when a score is not available during annotation with ANNOVAR) is ".", this can be altered via:
+
+```{r metapred5, eval=FALSE}
+metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv, 
+                                           na.string = "NA")
 ```
 
 # Driver Gene Prioritization - Personalized Analysis
@@ -78,7 +87,7 @@ As input, `create_features_df()`, the function used to create the features table
 We first run ANNOVAR. An example command provided below:
 
 ```{bash, eval=FALSE}
-table_annovar.pl example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/ouput -remove -protocol refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish
+table_annovar.pl example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/ouput -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp41a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish
 ```
 
 The required filters are, as listed in the above command, `refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding`.
