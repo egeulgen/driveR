@@ -87,7 +87,7 @@ As input, `create_features_df()`, the function used to create the features table
 We first run ANNOVAR. An example command provided below:
 
 ```{bash, eval=FALSE}
-table_annovar.pl example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/ouput -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp41a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish
+table_annovar.pl example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/ouput -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp30a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish
 ```
 
 The required filters are, as listed in the above command, `refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding`.
