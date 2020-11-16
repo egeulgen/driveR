@@ -2,7 +2,7 @@
 ## Project: driveR
 ## Script purpose: Testthat testing script for
 ## utility functions
-## Date: Sep 29, 2020
+## Date: Nov 16, 2020
 ## Author: Ege Ulgen
 ##################################################
 
@@ -46,12 +46,12 @@ test_that("`create_SCNA_score_df` works", {
     # corner case 1
     tmp <- gene_SCNA_df[1:2, ]
     tmp$log2ratio <- 0.1
-    expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(tmp), "data.frame")
+    expect_warning(SCNA_scores_df <- driveR:::create_SCNA_score_df(tmp))
     expect_equal(ncol(SCNA_scores_df), 2)
     expect_equal(nrow(SCNA_scores_df), 0)
 
     # corner case 2
-    expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(gene_SCNA_df[1:2, ]), "data.frame")
+    expect_warning(SCNA_scores_df <- driveR:::create_SCNA_score_df(gene_SCNA_df[1:2, ]))
     expect_equal(ncol(SCNA_scores_df), 2)
     expect_equal(nrow(SCNA_scores_df), 0)
 })
@@ -116,6 +116,6 @@ test_that("`determine_double_hit_genes` argument checks work", {
     expect_error(driveR:::determine_double_hit_genes(path2annovar_csv,
                                                      gene_SCNA_df,
                                                      batch_analysis = TRUE),
-                 "'tumor id' should be present in both ANNOVAR output and SCNA table if `tumor_id == TRUE`")
+                 "'tumor id' should be present in both ANNOVAR output and SCNA table if `batch_analysis == TRUE`")
 
 })

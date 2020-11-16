@@ -1,4 +1,4 @@
-# pathfindR 0.2.0.9000
+# pathfindR 0.2.0.9001
 
 ## Major Changes
 
@@ -7,6 +7,7 @@
 ## Minor changes and bug fixes
 
 - Updated citation information, correcting author name
+- Minor changes in utility functions
 
 ***
 
