@@ -121,7 +121,7 @@
 <div id="predicting-impact-of-coding-variants" class="section level1">
 <h1 class="hasAnchor">
 <a href="#predicting-impact-of-coding-variants" class="anchor"></a>Predicting Impact of Coding Variants</h1>
-<p>For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP version 3.0a via ANNOVAR. We provide with the package 2 example (shortened) ANNOVAR outputs (see next sections):</p>
+<p>For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP via ANNOVAR. We provide with the package 2 example (shortened) ANNOVAR outputs (see next sections):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://egeulgen.github.io/driveR/">driveR</a></span><span class="op">)</span>
 <span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.hg19_multianno.csv"</span>,
