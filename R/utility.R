@@ -188,7 +188,7 @@ create_SCNA_score_df <- function(gene_SCNA_df,
 
     tmp1 <- apply(final_scna_df[, c("MCR_end", "transcript_end")], 1, min)
     tmp2 <- apply(final_scna_df[, c("transcript_start", "MCR_start")], 1, max)
-    final_scna_df$transcript_overlap_percent <- (tmp1 - tmp2) / (final_scna_df$MCR_end - final_scna_df$MCR_start) * 100
+    final_scna_df$MCR_overlap_percent <- (tmp1 - tmp2) / (final_scna_df$MCR_end - final_scna_df$MCR_start) * 100
 
     # filter for `MCR_overlap_threshold`
     final_scna_df <- final_scna_df[final_scna_df$MCR_overlap_percent >= MCR_overlap_threshold, ]
