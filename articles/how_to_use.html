@@ -174,7 +174,7 @@
 <h3 class="hasAnchor">
 <a href="#annovar-csv-output" class="anchor"></a>ANNOVAR CSV output</h3>
 <p>We first run ANNOVAR. An example command provided below:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">table_annovar.pl</span> example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/ouput -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp41a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">table_annovar.pl</span> example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/ouput -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp30a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish</span></code></pre></div>
 <p>The required filters are, as listed in the above command, <code>refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding</code>.</p>
 <p>With the package, an example (modified) ANNOVAR csv output file is available:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
