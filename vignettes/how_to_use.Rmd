@@ -38,21 +38,21 @@ path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
 
 We can calculate impact scores for all coding variants in this ANNOVAR file via `predict_coding_impact()`:
 
-```{r metaapred2}
+```{r metapred2}
 metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv)
 head(metaprediction_df)
 ```
 
 By default, `predict_coding_impact()` keeps only the maximal score per gene. This behavior can be altered by setting `keep_highest_score = FALSE`:
 
-```{r metaapred3, eval=FALSE}
+```{r metapred3, eval=FALSE}
 metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv, 
                                            keep_highest_score = FALSE)
 ```
 
 Also by default, `predict_coding_impact()` keeps only the first gene symbol for genes where multiple symbols were annotated. This behavior can be altered by setting `keep_single_symbol = FALSE`:
 
-```{r metaapred4, eval=FALSE}
+```{r metapred4, eval=FALSE}
 metaprediction_df <- predict_coding_impact(annovar_csv_path = path2annovar_csv, 
                                            keep_single_symbol = FALSE)
 ```
