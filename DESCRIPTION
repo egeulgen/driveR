@@ -1,6 +1,6 @@
 Package: driveR
 Title: Prioritizing Cancer Driver Genes Using Genomics Data
-Version: 0.1.1
+Version: 0.1.2.9000
 Authors@R: 
     person(given = "Ege",
            family = "Ulgen",
@@ -21,7 +21,7 @@ Description: Cancer genomes contain large numbers of somatic alterations but few
     pathways. It uses these features to estimate cancer-type-specific 
     probability for each gene of being a cancer driver using the related task of 
     a multi-task learning classification model. The method is described in detail 
-    in Ulgen E, Sezerman U. 2020. driveR: A Novel Method for Prioritizing Cancer 
+    in Ulgen E, Sezerman OU. 2020. driveR: A Novel Method for Prioritizing Cancer 
     Driver Genes Using Somatic Genomics Data. bioRxiv 
     <doi:10.1101/2020.11.10.376707>.
 License: MIT + file LICENSE

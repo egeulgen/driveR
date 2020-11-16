@@ -4,10 +4,10 @@ citEntry(
   entry    = "Article",
   title    = "driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data",
   author   = c(person("Ege","Ulgen"),
-	           person("Ugur","Sezerman")),
+	           person(c("Osman", "Ugur"),"Sezerman")),
   journal  = "bioRxiv",
   year     = 2020,
 
   url      = "https://doi.org/10.1101/2020.11.10.376707",
-  textVersion = "Ulgen E, Sezerman U. 2020. driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data. bioRxiv. https://doi.org/10.1101/2020.11.10.376707"
+  textVersion = "Ulgen E, Sezerman OU. 2020. driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data. bioRxiv. https://doi.org/10.1101/2020.11.10.376707"
 )
