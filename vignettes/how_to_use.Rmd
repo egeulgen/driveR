@@ -28,7 +28,7 @@ Below are some example usage cases for `driveR`:
 
 # Predicting Impact of Coding Variants
 
-For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP version 3.0a via ANNOVAR. We provide with the package 2 example (shortened) ANNOVAR outputs (see next sections): 
+For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP via ANNOVAR. We provide with the package 2 example (shortened) ANNOVAR outputs (see next sections): 
 
 ```{r metapred1}
 library(driveR)
