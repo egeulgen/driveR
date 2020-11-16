@@ -7,7 +7,8 @@
 predict_coding_impact(
   annovar_csv_path,
   keep_highest_score = TRUE,
-  keep_single_symbol = TRUE
+  keep_single_symbol = TRUE,
+  na.string = "."
 )
 }
 \arguments{
@@ -20,6 +21,9 @@ per each gene are returned}
 \item{keep_single_symbol}{in ANNOVAR outputs, a variant may be annotated as
 exonic in multiple genes. This boolean argument controls whether or not to
 keep only the first encountered symbol for a variant (default = \code{TRUE})}
+
+\item{na.string}{string that was used to indicate when a score is not available
+during annotation with ANNOVAR (default = ".")}
 }
 \value{
 data frame of meta-prediction scores containing 2 columns: \describe{

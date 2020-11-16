@@ -7,6 +7,8 @@
 #' @param keep_single_symbol in ANNOVAR outputs, a variant may be annotated as
 #' exonic in multiple genes. This boolean argument controls whether or not to
 #' keep only the first encountered symbol for a variant (default = \code{TRUE})
+#' @param na.string string that was used to indicate when a score is not available
+#' during annotation with ANNOVAR (default = ".")
 #'
 #' @return data frame of meta-prediction scores containing 2 columns: \describe{
 #'   \item{gene_symbol}{HGNC gene symbol}
@@ -21,7 +23,8 @@
 #' metapred_df <- predict_coding_impact(path2annovar_csv)
 predict_coding_impact <- function(annovar_csv_path,
                                   keep_highest_score = TRUE,
-                                  keep_single_symbol = TRUE) {
+                                  keep_single_symbol = TRUE,
+                                  na.string = ".") {
     # argument checks
     if (!file.exists(annovar_csv_path))
         stop("The file used for `annovar_csv_path` does not exist")
@@ -45,40 +48,40 @@ predict_coding_impact <- function(annovar_csv_path,
         stop("`keep_single_symbol` should be logical")
 
     # filter out missing scores
-    annovar_df <- annovar_df[annovar_df$SIFT_score != ".", ]
+    annovar_df <- annovar_df[annovar_df$SIFT_score != na.string, ]
     annovar_df$SIFT_score <- as.numeric(annovar_df$SIFT_score)
 
-    annovar_df <- annovar_df[annovar_df$Polyphen2_HDIV_score != ".", ]
+    annovar_df <- annovar_df[annovar_df$Polyphen2_HDIV_score != na.string, ]
     annovar_df$Polyphen2_HDIV_score <- as.numeric(annovar_df$Polyphen2_HDIV_score)
 
-    annovar_df <- annovar_df[annovar_df$LRT_score != ".", ]
+    annovar_df <- annovar_df[annovar_df$LRT_score != na.string, ]
     annovar_df$LRT_score <- as.numeric(annovar_df$LRT_score)
 
-    annovar_df <- annovar_df[annovar_df$MutationTaster_score != ".", ]
+    annovar_df <- annovar_df[annovar_df$MutationTaster_score != na.string, ]
     annovar_df$MutationTaster_score <- as.numeric(annovar_df$MutationTaster_score)
 
-    annovar_df <- annovar_df[annovar_df$MutationAssessor_score != ".", ]
+    annovar_df <- annovar_df[annovar_df$MutationAssessor_score != na.string, ]
     annovar_df$MutationAssessor_score <- as.numeric(annovar_df$MutationAssessor_score)
 
-    annovar_df <- annovar_df[annovar_df$FATHMM_score != ".", ]
+    annovar_df <- annovar_df[annovar_df$FATHMM_score != na.string, ]
     annovar_df$FATHMM_score <- as.numeric(annovar_df$FATHMM_score)
 
-    annovar_df <- annovar_df[annovar_df$GERP.._RS != ".", ]
+    annovar_df <- annovar_df[annovar_df$GERP.._RS != na.string, ]
     annovar_df$GERP.._RS <- as.numeric(annovar_df$GERP.._RS)
 
-    annovar_df <- annovar_df[annovar_df$phyloP7way_vertebrate != ".", ]
+    annovar_df <- annovar_df[annovar_df$phyloP7way_vertebrate != na.string, ]
     annovar_df$phyloP7way_vertebrate <- as.numeric(annovar_df$phyloP7way_vertebrate)
 
-    annovar_df <- annovar_df[annovar_df$CADD_phred != ".", ]
+    annovar_df <- annovar_df[annovar_df$CADD_phred != na.string, ]
     annovar_df$CADD_phred <- as.numeric(annovar_df$CADD_phred)
 
-    annovar_df <- annovar_df[annovar_df$VEST3_score != ".", ]
+    annovar_df <- annovar_df[annovar_df$VEST3_score != na.string, ]
     annovar_df$VEST3_score <- as.numeric(annovar_df$VEST3_score)
 
-    annovar_df <- annovar_df[annovar_df$SiPhy_29way_logOdds != ".", ]
+    annovar_df <- annovar_df[annovar_df$SiPhy_29way_logOdds != na.string, ]
     annovar_df$SiPhy_29way_logOdds <- as.numeric(annovar_df$SiPhy_29way_logOdds)
 
-    annovar_df <- annovar_df[annovar_df$DANN_score != ".", ]
+    annovar_df <- annovar_df[annovar_df$DANN_score != na.string, ]
     annovar_df$DANN_score <- as.numeric(annovar_df$DANN_score)
 
     if (nrow(annovar_df) == 0) {
@@ -188,7 +191,8 @@ create_features_df <- function(annovar_csv_path,
                                MCR_overlap_threshold = 25,
                                hotspot_threshold = 5L,
                                log2_hom_loss_threshold = -1,
-                               verbose = TRUE) {
+                               verbose = TRUE,
+                               na.string = ".") {
     ### argument check
     if (!is.logical(prep_phenolyzer_input))
         stop("`prep_phenolyzer_input` should be logical")
@@ -197,12 +201,14 @@ create_features_df <- function(annovar_csv_path,
     # coding variant impact metaprediction scores
     if (verbose)
         message("Predicting impact of coding variants")
-    metaprediction_scores_df <- predict_coding_impact(annovar_csv_path = annovar_csv_path)
+    metaprediction_scores_df <- predict_coding_impact(annovar_csv_path = annovar_csv_path,
+                                                      na.string = na.string)
 
     # non-coding variant impact metaprediction scores
     if (verbose)
         message("Predicting impact of non-coding variants")
-    noncoding_scores_df <- create_noncoding_impact_score_df(annovar_csv_path = annovar_csv_path)
+    noncoding_scores_df <- create_noncoding_impact_score_df(annovar_csv_path = annovar_csv_path,
+                                                            na.string = na.string)
 
     # gene-level SCNA df
     if (verbose)

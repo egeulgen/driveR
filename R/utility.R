@@ -6,10 +6,10 @@
 #'   \item{gene_symbol}{HGNC gene symbol}
 #'   \item{CADD_phred}{PHRED-scaled CADD score}
 #' }
-create_noncoding_impact_score_df <- function(annovar_csv_path) {
+create_noncoding_impact_score_df <- function(annovar_csv_path, na.string = ".") {
     annovar_df <- utils::read.csv(annovar_csv_path)
     noncoding_df <- annovar_df[annovar_df$Func.refGene != "exonic", ]
-    noncoding_df <- noncoding_df[noncoding_df$CADD_phred != ".", ]
+    noncoding_df <- noncoding_df[noncoding_df$CADD_phred != na.string, ]
     noncoding_df$CADD_phred <- as.numeric(noncoding_df$CADD_phred)
     noncoding_scores_df <- noncoding_df[, c("Gene.refGene", "CADD_phred")]
     colnames(noncoding_scores_df) <- c("gene_symbol", "CADD_score")

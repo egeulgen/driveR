@@ -1,4 +1,4 @@
-# pathfindR 0.2.0.9001
+# pathfindR 0.2.0.9002
 
 ## Major Changes
 
@@ -8,6 +8,7 @@
 
 - Updated citation information, correcting author name
 - Minor changes in utility functions
+- added the `na.string` argument to `create_noncoding_impact_score_df()`, `predict_coding_impact()` and `create_features_df()` as the string that was used to indicate when a score is not available during annotation with ANNOVAR (default = ".")
 
 ***
 

@@ -15,7 +15,8 @@ create_features_df(
   MCR_overlap_threshold = 25,
   hotspot_threshold = 5L,
   log2_hom_loss_threshold = -1,
-  verbose = TRUE
+  verbose = TRUE,
+  na.string = "."
 )
 }
 \arguments{
@@ -63,6 +64,9 @@ for the minimum number of cases with certain mutation in COSMIC (default = 5)}
 homozygous loss events (default = -1).}
 
 \item{verbose}{boolean controlling verbosity (default = \code{TRUE})}
+
+\item{na.string}{string that was used to indicate when a score is not available
+during annotation with ANNOVAR (default = ".")}
 }
 \value{
 If \code{prep_phenolyzer_input=FALSE} (default), a data frame of

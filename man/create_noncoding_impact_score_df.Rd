@@ -4,10 +4,13 @@
 \alias{create_noncoding_impact_score_df}
 \title{Create Non-coding Impact Score Data Frame}
 \usage{
-create_noncoding_impact_score_df(annovar_csv_path)
+create_noncoding_impact_score_df(annovar_csv_path, na.string = ".")
 }
 \arguments{
 \item{annovar_csv_path}{path to 'ANNOVAR' csv output file}
+
+\item{na.string}{string that was used to indicate when a score is not available
+during annotation with ANNOVAR (default = ".")}
 }
 \value{
 data frame of meta-prediction scores containing 2 columns: \describe{
