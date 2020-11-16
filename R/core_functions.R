@@ -2,7 +2,8 @@
 #'
 #' @param annovar_csv_path path to 'ANNOVAR' csv output file
 #' @param keep_highest_score boolean to indicate whether to keep only the maximal
-#' impact score per gene (default = \code{TRUE})
+#' impact score per gene (default = \code{TRUE}). If \code{FALSE}, all scores
+#' per each gene are returned
 #' @param keep_single_symbol in ANNOVAR outputs, a variant may be annotated as
 #' exonic in multiple genes. This boolean argument controls whether or not to
 #' keep only the first encountered symbol for a variant (default = \code{TRUE})
