@@ -144,6 +144,8 @@ create_SCNA_score_df <- function(gene_SCNA_df,
     gene_agg_df <- gene_agg_df[!duplicated(gene_agg_df$symbol), ]
     gene_agg_df$agg_log2_ratio <- agg_ratios[match(gene_agg_df$symbol, names(agg_ratios))]
 
+    gene_agg_df <- gene_agg_df[!is.na(gene_agg_df$agg_log2_ratio), ]
+
     # filter for high confidence
     gene_agg_df <- gene_agg_df[abs(gene_agg_df$agg_log2_ratio) > log2_ratio_threshold, ]
 
@@ -278,10 +280,12 @@ determine_double_hit_genes <- function(annovar_csv_path,
     ### gene-level hom. loss df
     # keep only hom. loss
     loss_genes_df <- gene_SCNA_df[gene_SCNA_df$log2ratio < log2_hom_loss_threshold, ]
+    # discard sex chromosomes
+    loss_genes_df <- loss_genes_df[!loss_genes_df$chr %in% c("chrX", "chrY"), ]
 
     ### non-synonymous mutations df
     annovar_df <- utils::read.csv(annovar_csv_path)
-    # exclude synonymous mutatios
+    # exclude synonymous mutations
     non_syn_df <- annovar_df[annovar_df$ExonicFunc.refGene != "synonymous SNV", ]
     # keep first symbol if multiple symbols exist
     non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)] <- vapply(non_syn_df$Gene.refGene[grepl(";", non_syn_df$Gene.refGene)], function(x) unlist(strsplit(x, ";"))[1], "char")
@@ -289,27 +293,27 @@ determine_double_hit_genes <- function(annovar_csv_path,
     ### determine double-hit genes
     if (batch_analysis) {
         if (!("tumor_id" %in% colnames(non_syn_df) & "tumor_id" %in% colnames(loss_genes_df)))
-            stop("'tumor id' should be present in both ANNOVAR output and SCNA table if `tumor_id == TRUE`")
+            stop("'tumor id' should be present in both ANNOVAR output and SCNA table if `batch_analysis == TRUE`")
 
         all_donors <- unique(non_syn_df$tumor_id)
         all_donors <- all_donors[all_donors %in% loss_genes_df$tumor_id]
 
         dhit_genes <- c()
         for (donor in all_donors) {
-            tmp <- loss_genes_df[loss_genes_df$tumor_id == donor, ]
-            tmp <- unique(tmp$symbol)
+            tmp_loss <- loss_genes_df[loss_genes_df$tumor_id == donor, ]
+            tmp_loss <- unique(tmp_loss$symbol)
 
-            tmp2 <- non_syn_df$Gene.refGene[non_syn_df$tumor_id == donor]
+            tmp_nonsyn <- non_syn_df$Gene.refGene[non_syn_df$tumor_id == donor]
 
-            dhit <- tmp[tmp %in% tmp2]
+            dhit <- intersect(tmp_loss, tmp_nonsyn)
             if (length(dhit) != 0)
                 dhit_genes <- c(dhit_genes, dhit)
         }
         dhit_genes <- unique(dhit_genes)
     } else {
-        tmp <- unique(loss_genes_df$symbol)
-        tmp2 <- unique(non_syn_df$Gene.refGene)
-        dhit_genes <- tmp[tmp %in% tmp2]
+        tmp_loss <- unique(loss_genes_df$symbol)
+        tmp_nonsyn <- unique(non_syn_df$Gene.refGene)
+        dhit_genes <- intersect(tmp_loss, tmp_nonsyn)
     }
     return(dhit_genes)
 }
