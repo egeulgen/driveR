@@ -221,7 +221,10 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
     annovar_df <- utils::read.csv(annovar_csv_path)
 
     # parse COSMIC occurences
-    annovar_df$coding_occurence <- vapply(annovar_df$cosmic91_coding,
+    coding_column <- colnames(annovar_df)[grepl("cosmic\\d+_coding", colnames(annovar_df))]
+    non_coding_column <- colnames(annovar_df)[grepl("cosmic\\d+_noncoding", colnames(annovar_df))]
+
+    annovar_df$coding_occurence <- vapply(annovar_df[, coding_column],
                                           function(x) {
                                               tmp <- unlist(strsplit(x, ";"))[2]
                                               tmp <- sub("OCCURENCE=", "", tmp)
@@ -230,7 +233,7 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
                                               return(sum(tmp))
                                           }, 1)
 
-    annovar_df$noncoding_occurence <- vapply(annovar_df$cosmic91_noncoding,
+    annovar_df$noncoding_occurence <- vapply(annovar_df[, non_coding_column],
                                              function(x) {
                                                  tmp <- unlist(strsplit(x, ";"))[2]
                                                  tmp <- sub("OCCURENCE=", "", tmp)
