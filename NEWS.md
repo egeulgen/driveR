@@ -1,8 +1,9 @@
-# pathfindR 0.2.0.9006
+# pathfindR 0.2.0.9007
 
 ## Major Changes
 
 - fixed an issue in `create_SCNA_score_df()` where the SCNA score was not calculated because the column name for "MCR_overlap_percent" was incorrectly assigned as "transcript_overlap_percent"
+- updated the MTL classification model `TCGA_MTL_fit` and `specific_thresholds` after fixing the issue above
 
 ## Minor changes and bug fixes
 
