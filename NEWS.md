@@ -1,4 +1,4 @@
-# pathfindR 0.2.0.9005
+# pathfindR 0.2.0.9006
 
 ## Major Changes
 

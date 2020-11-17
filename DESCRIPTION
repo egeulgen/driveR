@@ -1,6 +1,6 @@
 Package: driveR
 Title: Prioritizing Cancer Driver Genes Using Genomics Data
-Version: 0.2.0.9005
+Version: 0.2.0.9006
 Authors@R: 
     person(given = "Ege",
            family = "Ulgen",
