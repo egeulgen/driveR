@@ -6,7 +6,7 @@
 \title{driveR: An R Package for Prioritizing Cancer Driver Genes Using Genomics Data}
 \description{
 Cancer genomes contain large numbers of somatic alterations but few genes
-drive tumor development. Identifying molecular cancer driver genes is critical
+drive tumor development. Identifying cancer driver genes is critical
 for precision oncology. Most of current approaches either identify driver
 genes based on mutational recurrence or using estimated scores predicting
 the functional consequences of mutations.
