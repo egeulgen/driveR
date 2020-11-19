@@ -27,7 +27,7 @@ table.}
 }
 \value{
 vector of gene symbols that are subject to double-hit event(s), i.e.
-non-synonymous mutation + homozygous CN loss
+non-synonymous mutation + homozygous copy-number loss
 }
 \description{
 Determine Double-Hit Genes

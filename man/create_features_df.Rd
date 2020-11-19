@@ -54,7 +54,7 @@ the segment's SCNA event.}
 \item{MCR_overlap_threshold}{the percentage threshold for the overlap between
 a gene and an MCR region (default = 25). This means that if only a gene
 overlaps an MCR region more than this threshold, the gene is assigned the
-MCR's SCNA density}
+SCNA density of the MCR}
 
 \item{hotspot_threshold}{to determine hotspot genes, the (integer) threshold
 for the minimum number of cases with certain mutation in COSMIC (default = 5)}

@@ -19,7 +19,7 @@ ratio threshold for keeping high-confidence SCNA events (default = 0.25)}
 \item{MCR_overlap_threshold}{the percentage threshold for the overlap between
 a gene and an MCR region (default = 25). This means that if only a gene
 overlaps an MCR region more than this threshold, the gene is assigned the
-MCR's SCNA density}
+SCNA density of the MCR}
 }
 \value{
 data frame of SCNA proxy scores containing 2 columns: \describe{

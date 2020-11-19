@@ -20,7 +20,7 @@ Cancer genomes contain large numbers of somatic alterations but few genes drive 
 
 `driveR` is a tool for personalized or batch analysis of genomic data for driver gene prioritization by combining genomic information and prior biological knowledge. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific probabilities for each gene of being a cancer driver using the related task of a multi-task learning classification model.
 
-> For now, the package only supports hg19 genomic positions.
+> For now, the package only supports GRCh37 genomic positions.
 
 The method is described in detail in _Ulgen E, Sezerman OU. 2020. driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data. bioRxiv. [https://doi.org/10.1101/2020.11.10.376707](https://doi.org/10.1101/2020.11.10.376707)_ 
 
@@ -87,7 +87,7 @@ As input, `create_features_df()`, the function used to create the features table
 We first run ANNOVAR. An example command provided below:
 
 ```{bash, eval=FALSE}
-table_annovar.pl example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/ouput -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp30a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish
+table_annovar.pl example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/output -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp30a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish
 ```
 
 The required filters are, as listed in the above command, `refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding`.
@@ -237,7 +237,7 @@ path2phenolyzer_out <- system.file("extdata/example_cohort.annotated_gene_list",
 
 ## Create the features data frame
 
-After creating the necessary input data (as detailed above), we simply run `create_features_df()` to obtain the features data frame. Notice that we set `batch_analysis = TRUE`. When `batch_analysis = TRUE`, both the ANNOVAR ouput and the SCNA table should have a column named 'tumor_id'.
+After creating the necessary input data (as detailed above), we simply run `create_features_df()` to obtain the features data frame. Notice that we set `batch_analysis = TRUE`. When `batch_analysis = TRUE`, both the ANNOVAR output and the SCNA table should have a column named 'tumor_id'.
 
 ```{r features_df2, eval=FALSE}
 features_df <- create_features_df(annovar_csv_path = path2annovar_csv,

@@ -103,7 +103,7 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 #' @param MCR_overlap_threshold the percentage threshold for the overlap between
 #' a gene and an MCR region (default = 25). This means that if only a gene
 #' overlaps an MCR region more than this threshold, the gene is assigned the
-#' MCR's SCNA density
+#' SCNA density of the MCR
 #'
 #' @return data frame of SCNA proxy scores containing 2 columns: \describe{
 #'   \item{gene_symbol}{HGNC gene symbol}
@@ -268,7 +268,7 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
 #' table.
 #'
 #' @return vector of gene symbols that are subject to double-hit event(s), i.e.
-#' non-synonymous mutation + homozygous CN loss
+#' non-synonymous mutation + homozygous copy-number loss
 determine_double_hit_genes <- function(annovar_csv_path,
                                        gene_SCNA_df,
                                        log2_hom_loss_threshold = -1,
