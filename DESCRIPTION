@@ -1,6 +1,6 @@
 Package: driveR
 Title: Prioritizing Cancer Driver Genes Using Genomics Data
-Version: 0.2.0.9007
+Version: 0.2.0
 Authors@R: 
     person(given = "Ege",
            family = "Ulgen",
@@ -9,10 +9,10 @@ Authors@R:
            comment = c(ORCID = "0000-0003-2090-3621"))
 Maintainer: Ege Ulgen <egeulgen@gmail.com>
 Description: Cancer genomes contain large numbers of somatic alterations but few
-    genes drive tumor development. Identifying molecular cancer driver genes is
-    critical for precision oncology. Most of current approaches either identify 
-    driver genes based on mutational recurrence or using estimated scores 
-    predicting the functional consequences of mutations. 'driveR' is a tool for 
+    genes drive tumor development. Identifying cancer driver genes is critical 
+    for precision oncology. Most of current approaches either identify driver 
+    genes based on mutational recurrence or using estimated scores predicting 
+    the functional consequences of mutations. 'driveR' is a tool for 
     personalized or batch analysis of genomic data for driver gene prioritization 
     by combining genomic information and prior biological knowledge. As features, 
     'driveR' uses coding impact metaprediction scores, non-coding impact scores, 
