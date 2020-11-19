@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9007</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -113,7 +113,7 @@
 <p>Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence or using estimated scores predicting the functional consequences of mutations.</p>
 <p><code>driveR</code> is a tool for personalized or batch analysis of genomic data for driver gene prioritization by combining genomic information and prior biological knowledge. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific probabilities for each gene of being a cancer driver using the related task of a multi-task learning classification model.</p>
 <blockquote>
-<p>For now, the package only supports hg19 genomic positions.</p>
+<p>For now, the package only supports GRCh37 genomic positions.</p>
 </blockquote>
 <p>The method is described in detail in <em>Ulgen E, Sezerman OU. 2020. driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data. bioRxiv. <a href="https://doi.org/10.1101/2020.11.10.376707">https://doi.org/10.1101/2020.11.10.376707</a></em></p>
 <p>Below are some example usage cases for <code>driveR</code>:</p>
@@ -174,7 +174,7 @@
 <h3 class="hasAnchor">
 <a href="#annovar-csv-output" class="anchor"></a>ANNOVAR CSV output</h3>
 <p>We first run ANNOVAR. An example command provided below:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">table_annovar.pl</span> example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/ouput -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp30a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">table_annovar.pl</span> example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/output -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp30a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish</span></code></pre></div>
 <p>The required filters are, as listed in the above command, <code>refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding</code>.</p>
 <p>With the package, an example (modified) ANNOVAR csv output file is available:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -412,7 +412,7 @@
 <div id="create-the-features-data-frame-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-the-features-data-frame-1" class="anchor"></a>Create the features data frame</h2>
-<p>After creating the necessary input data (as detailed above), we simply run <code><a href="../reference/create_features_df.html">create_features_df()</a></code> to obtain the features data frame. Notice that we set <code>batch_analysis = TRUE</code>. When <code>batch_analysis = TRUE</code>, both the ANNOVAR ouput and the SCNA table should have a column named ‘tumor_id’.</p>
+<p>After creating the necessary input data (as detailed above), we simply run <code><a href="../reference/create_features_df.html">create_features_df()</a></code> to obtain the features data frame. Notice that we set <code>batch_analysis = TRUE</code>. When <code>batch_analysis = TRUE</code>, both the ANNOVAR output and the SCNA table should have a column named ‘tumor_id’.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">features_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_features_df.html">create_features_df</a></span><span class="op">(</span>annovar_csv_path <span class="op">=</span> <span class="va">path2annovar_csv</span>,
                                   scna_df <span class="op">=</span> <span class="va">example_cohort_scna_table</span>, 

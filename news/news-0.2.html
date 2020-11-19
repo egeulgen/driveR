@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Example Cohort-level Features Table for Driver Prioritization — example_cohort_features_table • driveR</title>
+<title>Version 0.2 • driveR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -52,9 +52,7 @@
 
 
 
-<meta property="og:title" content="Example Cohort-level Features Table for Driver Prioritization — example_cohort_features_table" />
-<meta property="og:description" content="The example dataset containing features for prioritizing cancer driver genes for 10 randomly
-selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort" />
+<meta property="og:title" content="Version 0.2" />
 
 
 
@@ -73,7 +71,7 @@ selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort" />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -143,63 +141,43 @@ selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Example Cohort-level Features Table for Driver Prioritization</h1>
-    <small class="dont-index">Source: <a href='https://github.com/egeulgen/driveR/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>example_cohort_features_table.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small>0.2</small></h1>
+      
     </div>
 
-    <div class="ref-description">
-    <p>The example dataset containing features for prioritizing cancer driver genes for 10 randomly
-selected samples from TCGA's LAML (Acute Myeloid Leukemia) cohort</p>
-    </div>
-
-    <pre class="usage"><span class='va'>example_cohort_features_table</span></pre>
-
-
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 349 rows and 27 variables:</p><dl>
-<dt>gene_symbol</dt><dd><p>HGNC gene symbol</p></dd>
-<dt>metaprediction_score</dt><dd><p>the maximum metapredictor (coding) impact score for the gene</p></dd>
-<dt>noncoding_score</dt><dd><p>the maximum non-coding PHRED-scaled CADD score for the gene</p></dd>
-<dt>scna_score</dt><dd><p>SCNA proxy score. SCNA density (SCNA/Mb) of the minimal common region (MCR) in which the gene is located</p></dd>
-<dt>hotspot_double_hit</dt><dd><p>boolean indicating whether the gene is a hotspot gene (indication of oncogenes) or subject to double-hit (indication of tumor-suppressor genes)</p></dd>
-<dt>phenolyzer_score</dt><dd><p>'phenolyzer' score for the gene</p></dd>
-<dt>hsa03320</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04010</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04020</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04024</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04060</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04066</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04110</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04115</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04150</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04151</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04210</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04310</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04330</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04340</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04350</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04370</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04510</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04512</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04520</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04630</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-<dt>hsa04915</dt><dd><p>boolean indicating whether or not the gene takes part in this KEGG pathway</p></dd>
-
-</dl>
-
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='KEGG_cancer_pathways_descriptions.html'>KEGG_cancer_pathways_descriptions</a></code> for descriptions of
-KEGG "Pathways in cancer"-related pathways.</p></div>
-
+    <div id="driver-020" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.0">
+<a href="#driver-020" class="anchor"></a>driveR 0.2.0<small> Unreleased </small>
+</h1>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major Changes</h2>
+<ul>
+<li>fixed an issue in <code><a href="../reference/create_SCNA_score_df.html">create_SCNA_score_df()</a></code> where the SCNA score was not calculated because the column name for “MCR_overlap_percent” was incorrectly assigned as “transcript_overlap_percent”</li>
+<li>updated the MTL classification model <code>TCGA_MTL_fit</code> and <code>specific_thresholds</code> after fixing the issue above</li>
+</ul>
+</div>
+<div id="minor-changes-and-bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes-and-bug-fixes" class="anchor"></a>Minor changes and bug fixes</h2>
+<ul>
+<li>Updated citation information, correcting author name</li>
+<li>Minor changes in utility functions</li>
+<li>added the <code>na.string</code> argument to <code><a href="../reference/create_noncoding_impact_score_df.html">create_noncoding_impact_score_df()</a></code>, <code><a href="../reference/predict_coding_impact.html">predict_coding_impact()</a></code> and <code><a href="../reference/create_features_df.html">create_features_df()</a></code> as the string that was used to indicate when a score is not available during annotation with ANNOVAR (default = “.”)</li>
+<li>generalized <code><a href="../reference/determine_hotspot_genes.html">determine_hotspot_genes()</a></code> to able to use occurrence annotations from different versions of COSMIC</li>
+<li>updated all data</li>
+</ul>
+<hr>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
