@@ -31,6 +31,13 @@ The method is described in detail in _Ulgen E, Sezerman OU. 2020. driveR: A Nove
 
 ## Installation
 
+You can install the latest released version of `driveR` from CRAN via:
+
+```r
+install.packages("driveR")
+```
+
+
 You can install the development version of `driveR` from [GitHub](https://github.com/) with:
 
 ``` r

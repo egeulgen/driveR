@@ -40,6 +40,12 @@ Somatic Genomics Data. bioRxiv.
 
 ## Installation
 
+You can install the latest released version of `driveR` from CRAN via:
+
+``` r
+install.packages("driveR")
+```
+
 You can install the development version of `driveR` from
 [GitHub](https://github.com/) with:
 
