@@ -1,3 +1,14 @@
+# driveR 0.2.1.9000
+
+## Major Changes
+
+- fixed issue in `MCR_table`. The coordinates were converted to hg19 (from hg18)
+
+## Minor changes and bug fixes
+
+
+***
+
 # driveR 0.2.0
 
 ## Major Changes
