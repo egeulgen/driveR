@@ -44,7 +44,8 @@
 #' A data set containing the minimal common regions (MCRs) across all cancer
 #' types studied in Kim TM, Xi R, Luquette LJ, Park RW, Johnson MD, Park PJ.
 #' Functional genomic analysis of chromosomal aberrations in a compendium of
-#' 8000 cancer genomes. Genome Res. 2013;23(2):217-27.
+#' 8000 cancer genomes. Genome Res. 2013;23(2):217-27. Coordinates were converted
+#' to hg19 (from hg18) using UCSC Genome Browser's LiftOver tool.
 #'
 #' @format A data frame with 165 rows and 5 variables:
 #' \describe{
@@ -62,7 +63,7 @@
 #' A list containing the genes involved in each Homo sapiens KEGG "Pathways in
 #' cancer" (hsa05200)-related Pathways. Each element is a vector of gene symbols
 #' located in the given pathway. Names correspond to the KEGG ID of the pathway.
-#' \emph{Generated on Nov 17, 2020.}
+#' \emph{Generated on Nov 24, 2020.}
 #'
 #' @format list containing 21 vectors of gene symbols. Each vector corresponds
 #'   to a pathway.

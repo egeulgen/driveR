@@ -15,7 +15,7 @@ KEGG_cancer_pathways
 A list containing the genes involved in each Homo sapiens KEGG "Pathways in
 cancer" (hsa05200)-related Pathways. Each element is a vector of gene symbols
 located in the given pathway. Names correspond to the KEGG ID of the pathway.
-\emph{Generated on Nov 17, 2020.}
+\emph{Generated on Nov 24, 2020.}
 }
 \seealso{
 \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of

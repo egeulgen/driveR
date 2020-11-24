@@ -24,6 +24,7 @@ MCR_table
 A data set containing the minimal common regions (MCRs) across all cancer
 types studied in Kim TM, Xi R, Luquette LJ, Park RW, Johnson MD, Park PJ.
 Functional genomic analysis of chromosomal aberrations in a compendium of
-8000 cancer genomes. Genome Res. 2013;23(2):217-27.
+8000 cancer genomes. Genome Res. 2013;23(2):217-27. Coordinates were converted
+to hg19 (from hg18) using UCSC Genome Browser's LiftOver tool.
 }
 \keyword{datasets}
