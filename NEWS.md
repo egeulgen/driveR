@@ -1,7 +1,8 @@
-# driveR 0.2.1.9000
+# driveR 0.2.1.9001
 
 ## Major Changes
 
+- updated the MTL model after fixing the issue below
 - fixed issue in `MCR_table`. The coordinates were converted to hg19 (from hg18)
 
 ## Minor changes and bug fixes
