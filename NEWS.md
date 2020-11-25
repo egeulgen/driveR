@@ -1,4 +1,4 @@
-# driveR 0.2.1.9004
+# driveR 0.2.1.9005
 
 ## Major Changes
 
@@ -7,7 +7,6 @@
 
 ## Minor changes and bug fixes
 
-- Removed 'randomForest' from Imports field ('caret' handles this)
 - made use of `caret::predict.train` explicit
 - Removed 'Homo.sapiens' from Imports field (not used)
 
