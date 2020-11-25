@@ -1,4 +1,4 @@
-# driveR 0.2.1.9001
+# driveR 0.2.1.9003
 
 ## Major Changes
 
@@ -7,6 +7,7 @@
 
 ## Minor changes and bug fixes
 
+- made use of `caret::predict.train` explicit
 - Remove 'Homo.sapiens' from Imports field (not used)
 
 ***
