@@ -1,6 +1,6 @@
 Package: driveR
 Title: Prioritizing Cancer Driver Genes Using Genomics Data
-Version: 0.2.1.9003
+Version: 0.2.1.9004
 Authors@R: 
     person(given = "Ege",
            family = "Ulgen",
@@ -34,7 +34,6 @@ BugReports: https://github.com/egeulgen/driveR/issues
 biocViews:
 Imports:
     caret,
-    randomForest,
     GenomicRanges,
     GenomeInfoDb,
     GenomicFeatures,
