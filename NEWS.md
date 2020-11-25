@@ -7,6 +7,7 @@
 
 ## Minor changes and bug fixes
 
+- Remove 'Homo.sapiens' from Imports field (not used)
 
 ***
 

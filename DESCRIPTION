@@ -35,7 +35,6 @@ biocViews:
 Imports:
     caret,
     randomForest,
-    Homo.sapiens,
     GenomicRanges,
     GenomeInfoDb,
     GenomicFeatures,
