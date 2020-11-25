@@ -10,14 +10,12 @@ There was 1 NOTE:
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: 'Ege Ulgen <egeulgen@gmail.com>'
 
-Days since last update: 1
+Days since last update: 6
 
-Possibly mis-spelled words in DESCRIPTION:
-  OU (24:26)
-
-  With this submission, a critical issue that prevented the approach to work
-  properly (resulting in erroneous results) was fixed. That is why this 
-  submission is so soon after the initial release.
+  With this submission, another critical issue, resulting in erroneous results, 
+  was fixed. That is why this submission is so soon after the previous release. 
+  The code was carefully examined once again not to require another short-notice 
+  re-submission.
   
 ## Downstream dependencies
 There are currently no downstream dependencies for this package.
