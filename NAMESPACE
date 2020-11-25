@@ -3,5 +3,5 @@
 export(create_features_df)
 export(predict_coding_impact)
 export(prioritize_driver_genes)
-importFrom(randomForest,predict.randomForest)
+importFrom(randomForest,randomForest)
 importFrom(rlang,.data)

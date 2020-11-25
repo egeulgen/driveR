@@ -17,7 +17,7 @@
 #'
 #' @export
 #'
-#' @importFrom randomForest predict.randomForest
+#' @importFrom randomForest randomForest
 #'
 #' @examples
 #' path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
