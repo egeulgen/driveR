@@ -6,7 +6,7 @@
 ## Author: Ege Ulgen
 ##################################################
 
-# predict_coding_impact ---------------------------------------------------s
+# predict_coding_impact ---------------------------------------------------
 test_that("`predict_coding_impact` works", {
     path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
                                     package = "driveR")
