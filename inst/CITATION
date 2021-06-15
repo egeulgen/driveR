@@ -2,12 +2,12 @@ citHeader("To cite driveR in publications use:")
 
 citEntry(
   entry    = "Article",
-  title    = "driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data",
+  title    = "driveR: a novel method for prioritizing cancer driver genes using somatic genomics data",
   author   = c(person("Ege","Ulgen"),
 	           person(c("Osman", "Ugur"),"Sezerman")),
-  journal  = "bioRxiv",
-  year     = 2020,
+  journal  = "BMC Bioinformatics",
+  year     = 2021,
 
-  url      = "https://doi.org/10.1101/2020.11.10.376707",
-  textVersion = "Ulgen E, Sezerman OU. 2020. driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data. bioRxiv. https://doi.org/10.1101/2020.11.10.376707"
+  url      = "https://doi.org/10.1186/s12859-021-04203-7",
+  textVersion = "Ulgen E, Sezerman OU. 2021. driveR: a novel method for prioritizing cancer driver genes using somatic genomics data. BMC Bioinformatics. https://doi.org/10.1186/s12859-021-04203-7"
 )
