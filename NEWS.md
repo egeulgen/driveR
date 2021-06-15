@@ -1,5 +1,10 @@
 # driveR (development version)
 
+## Major Changes
+- Updated the cancer-type-specific thresholds
+
+## Minor changes and bug fixes
+
 # driveR 0.2.1
 
 ## Major Changes
