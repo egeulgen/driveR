@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9002</span>
       </span>
     </div>
 
@@ -330,14 +330,14 @@
 <span class="co">#&gt;      gene_symbol driverness_prob prediction</span>
 <span class="co">#&gt; 842         TP53       0.9614544     driver</span>
 <span class="co">#&gt; 3211       CCND3       0.8604087     driver</span>
-<span class="co">#&gt; 3654        EGFR       0.7485849     driver</span>
-<span class="co">#&gt; 1966       EP300       0.5799741     driver</span>
-<span class="co">#&gt; 679          ATM       0.5753917     driver</span>
-<span class="co">#&gt; 510          KDR       0.5012796     driver</span>
-<span class="co">#&gt; 386       IFNA10       0.4526894     driver</span>
-<span class="co">#&gt; 740         IL7R       0.4271572     driver</span>
-<span class="co">#&gt; 3572      PIK3R2       0.3780803     driver</span>
-<span class="co">#&gt; 2300         ATR       0.3666499     driver</span></code></pre></div>
+<span class="co">#&gt; 3654        EGFR       0.7485849 non-driver</span>
+<span class="co">#&gt; 1966       EP300       0.5799741 non-driver</span>
+<span class="co">#&gt; 679          ATM       0.5753917 non-driver</span>
+<span class="co">#&gt; 510          KDR       0.5012796 non-driver</span>
+<span class="co">#&gt; 386       IFNA10       0.4526894 non-driver</span>
+<span class="co">#&gt; 740         IL7R       0.4271572 non-driver</span>
+<span class="co">#&gt; 3572      PIK3R2       0.3780803 non-driver</span>
+<span class="co">#&gt; 2300         ATR       0.3666499 non-driver</span></code></pre></div>
 <p>The function returns a data frame of genes with probabilities of being cancer driver genes (using the selected sub-model of a multi-task learning model trained using 21 different cancer types) and the prediction of driver genes based on a cancer type specific probability threshold. In the above example, the top 10 genes contain recognizable cancer driver genes.</p>
 </div>
 </div>
@@ -431,13 +431,13 @@
 <span class="co">#&gt; 49         FLT3       0.9922470     driver</span>
 <span class="co">#&gt; 5          TP53       0.9569072     driver</span>
 <span class="co">#&gt; 291       EP300       0.9451127     driver</span>
-<span class="co">#&gt; 338      CDKN2A       0.5800416     driver</span>
-<span class="co">#&gt; 11        SMC1A       0.3474567     driver</span>
-<span class="co">#&gt; 258      ANAPC4       0.2596510     driver</span>
-<span class="co">#&gt; 311      IFNGR1       0.2538748     driver</span>
-<span class="co">#&gt; 67         MDM4       0.2396303     driver</span>
-<span class="co">#&gt; 324       TRAF3       0.2383674     driver</span>
-<span class="co">#&gt; 359      PIEZO1       0.2371796     driver</span></code></pre></div>
+<span class="co">#&gt; 338      CDKN2A       0.5800416 non-driver</span>
+<span class="co">#&gt; 11        SMC1A       0.3474567 non-driver</span>
+<span class="co">#&gt; 258      ANAPC4       0.2596510 non-driver</span>
+<span class="co">#&gt; 311      IFNGR1       0.2538748 non-driver</span>
+<span class="co">#&gt; 67         MDM4       0.2396303 non-driver</span>
+<span class="co">#&gt; 324       TRAF3       0.2383674 non-driver</span>
+<span class="co">#&gt; 359      PIEZO1       0.2371796 non-driver</span></code></pre></div>
 <p>Once again, in the above example, the top 10 genes contain recognizable cancer driver genes.</p>
 </div>
 </div>
