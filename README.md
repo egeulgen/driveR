@@ -8,7 +8,7 @@
 [![CRAN
 version](http://www.r-pkg.org/badges/version-ago/driveR)](https://cran.r-project.org/package=driveR)
 [![Travis build
-status](https://travis-ci.com/egeulgen/driveR.svg?branch=master)](https://travis-ci.com/egeulgen/driveR)
+status](https://app.travis-ci.com/egeulgen/pathfindR.data.svg?branch=master)](https://app.travis-ci.com/github/egeulgen/driveR)
 [![Codecov test
 coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://codecov.io/gh/egeulgen/driveR?branch=master)
 [![Lifecycle:
@@ -57,8 +57,7 @@ devtools::install_github("egeulgen/driveR", build_vignettes = TRUE)
 ## Usage
 
 ![driveR
-workflow](https://github.com/egeulgen/driveR/blob/master/inst/extdata/driver_workflow.png?raw=true
-"driveR workflow")
+workflow](https://github.com/egeulgen/driveR/blob/master/inst/extdata/driver_workflow.png?raw=true "driveR workflow")
 
 `driveR` has two main objectives:
 
