@@ -1,69 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://egeulgen.github.io/driveR//index.html</loc>
+    <loc>https://egeulgen.github.io/driveR/404.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/KEGG_cancer_pathways.html</loc>
+    <loc>https://egeulgen.github.io/driveR/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/KEGG_cancer_pathways_descriptions.html</loc>
+    <loc>https://egeulgen.github.io/driveR/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/MCR_table.html</loc>
+    <loc>https://egeulgen.github.io/driveR/articles/how_to_use.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/MTL_submodel_descriptions.html</loc>
+    <loc>https://egeulgen.github.io/driveR/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/TCGA_MTL_fit.html</loc>
+    <loc>https://egeulgen.github.io/driveR/authors.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/create_SCNA_score_df.html</loc>
+    <loc>https://egeulgen.github.io/driveR/index.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/create_features_df.html</loc>
+    <loc>https://egeulgen.github.io/driveR/news/index.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/create_gene_level_scna_df.html</loc>
+    <loc>https://egeulgen.github.io/driveR/news/news-0.1.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/create_noncoding_impact_score_df.html</loc>
+    <loc>https://egeulgen.github.io/driveR/news/news-0.2.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/determine_double_hit_genes.html</loc>
+    <loc>https://egeulgen.github.io/driveR/news/news-dev.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/determine_hotspot_genes.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/KEGG_cancer_pathways.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/driveR.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/KEGG_cancer_pathways_descriptions.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/example_cohort_features_table.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/MCR_table.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/example_cohort_scna_table.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/MTL_submodel_descriptions.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/example_features_table.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/TCGA_MTL_fit.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/example_scna_table.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/create_SCNA_score_df.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/metapredictor_model.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/create_features_df.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/predict_coding_impact.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/create_gene_level_scna_df.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/prioritize_driver_genes.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/create_noncoding_impact_score_df.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//reference/specific_thresholds.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/determine_double_hit_genes.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR//articles/how_to_use.html</loc>
+    <loc>https://egeulgen.github.io/driveR/reference/determine_hotspot_genes.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/driveR.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/example_cohort_features_table.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/example_cohort_scna_table.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/example_features_table.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/example_scna_table.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/metapredictor_model.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/predict_coding_impact.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/prioritize_driver_genes.html</loc>
+  </url>
+  <url>
+    <loc>https://egeulgen.github.io/driveR/reference/specific_thresholds.html</loc>
   </url>
 </urlset>

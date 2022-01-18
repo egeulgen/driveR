@@ -27,6 +27,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,18 +41,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1.9003</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -72,7 +68,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/egeulgen/driveR/">
+  <a href="https://github.com/egeulgen/driveR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -99,36 +95,36 @@
       <h1 data-toc-skip>How to use driveR</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/egeulgen/driveR/blob/master/vignettes/how_to_use.Rmd"><code>vignettes/how_to_use.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/egeulgen/driveR/blob/HEAD/vignettes/how_to_use.Rmd" class="external-link"><code>vignettes/how_to_use.Rmd</code></a></small>
       <div class="hidden name"><code>how_to_use.Rmd</code></div>
 
     </div>
 
     
     
-<div id="overview" class="section level1">
-<h1 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h1>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence or using estimated scores predicting the functional consequences of mutations.</p>
 <p><code>driveR</code> is a tool for personalized or batch analysis of genomic data for driver gene prioritization by combining genomic information and prior biological knowledge. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific probabilities for each gene of being a cancer driver using the related task of a multi-task learning classification model.</p>
 <blockquote>
 <p>For now, the package only supports GRCh37 genomic positions.</p>
 </blockquote>
-<p>The method is described in detail in <em>Ulgen E, Sezerman OU. 2020. driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data. bioRxiv. <a href="https://doi.org/10.1101/2020.11.10.376707">https://doi.org/10.1101/2020.11.10.376707</a></em></p>
+<p>The method is described in detail in <em>Ülgen E, Sezerman OU. driveR: a novel method for prioritizing cancer driver genes using somatic genomics data. BMC Bioinformatics. 2021 May 24;22(1):263.<a href="https://doi.org/10.1186/s12859-021-04203-7" class="external-link">https://doi.org/10.1186/s12859-021-04203-7</a></em></p>
 <p>Below are some example usage cases for <code>driveR</code>:</p>
 </div>
-<div id="predicting-impact-of-coding-variants" class="section level1">
-<h1 class="hasAnchor">
-<a href="#predicting-impact-of-coding-variants" class="anchor"></a>Predicting Impact of Coding Variants</h1>
+<div class="section level2">
+<h2 id="predicting-impact-of-coding-variants">Predicting Impact of Coding Variants<a class="anchor" aria-label="anchor" href="#predicting-impact-of-coding-variants"></a>
+</h2>
 <p>For scoring the impact of coding variants, we devised a metapredictor model that utilizes impact prediction scores from 12 different tools: SIFT, PolyPhen-2 (HumDiv scores), LRT, MutationTaster, Mutation Assessor, FATHMM, GERP++, PhyloP, CADD, VEST, SiPhy and DANN. Annotations for all these tools are available in dbNFSP via ANNOVAR. We provide with the package 2 example (shortened) ANNOVAR outputs (see next sections):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://egeulgen.github.io/driveR/">driveR</a></span><span class="op">)</span>
-<span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.hg19_multianno.csv"</span>,
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://egeulgen.github.io/driveR/">driveR</a></span><span class="op">)</span>
+<span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.hg19_multianno.csv"</span>,
                                  package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></code></pre></div>
 <p>We can calculate impact scores for all coding variants in this ANNOVAR file via <code><a href="../reference/predict_coding_impact.html">predict_coding_impact()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">metaprediction_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_coding_impact.html">predict_coding_impact</a></span><span class="op">(</span>annovar_csv_path <span class="op">=</span> <span class="va">path2annovar_csv</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">metaprediction_df</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">metaprediction_df</span><span class="op">)</span>
 <span class="co">#&gt;       gene_symbol metaprediction_score</span>
 <span class="co">#&gt; 531         MUTYH                1.000</span>
 <span class="co">#&gt; 2144        AMPD3                1.000</span>
@@ -149,15 +145,15 @@
 <code class="sourceCode R"><span class="va">metaprediction_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_coding_impact.html">predict_coding_impact</a></span><span class="op">(</span>annovar_csv_path <span class="op">=</span> <span class="va">path2annovar_csv</span>, 
                                            na.string <span class="op">=</span> <span class="st">"NA"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="driver-gene-prioritization---personalized-analysis" class="section level1">
-<h1 class="hasAnchor">
-<a href="#driver-gene-prioritization---personalized-analysis" class="anchor"></a>Driver Gene Prioritization - Personalized Analysis</h1>
+<div class="section level2">
+<h2 id="driver-gene-prioritization---personalized-analysis">Driver Gene Prioritization - Personalized Analysis<a class="anchor" aria-label="anchor" href="#driver-gene-prioritization---personalized-analysis"></a>
+</h2>
 <p>Below, a step-by-step work flow for <code>driveR</code> for an individual tumor sample is provided. Note that some steps require operations outside of R. The example data provided within the package are for a lung adenocarcinoma patient studied in Imielinski et al. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div id="load-the-package-and-prepare-input-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-the-package-and-prepare-input-data" class="anchor"></a>Load the package and prepare input data</h2>
+<div class="section level3">
+<h3 id="load-the-package-and-prepare-input-data">Load the package and prepare input data<a class="anchor" aria-label="anchor" href="#load-the-package-and-prepare-input-data"></a>
+</h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://egeulgen.github.io/driveR/">driveR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://egeulgen.github.io/driveR/">driveR</a></span><span class="op">)</span></code></pre></div>
 <p>As input, <code><a href="../reference/create_features_df.html">create_features_df()</a></code>, the function used to create the features table for driver gene prioritization, requires the following:</p>
 <ul>
 <li>
@@ -169,23 +165,23 @@
 <code>phenolyzer_annotated_gene_list_path</code>: the <code>/path/to/phenolyzer/annotated_gene_list/output/file</code>
 </li>
 </ul>
-<div id="annovar-csv-output" class="section level3">
-<h3 class="hasAnchor">
-<a href="#annovar-csv-output" class="anchor"></a>ANNOVAR CSV output</h3>
+<div class="section level4">
+<h4 id="annovar-csv-output">ANNOVAR CSV output<a class="anchor" aria-label="anchor" href="#annovar-csv-output"></a>
+</h4>
 <p>We first run ANNOVAR. An example command provided below:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">table_annovar.pl</span> example.avinput ~/annovar/humandb/ -buildver hg19 -out /path/to/output -remove -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp30a,cosmic92_coding,cosmic92_noncoding -operation gx,r,f,f,f,f,f -nastring . -csvout -polish</span></code></pre></div>
 <p>The required filters are, as listed in the above command, <code>refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding</code>.</p>
 <p>With the package, an example (modified) ANNOVAR csv output file is available:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.hg19_multianno.csv"</span>,
+<code class="sourceCode R"><span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.hg19_multianno.csv"</span>,
                                  package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="scna-table" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scna-table" class="anchor"></a>SCNA table</h3>
+<div class="section level4">
+<h4 id="scna-table">SCNA table<a class="anchor" aria-label="anchor" href="#scna-table"></a>
+</h4>
 <p>Next, we prepare a SCNA data frame (GRCh37 is required). Again, an example data frame is provided within the package:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">example_scna_table</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">example_scna_table</span><span class="op">)</span>
 <span class="co">#&gt;   chr   start     end log2ratio</span>
 <span class="co">#&gt; 1   1       1    9001 0.8875253</span>
 <span class="co">#&gt; 2   1    9002   10001 0.6959938</span>
@@ -194,9 +190,9 @@
 <span class="co">#&gt; 5   1 4715897 4717788 0.4005379</span>
 <span class="co">#&gt; 6   1 4717789 5798840 0.4854268</span></code></pre></div>
 </div>
-<div id="phenolyzer-output" class="section level3">
-<h3 class="hasAnchor">
-<a href="#phenolyzer-output" class="anchor"></a>phenolyzer output</h3>
+<div class="section level4">
+<h4 id="phenolyzer-output">phenolyzer output<a class="anchor" aria-label="anchor" href="#phenolyzer-output"></a>
+</h4>
 <p>Finally, for the phenolyzer annotated_gene_list output file, we first obtain the genes to be scored using <code>create_features_df</code> and setting <code>prep_phenolyzer_input=TRUE</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">phenolyzer_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_features_df.html">create_features_df</a></span><span class="op">(</span>annovar_csv_path <span class="op">=</span> <span class="va">path2annovar_csv</span>,
@@ -204,32 +200,32 @@
                                        prep_phenolyzer_input <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Next, we save these genes to be used as input for phenolyzer:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>gene <span class="op">=</span> <span class="va">phenolyzer_genes</span><span class="op">)</span>, 
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>gene <span class="op">=</span> <span class="va">phenolyzer_genes</span><span class="op">)</span>, 
             file <span class="op">=</span> <span class="st">"input_genes.txt"</span>, 
             row.names <span class="op">=</span> <span class="cn">FALSE</span>, col.names <span class="op">=</span> <span class="cn">FALSE</span>, quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>We create another text file, named <code>phenolyzer_disease.txt</code>, containing the phenotype (i.e. cancer type. in this case “lung adenocarcinoma”) to be used for scoring with phenolyzer. An example command for running phenolyzer is provided below:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">perl</span> ~/phenolyzer/disease_annotation.pl -f phenolyzer_disease.txt -prediction -phenotype -logistic --gene input_genes.txt -out phenolyzer_out/example</span></code></pre></div>
 <p>This should produce, among other outputs, the annotated_gene_list output file. An example annotated_gene_list output file is provided within the package:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">path2phenolyzer_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.annotated_gene_list"</span>,
+<code class="sourceCode R"><span class="va">path2phenolyzer_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.annotated_gene_list"</span>,
                                     package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="create-the-features-data-frame" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-the-features-data-frame" class="anchor"></a>Create the features data frame</h2>
+<div class="section level3">
+<h3 id="create-the-features-data-frame">Create the features data frame<a class="anchor" aria-label="anchor" href="#create-the-features-data-frame"></a>
+</h3>
 <p>After creating the necessary input data (as detailed above), we simply run <code><a href="../reference/create_features_df.html">create_features_df()</a></code> to obtain the features data frame:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">features_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_features_df.html">create_features_df</a></span><span class="op">(</span>annovar_csv_path <span class="op">=</span> <span class="va">path2annovar_csv</span>,
                                   scna_df <span class="op">=</span> <span class="va">example_scna_table</span>, 
                                   phenolyzer_annotated_gene_list_path <span class="op">=</span> <span class="va">path2phenolyzer_out</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="prioritize-cancer-driver-genes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#prioritize-cancer-driver-genes" class="anchor"></a>Prioritize cancer driver genes</h2>
+<div class="section level3">
+<h3 id="prioritize-cancer-driver-genes">Prioritize cancer driver genes<a class="anchor" aria-label="anchor" href="#prioritize-cancer-driver-genes"></a>
+</h3>
 <p>Finally, we can prioritize cancer driver genes using <code><a href="../reference/prioritize_driver_genes.html">prioritize_driver_genes()</a></code>. For this function, <code>cancer_type</code> can be of the short names for the 21 different cancer types that was used to train the multi-task learning model utilized in this package:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">MTL_submodel_descriptions</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">MTL_submodel_descriptions</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">short_name</th>
@@ -326,7 +322,7 @@
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">driver_prob_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prioritize_driver_genes.html">prioritize_driver_genes</a></span><span class="op">(</span>features_df <span class="op">=</span> <span class="va">features_df</span>,
                                           cancer_type <span class="op">=</span> <span class="st">"LUAD"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">driver_prob_df</span>, <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">driver_prob_df</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt;      gene_symbol driverness_prob prediction</span>
 <span class="co">#&gt; 842         TP53       0.9614544     driver</span>
 <span class="co">#&gt; 3211       CCND3       0.8604087     driver</span>
@@ -341,15 +337,15 @@
 <p>The function returns a data frame of genes with probabilities of being cancer driver genes (using the selected sub-model of a multi-task learning model trained using 21 different cancer types) and the prediction of driver genes based on a cancer type specific probability threshold. In the above example, the top 10 genes contain recognizable cancer driver genes.</p>
 </div>
 </div>
-<div id="driver-gene-prioritization---batch-analysis" class="section level1">
-<h1 class="hasAnchor">
-<a href="#driver-gene-prioritization---batch-analysis" class="anchor"></a>Driver Gene Prioritization - Batch Analysis</h1>
+<div class="section level2">
+<h2 id="driver-gene-prioritization---batch-analysis">Driver Gene Prioritization - Batch Analysis<a class="anchor" aria-label="anchor" href="#driver-gene-prioritization---batch-analysis"></a>
+</h2>
 <p>Below, a step-by-step work flow for <code>driveR</code> for a cohort of tumor samples is provided. Note that some steps require operations outside of R. The example data provided within the package are for 10 randomly-selected samples from The Cancer Genome Atlas (TCGA) program’s LAML (Acute Myeloid Leukemia) cohort.</p>
-<div id="load-the-package-and-prepare-input-data-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-the-package-and-prepare-input-data-1" class="anchor"></a>Load the package and prepare input data</h2>
+<div class="section level3">
+<h3 id="load-the-package-and-prepare-input-data-1">Load the package and prepare input data<a class="anchor" aria-label="anchor" href="#load-the-package-and-prepare-input-data-1"></a>
+</h3>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://egeulgen.github.io/driveR/">driveR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://egeulgen.github.io/driveR/">driveR</a></span><span class="op">)</span></code></pre></div>
 <p>As before, as input, <code><a href="../reference/create_features_df.html">create_features_df()</a></code>, the function used to create the features table for driver gene prioritization, requires the following:</p>
 <ul>
 <li>
@@ -362,21 +358,21 @@
 <code>phenolyzer_annotated_gene_list_path</code>: the <code>/path/to/phenolyzer/annotated_gene_list/output/file</code>
 </li>
 </ul>
-<div id="annovar-csv-output-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#annovar-csv-output-1" class="anchor"></a>ANNOVAR CSV output</h3>
+<div class="section level4">
+<h4 id="annovar-csv-output-1">ANNOVAR CSV output<a class="anchor" aria-label="anchor" href="#annovar-csv-output-1"></a>
+</h4>
 <p>The required filters are again, as listed in the example ANNOVAR command above, <code>refGene,cytoBand,exac03,avsnp147,dbnsfp30a,cosmic91_coding,cosmic91_noncoding</code>. Additionally, for cohort-level analysis, a column named <code>tumor_id</code> is required, containing tumor id of each variant.</p>
 <p>With the package, an example cohort-level (modified) ANNOVAR csv output file is available:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/example_cohort.hg19_multianno.csv"</span>,
+<code class="sourceCode R"><span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example_cohort.hg19_multianno.csv"</span>,
                                  package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="scna-table-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scna-table-1" class="anchor"></a>SCNA table</h3>
+<div class="section level4">
+<h4 id="scna-table-1">SCNA table<a class="anchor" aria-label="anchor" href="#scna-table-1"></a>
+</h4>
 <p>Next, we prepare a SCNA data frame (GRCh37 is required). Again, an example data frame is provided within the package:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">example_cohort_scna_table</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">example_cohort_scna_table</span><span class="op">)</span>
 <span class="co">#&gt;       chr     start       end log2ratio tumor_id</span>
 <span class="co">#&gt; 29597  22  25922342  42892582   -0.0085  DO21131</span>
 <span class="co">#&gt; 29598  15  20581451  20586957    0.8688  DO21131</span>
@@ -386,9 +382,9 @@
 <span class="co">#&gt; 29602   5 117388963 120417166   -0.0114  DO21131</span></code></pre></div>
 <p>Again, for cohort-level analysis, it’s crucial to have a column named <code>tumor_id</code> is required, containing tumor id for each SCNA segment.</p>
 </div>
-<div id="phenolyzer-output-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#phenolyzer-output-1" class="anchor"></a>phenolyzer output</h3>
+<div class="section level4">
+<h4 id="phenolyzer-output-1">phenolyzer output<a class="anchor" aria-label="anchor" href="#phenolyzer-output-1"></a>
+</h4>
 <p>Finally, for the phenolyzer annotated_gene_list output file, we first obtain the genes to be scored using <code>create_features_df</code> and setting <code>prep_phenolyzer_input=TRUE</code>:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">phenolyzer_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_features_df.html">create_features_df</a></span><span class="op">(</span>annovar_csv_path <span class="op">=</span> <span class="va">path2annovar_csv</span>,
@@ -397,20 +393,20 @@
                                        batch_analysis <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Next, we save these genes to be used as input for phenolyzer:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>gene <span class="op">=</span> <span class="va">phenolyzer_genes</span><span class="op">)</span>, 
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>gene <span class="op">=</span> <span class="va">phenolyzer_genes</span><span class="op">)</span>, 
             file <span class="op">=</span> <span class="st">"input_genes.txt"</span>, 
             row.names <span class="op">=</span> <span class="cn">FALSE</span>, col.names <span class="op">=</span> <span class="cn">FALSE</span>, quote <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>We create another text file, named <code>phenolyzer_disease.txt</code>, containing the phenotype (i.e. cancer type. in this case “acute myeloid leukemia”) to be used for scoring with phenolyzer. An example command for running phenolyzer is provided below:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">perl</span> ~/phenolyzer/disease_annotation.pl -f phenolyzer_disease.txt -prediction -phenotype -logistic --gene input_genes.txt -out phenolyzer_out/example</span></code></pre></div>
 <p>This should produce, among other outputs, the annotated_gene_list output file. An example annotated_gene_list output file for the cohort-level data is provided within the package:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">path2phenolyzer_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/example_cohort.annotated_gene_list"</span>,
+<code class="sourceCode R"><span class="va">path2phenolyzer_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example_cohort.annotated_gene_list"</span>,
                                     package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="create-the-features-data-frame-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-the-features-data-frame-1" class="anchor"></a>Create the features data frame</h2>
+<div class="section level3">
+<h3 id="create-the-features-data-frame-1">Create the features data frame<a class="anchor" aria-label="anchor" href="#create-the-features-data-frame-1"></a>
+</h3>
 <p>After creating the necessary input data (as detailed above), we simply run <code><a href="../reference/create_features_df.html">create_features_df()</a></code> to obtain the features data frame. Notice that we set <code>batch_analysis = TRUE</code>. When <code>batch_analysis = TRUE</code>, both the ANNOVAR output and the SCNA table should have a column named ‘tumor_id’.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">features_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_features_df.html">create_features_df</a></span><span class="op">(</span>annovar_csv_path <span class="op">=</span> <span class="va">path2annovar_csv</span>,
@@ -418,15 +414,15 @@
                                   phenolyzer_annotated_gene_list_path <span class="op">=</span> <span class="va">path2phenolyzer_out</span>,
                                   batch_analysis <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="prioritize-cancer-driver-genes-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#prioritize-cancer-driver-genes-1" class="anchor"></a>Prioritize cancer driver genes</h2>
+<div class="section level3">
+<h3 id="prioritize-cancer-driver-genes-1">Prioritize cancer driver genes<a class="anchor" aria-label="anchor" href="#prioritize-cancer-driver-genes-1"></a>
+</h3>
 <p>Finally, we can prioritize cancer driver genes using <code><a href="../reference/prioritize_driver_genes.html">prioritize_driver_genes()</a></code>.</p>
 <p>Below is the example run for the acute myeloid leukemia cohort:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">driver_prob_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prioritize_driver_genes.html">prioritize_driver_genes</a></span><span class="op">(</span>features_df <span class="op">=</span> <span class="va">features_df</span>,
                                           cancer_type <span class="op">=</span> <span class="st">"LAML"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">driver_prob_df</span>, <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">driver_prob_df</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt;     gene_symbol driverness_prob prediction</span>
 <span class="co">#&gt; 49         FLT3       0.9922470     driver</span>
 <span class="co">#&gt; 5          TP53       0.9569072     driver</span>
@@ -460,11 +456,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Ege Ulgen.</p>
+  <p></p>
+<p>Developed by Ege Ulgen.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

@@ -2,21 +2,21 @@
   "index_name": "egeulgen_driver",
   "start_urls": [
     {
-      "url": "https://egeulgen.github.io/driveR//index.html",
+      "url": "https://egeulgen.github.io/driveR/index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "https://egeulgen.github.io/driveR//reference",
+      "url": "https://egeulgen.github.io/driveR/reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "https://egeulgen.github.io/driveR//articles",
+      "url": "https://egeulgen.github.io/driveR/articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "https://egeulgen.github.io/driveR//sitemap.xml"
+    "https://egeulgen.github.io/driveR/sitemap.xml"
   ],
   "selectors": {
     "homepage": {
