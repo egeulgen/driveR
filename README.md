@@ -33,10 +33,10 @@ these features to estimate cancer-type-specific probabilities for each
 gene of being a cancer driver using the related task of a multi-task
 learning classification model.
 
-The method is described in detail in *Ulgen E, Sezerman OU. 2020.
-driveR: A Novel Method for Prioritizing Cancer Driver Genes Using
-Somatic Genomics Data. bioRxiv.
-<https://doi.org/10.1101/2020.11.10.376707>*
+The method is described in detail in *Ülgen E, Sezerman OU. driveR: a
+novel method for prioritizing cancer driver genes using somatic genomics
+data. BMC Bioinformatics. 2021 May
+24;22(1):263.<https://doi.org/10.1186/s12859-021-04203-7>*
 
 ## Installation
 

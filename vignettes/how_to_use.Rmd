@@ -22,7 +22,7 @@ Cancer genomes contain large numbers of somatic alterations but few genes drive 
 
 > For now, the package only supports GRCh37 genomic positions.
 
-The method is described in detail in _Ulgen E, Sezerman OU. 2020. driveR: A Novel Method for Prioritizing Cancer Driver Genes Using Somatic Genomics Data. bioRxiv. [https://doi.org/10.1101/2020.11.10.376707](https://doi.org/10.1101/2020.11.10.376707)_ 
+The method is described in detail in _Ülgen E, Sezerman OU. driveR: a novel method for prioritizing cancer driver genes using somatic genomics data. BMC Bioinformatics. 2021 May 24;22(1):263.[https://doi.org/10.1186/s12859-021-04203-7](https://doi.org/10.1186/s12859-021-04203-7)_ 
 
 Below are some example usage cases for `driveR`:
 
