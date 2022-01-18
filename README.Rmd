@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![CRAN version](http://www.r-pkg.org/badges/version-ago/driveR)](https://cran.r-project.org/package=driveR)
 [![Travis build status](https://app.travis-ci.com/egeulgen/pathfindR.data.svg?branch=master)](https://app.travis-ci.com/github/egeulgen/driveR)
-[![Codecov test coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://codecov.io/gh/egeulgen/driveR?branch=master)
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Codecov test coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egeulgen/driveR?branch=master)
+[![Lifecycle: stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
