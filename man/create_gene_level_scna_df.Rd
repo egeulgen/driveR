@@ -4,7 +4,11 @@
 \alias{create_gene_level_scna_df}
 \title{Create Gene-level SCNA Data Frame}
 \usage{
-create_gene_level_scna_df(scna_df, gene_overlap_threshold = 25)
+create_gene_level_scna_df(
+  scna_df,
+  build = "GRCh37",
+  gene_overlap_threshold = 25
+)
 }
 \arguments{
 \item{scna_df}{the SCNA segments data frame. Must contain: \describe{
@@ -13,6 +17,8 @@ create_gene_level_scna_df(scna_df, gene_overlap_threshold = 25)
 \item{end}{end position of the segment}
 \item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of the segment}
 }}
+
+\item{build}{genome build for the SCNA segments data frame (default = "GRCh37")}
 
 \item{gene_overlap_threshold}{the percentage threshold for the overlap between
 a segment and a transcript (default = 25). This means that if only a segment

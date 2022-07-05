@@ -1,24 +1,3 @@
-#' Random Forest Model for Coding Impact Metaprediction
-#'
-#' A Random Forest model object for metaprediction of coding variants' impact,
-#' using 12 impact scores from different coding impact predictors. The model was
-#' trained on 711 coding variants, with 10-folds repeated 3 times cross-validation.
-#'
-#' @format model object
-"metapredictor_model"
-
-#' Multi-Task Learning Model for Predicting Cancer Driver Genes
-#'
-#' A Multi-Task Learning (MTL) classification model object for determining
-#' cancer driver genes based on 26 features. The model was trained using
-#' TCGA data (obtained from ICGC release 28) with lasso regularization. It contains
-#' 21 sub-models for different cancer types.
-#'
-#' @format MTL model object
-#' @seealso \code{\link{MTL_submodel_descriptions}} for short names and descriptions
-#' of all sub-models.
-"TCGA_MTL_fit"
-
 #' Tumor type specific probability thresholds
 #'
 #' Driver gene probability thresholds for all 21 cancer types (submodels).
@@ -38,38 +17,6 @@
 #' }
 #' @seealso \code{\link{TCGA_MTL_fit}} for the MTL model.
 "MTL_submodel_descriptions"
-
-#' Table of Pan-Cancer Minimal Common Regions
-#'
-#' A data set containing the minimal common regions (MCRs) across all cancer
-#' types studied in Kim TM, Xi R, Luquette LJ, Park RW, Johnson MD, Park PJ.
-#' Functional genomic analysis of chromosomal aberrations in a compendium of
-#' 8000 cancer genomes. Genome Res. 2013;23(2):217-27. Coordinates were converted
-#' to hg19 (from hg18) using UCSC Genome Browser's LiftOver tool.
-#'
-#' @format A data frame with 165 rows and 5 variables:
-#' \describe{
-#'   \item{chr}{chromosome the MCR is located in}
-#'   \item{start}{start position of the MCR}
-#'   \item{end}{end position of the MCR}
-#'   \item{MCR_type}{the type ("Amp" or "Del") of the MCR peak}
-#'   \item{SCNA_density}{SCNA per Mb within the MCR}
-#' }
-#' @source \url{https://pubmed.ncbi.nlm.nih.gov/23132910/}
-"MCR_table"
-
-#' KEGG "Pathways in cancer"-related Pathways - Gene Sets
-#'
-#' A list containing the genes involved in each Homo sapiens KEGG "Pathways in
-#' cancer" (hsa05200)-related Pathways. Each element is a vector of gene symbols
-#' located in the given pathway. Names correspond to the KEGG ID of the pathway.
-#' \emph{Generated on Nov 24, 2020.}
-#'
-#' @format list containing 21 vectors of gene symbols. Each vector corresponds
-#'   to a pathway.
-#' @seealso \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
-#'  KEGG "Pathways in cancer"-related pathways.
-"KEGG_cancer_pathways"
 
 #' KEGG "Pathways in cancer"-related Pathways - Descriptions
 #'

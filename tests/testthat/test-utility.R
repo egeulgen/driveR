@@ -17,9 +17,16 @@ test_that("`create_noncoding_impact_score_df` works", {
 # create_gene_level_scna_df -----------------------------------------------
 test_that("`create_gene_level_scna_df` works", {
     expect_is(driveR:::create_gene_level_scna_df(example_scna_table), "data.frame")
+    expect_is(driveR:::create_gene_level_scna_df(example_scna_table, build = "GRCh38"), "data.frame")
+
 })
 
 test_that("`create_gene_level_scna_df` argument checks work", {
+
+    expect_error(driveR:::create_gene_level_scna_df(example_scna_table, build = "INVALID"),
+                 paste0("`build should be one of ",
+                        paste(dQuote(c("GRCh37", "GRCh38")), collapse = ", ")))
+
     tmp <- example_scna_table[, 1:3]
     nec_cols <- c("chr", "start", "end", "log2ratio")
     expect_error(driveR:::create_gene_level_scna_df(tmp),
@@ -43,6 +50,9 @@ test_that("`create_SCNA_score_df` works", {
     expect_is(SCNA_scores_df <- driveR:::create_SCNA_score_df(gene_SCNA_df), "data.frame")
     expect_equal(ncol(SCNA_scores_df), 2)
 
+    expect_is(SCNA_scores_df2 <- driveR:::create_SCNA_score_df(gene_SCNA_df, build = "GRCh38"), "data.frame")
+    expect_equal(ncol(SCNA_scores_df2), 2)
+
     # corner case 1
     tmp <- gene_SCNA_df[1:2, ]
     tmp$log2ratio <- 0.1
@@ -57,6 +67,12 @@ test_that("`create_SCNA_score_df` works", {
 })
 
 test_that("`create_SCNA_score_df` argument checks work", {
+
+    expect_error(driveR:::create_SCNA_score_df(gene_SCNA_df, build = "INVALID"),
+                 paste0("`build should be one of ",
+                        paste(dQuote(c("GRCh37", "GRCh38")), collapse = ", ")))
+
+
     expect_error(driveR:::create_SCNA_score_df(gene_SCNA_df,
                                                log2_ratio_threshold = "INVALID"),
                  "`log2_ratio_threshold` should be numberic")

@@ -32,6 +32,7 @@ create_noncoding_impact_score_df <- function(annovar_csv_path, na.string = ".") 
 #'   \item{end}{end position of the segment}
 #'   \item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of the segment}
 #' }
+#' @param build genome build for the SCNA segments data frame (default = "GRCh37")
 #' @param gene_overlap_threshold the percentage threshold for the overlap between
 #' a segment and a transcript (default = 25). This means that if only a segment
 #' overlaps a transcript more than this threshold, the transcript is assigned
@@ -41,13 +42,16 @@ create_noncoding_impact_score_df <- function(annovar_csv_path, na.string = ".") 
 #' by SCNA segments.
 #'
 #' @importFrom rlang .data
-create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
+create_gene_level_scna_df <- function(scna_df, build = "GRCh37", gene_overlap_threshold = 25) {
     ### argument checks
     nec_cols <- c("chr", "start", "end", "log2ratio")
     if (!all(nec_cols %in% colnames(scna_df))) {
         stop("`scna_df` should contain all of: ",
              paste(dQuote(nec_cols), collapse = ", "))
     }
+
+    if (!build %in% c("GRCh37", "GRCh38"))
+        stop("`build should be one of ", paste(dQuote(c("GRCh37", "GRCh38")), collapse = ", "))
 
     if (!is.numeric(gene_overlap_threshold))
         stop("`gene_overlap_threshold` should be numberic")
@@ -60,7 +64,10 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
     scna_gr <- GenomicRanges::makeGRangesFromDataFrame(scna_df,
                                                        keep.extra.columns = TRUE)
     GenomeInfoDb::seqlevelsStyle(scna_gr) <- "UCSC"
-    genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene))
+    if (build == "GRCh37")
+        genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene))
+    else
+        genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg38.knownGene::TxDb.Hsapiens.UCSC.hg38.knownGene))
 
     # overlaps
     hits <- GenomicRanges::findOverlaps(scna_gr,
@@ -98,6 +105,7 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 #' Create SCNA Score Data Frame
 #'
 #' @param gene_SCNA_df data frame of gene-level SCNAs (output of \code{\link{create_gene_level_scna_df}})
+#' @inheritParams create_gene_level_scna_df
 #' @param log2_ratio_threshold the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
 #' ratio threshold for keeping high-confidence SCNA events (default = 0.25)
 #' @param MCR_overlap_threshold the percentage threshold for the overlap between
@@ -116,9 +124,13 @@ create_gene_level_scna_df <- function(scna_df, gene_overlap_threshold = 25) {
 #' minimal common regions (MCRs) that the genes overlap and finally assigns the
 #' SCNA density (SCNA/Mb) values as proxy SCNA scores.
 create_SCNA_score_df <- function(gene_SCNA_df,
+                                 build = "GRCh37",
                                  log2_ratio_threshold = 0.25,
                                  MCR_overlap_threshold = 25){
     ### argument checks
+    if (!build %in% c("GRCh37", "GRCh38"))
+        stop("`build should be one of ", paste(dQuote(c("GRCh37", "GRCh38")), collapse = ", "))
+
     if (!is.numeric(log2_ratio_threshold))
         stop("`log2_ratio_threshold` should be numberic")
 
@@ -155,6 +167,11 @@ create_SCNA_score_df <- function(gene_SCNA_df,
         warning("No gene-level SCNA event passed the log2_ratio_threshold")
         return(df)
     }
+
+    if (build == "GRCh37")
+        MCR_table <- MCR_table_hg19
+    else
+        MCR_table <- MCR_table_hg38
 
     ### assign MCR score to overlapping genes
     MCR_gr <- GenomicRanges::makeGRangesFromDataFrame(MCR_table, keep.extra.columns = TRUE)

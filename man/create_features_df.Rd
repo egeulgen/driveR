@@ -10,6 +10,7 @@ create_features_df(
   phenolyzer_annotated_gene_list_path,
   batch_analysis = FALSE,
   prep_phenolyzer_input = FALSE,
+  build = "GRCh37",
   log2_ratio_threshold = 0.25,
   gene_overlap_threshold = 25,
   MCR_overlap_threshold = 25,
@@ -42,6 +43,8 @@ a vector of genes for use as the input of 'phenolyzer' (default = \code{FALSE}).
 If \code{TRUE}, the features data frame is not created and instead the vector
 of gene symbols (union of all genes for which scores are available) is
 returned.}
+
+\item{build}{genome build for the SCNA segments data frame (default = "GRCh37")}
 
 \item{log2_ratio_threshold}{the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
 ratio threshold for keeping high-confidence SCNA events (default = 0.25)}
