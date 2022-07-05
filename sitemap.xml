@@ -34,19 +34,13 @@
     <loc>https://egeulgen.github.io/driveR/news/news-0.3.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR/reference/KEGG_cancer_pathways.html</loc>
+    <loc>https://egeulgen.github.io/driveR/news/news-dev.html</loc>
   </url>
   <url>
     <loc>https://egeulgen.github.io/driveR/reference/KEGG_cancer_pathways_descriptions.html</loc>
   </url>
   <url>
-    <loc>https://egeulgen.github.io/driveR/reference/MCR_table.html</loc>
-  </url>
-  <url>
     <loc>https://egeulgen.github.io/driveR/reference/MTL_submodel_descriptions.html</loc>
-  </url>
-  <url>
-    <loc>https://egeulgen.github.io/driveR/reference/TCGA_MTL_fit.html</loc>
   </url>
   <url>
     <loc>https://egeulgen.github.io/driveR/reference/create_SCNA_score_df.html</loc>
@@ -83,9 +77,6 @@
   </url>
   <url>
     <loc>https://egeulgen.github.io/driveR/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://egeulgen.github.io/driveR/reference/metapredictor_model.html</loc>
   </url>
   <url>
     <loc>https://egeulgen.github.io/driveR/reference/predict_coding_impact.html</loc>

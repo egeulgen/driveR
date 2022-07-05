@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0.9001</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -68,33 +68,42 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predict_coding_impact</span><span class="op">(</span>
-  <span class="va">annovar_csv_path</span>,
-  keep_highest_score <span class="op">=</span> <span class="cn">TRUE</span>,
-  keep_single_symbol <span class="op">=</span> <span class="cn">TRUE</span>,
-  na.string <span class="op">=</span> <span class="st">"."</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predict_coding_impact</span><span class="op">(</span></span>
+<span>  <span class="va">annovar_csv_path</span>,</span>
+<span>  keep_highest_score <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  keep_single_symbol <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  na.string <span class="op">=</span> <span class="st">"."</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>annovar_csv_path</dt>
 <dd><p>path to 'ANNOVAR' csv output file</p></dd>
+
+
 <dt>keep_highest_score</dt>
 <dd><p>boolean to indicate whether to keep only the maximal
 impact score per gene (default = <code>TRUE</code>). If <code>FALSE</code>, all scores
 per each gene are returned</p></dd>
+
+
 <dt>keep_single_symbol</dt>
 <dd><p>in ANNOVAR outputs, a variant may be annotated as
 exonic in multiple genes. This boolean argument controls whether or not to
 keep only the first encountered symbol for a variant (default = <code>TRUE</code>)</p></dd>
+
+
 <dt>na.string</dt>
 <dd><p>string that was used to indicate when a score is not available
 during annotation with ANNOVAR (default = ".")</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data frame of meta-prediction scores containing 2 columns:</p><dl><dt>gene_symbol</dt>
+    
+
+<p>data frame of meta-prediction scores containing 2 columns:</p><dl><dt>gene_symbol</dt>
 <dd><p>HGNC gene symbol</p></dd>
 
 <dt>metaprediction_score</dt>
@@ -105,9 +114,9 @@ during annotation with ANNOVAR (default = ".")</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.hg19_multianno.csv"</span>,</span>
-<span class="r-in">                                package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">metapred_df</span> <span class="op">&lt;-</span> <span class="fu">predict_coding_impact</span><span class="op">(</span><span class="va">path2annovar_csv</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.hg19_multianno.csv"</span>,</span></span>
+<span class="r-in"><span>                                package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">metapred_df</span> <span class="op">&lt;-</span> <span class="fu">predict_coding_impact</span><span class="op">(</span><span class="va">path2annovar_csv</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -122,7 +131,7 @@ during annotation with ANNOVAR (default = ".")</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

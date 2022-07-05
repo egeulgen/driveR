@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0.9001</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -68,29 +68,41 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_SCNA_score_df</span><span class="op">(</span>
-  <span class="va">gene_SCNA_df</span>,
-  log2_ratio_threshold <span class="op">=</span> <span class="fl">0.25</span>,
-  MCR_overlap_threshold <span class="op">=</span> <span class="fl">25</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_SCNA_score_df</span><span class="op">(</span></span>
+<span>  <span class="va">gene_SCNA_df</span>,</span>
+<span>  build <span class="op">=</span> <span class="st">"GRCh37"</span>,</span>
+<span>  log2_ratio_threshold <span class="op">=</span> <span class="fl">0.25</span>,</span>
+<span>  MCR_overlap_threshold <span class="op">=</span> <span class="fl">25</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>gene_SCNA_df</dt>
 <dd><p>data frame of gene-level SCNAs (output of <code><a href="create_gene_level_scna_df.html">create_gene_level_scna_df</a></code>)</p></dd>
+
+
+<dt>build</dt>
+<dd><p>genome build for the SCNA segments data frame (default = "GRCh37")</p></dd>
+
+
 <dt>log2_ratio_threshold</dt>
 <dd><p>the log<sub>2</sub>
 ratio threshold for keeping high-confidence SCNA events (default = 0.25)</p></dd>
+
+
 <dt>MCR_overlap_threshold</dt>
 <dd><p>the percentage threshold for the overlap between
 a gene and an MCR region (default = 25). This means that if only a gene
 overlaps an MCR region more than this threshold, the gene is assigned the
 SCNA density of the MCR</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>data frame of SCNA proxy scores containing 2 columns:</p><dl><dt>gene_symbol</dt>
+    
+
+<p>data frame of SCNA proxy scores containing 2 columns:</p><dl><dt>gene_symbol</dt>
 <dd><p>HGNC gene symbol</p></dd>
 
 <dt>SCNA_density</dt>
@@ -119,7 +131,7 @@ SCNA density (SCNA/Mb) values as proxy SCNA scores.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

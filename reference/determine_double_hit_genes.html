@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0.9001</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -68,33 +68,42 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">determine_double_hit_genes</span><span class="op">(</span>
-  <span class="va">annovar_csv_path</span>,
-  <span class="va">gene_SCNA_df</span>,
-  log2_hom_loss_threshold <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,
-  batch_analysis <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">determine_double_hit_genes</span><span class="op">(</span></span>
+<span>  <span class="va">annovar_csv_path</span>,</span>
+<span>  <span class="va">gene_SCNA_df</span>,</span>
+<span>  log2_hom_loss_threshold <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
+<span>  batch_analysis <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>annovar_csv_path</dt>
 <dd><p>path to 'ANNOVAR' csv output file</p></dd>
+
+
 <dt>gene_SCNA_df</dt>
 <dd><p>data frame of gene-level SCNAs (output of <code><a href="create_gene_level_scna_df.html">create_gene_level_scna_df</a></code>)</p></dd>
+
+
 <dt>log2_hom_loss_threshold</dt>
 <dd><p>to determine double-hit events, the
 log<sub>2</sub> threshold for identifying
 homozygous loss events (default = -1).</p></dd>
+
+
 <dt>batch_analysis</dt>
 <dd><p>boolean to indicate whether to perform batch analysis
 (<code>TRUE</code>, default) or personalized analysis (<code>FALSE</code>). If <code>TRUE</code>,
 a column named 'tumor_id' should be present in both the ANNOVAR csv and the SCNA
 table.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>vector of gene symbols that are subject to double-hit event(s), i.e.
+    
+
+<p>vector of gene symbols that are subject to double-hit event(s), i.e.
 non-synonymous mutation + homozygous copy-number loss</p>
     </div>
 
@@ -110,7 +119,7 @@ non-synonymous mutation + homozygous copy-number loss</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
