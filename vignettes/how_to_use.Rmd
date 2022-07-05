@@ -20,7 +20,7 @@ Cancer genomes contain large numbers of somatic alterations but few genes drive 
 
 `driveR` is a tool for personalized or batch analysis of genomic data for driver gene prioritization by combining genomic information and prior biological knowledge. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, 'phenolyzer' gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific probabilities for each gene of being a cancer driver using the related task of a multi-task learning classification model.
 
-> For now, the package only supports GRCh37 genomic positions.
+> The package supports GRCh37 (default) and GRCh38 genomic positions, which can be specied via the `build` argument.
 
 The method is described in detail in _Ülgen E, Sezerman OU. driveR: a novel method for prioritizing cancer driver genes using somatic genomics data. BMC Bioinformatics. 2021 May 24;22(1):263.[https://doi.org/10.1186/s12859-021-04203-7](https://doi.org/10.1186/s12859-021-04203-7)_ 
 
@@ -101,7 +101,7 @@ path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
 
 ### SCNA table
 
-Next, we prepare a SCNA data frame (GRCh37 is required). Again, an example data frame is provided within the package:
+Next, we prepare a SCNA data frame (GRCh37 or GRCh38). Again, an example data frame (GRCh37) is provided within the package:
 
 ```{r example_scna}
 head(example_scna_table)
@@ -114,7 +114,8 @@ Finally, for the phenolyzer annotated_gene_list output file, we first obtain the
 ```{r phenolyzer_input,eval=FALSE}
 phenolyzer_genes <- create_features_df(annovar_csv_path = path2annovar_csv,
                                        scna_df = example_scna_table,
-                                       prep_phenolyzer_input = TRUE)
+                                       prep_phenolyzer_input = TRUE,
+                                       build = "GRCh37")
 ```
 
 Next, we save these genes to be used as input for phenolyzer:
@@ -143,7 +144,8 @@ After creating the necessary input data (as detailed above), we simply run `crea
 ```{r features_df, eval=FALSE}
 features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
                                   scna_df = example_scna_table, 
-                                  phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
+                                  phenolyzer_annotated_gene_list_path = path2phenolyzer_out,
+                                  build = "GRCh37")
 ```
 
 ```{r features_df_load, echo=FALSE}
