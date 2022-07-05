@@ -2,7 +2,7 @@
 ## Project: driveR
 ## Script purpose: Testthat testing script for
 ## utility functions
-## Date: Nov 16, 2020
+## Date: Jul 5, 2022
 ## Author: Ege Ulgen
 ##################################################
 

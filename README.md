@@ -7,8 +7,7 @@
 
 [![CRAN
 version](http://www.r-pkg.org/badges/version-ago/driveR)](https://cran.r-project.org/package=driveR)
-[![Travis build
-status](https://app.travis-ci.com/egeulgen/pathfindR.data.svg?branch=master)](https://app.travis-ci.com/github/egeulgen/driveR)
+[![R-CMD-check](https://github.com/egeulgen/driveR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/egeulgen/driveR/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egeulgen/driveR?branch=master)
 [![Lifecycle:
