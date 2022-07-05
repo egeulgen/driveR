@@ -1,5 +1,8 @@
 # driveR (development version)
 
+## Major Changes
+- Added GRCh38 support
+
 ***
 
 # driveR 0.3.0
