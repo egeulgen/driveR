@@ -3,7 +3,6 @@
 #' Driver gene probability thresholds for all 21 cancer types (submodels).
 #'
 #' @format vector with 21 elements
-#' @seealso \code{\link{TCGA_MTL_fit}} for the Multi-Task Learning model.
 "specific_thresholds"
 
 #' MTL Sub-model Descriptions
@@ -15,7 +14,6 @@
 #'   \item{short_name}{short name for the cancer type}
 #'   \item{description}{description of the cancer type}
 #' }
-#' @seealso \code{\link{TCGA_MTL_fit}} for the MTL model.
 "MTL_submodel_descriptions"
 
 #' KEGG "Pathways in cancer"-related Pathways - Descriptions

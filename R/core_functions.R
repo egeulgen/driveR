@@ -347,7 +347,6 @@ create_features_df <- function(annovar_csv_path,
 #' drivers_df <- prioritize_driver_genes(example_features_table, "LUAD")
 #'
 #' @seealso \code{\link{create_features_df}} for creating the features table.
-#' \code{\link{TCGA_MTL_fit}} for details on the MTL model used for prediction.
 prioritize_driver_genes <- function(features_df, cancer_type) {
     # argument checks
     if (!is.data.frame(features_df))

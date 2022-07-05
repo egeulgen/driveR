@@ -13,7 +13,4 @@ specific_thresholds
 \description{
 Driver gene probability thresholds for all 21 cancer types (submodels).
 }
-\seealso{
-\code{\link{TCGA_MTL_fit}} for the Multi-Task Learning model.
-}
 \keyword{datasets}

@@ -17,7 +17,4 @@ MTL_submodel_descriptions
 \description{
 A data frame containing descriptions for all sub-models of the MTL model.
 }
-\seealso{
-\code{\link{TCGA_MTL_fit}} for the MTL model.
-}
 \keyword{datasets}
