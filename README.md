@@ -10,8 +10,6 @@ version](http://www.r-pkg.org/badges/version-ago/driveR)](https://cran.r-project
 [![R-CMD-check](https://github.com/egeulgen/driveR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/egeulgen/driveR/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egeulgen/driveR?branch=master)
-[![Lifecycle:
-stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
