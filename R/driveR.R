@@ -22,6 +22,5 @@
 #' be used to prioritize cancer driver genes.
 #' See \code{\link{prioritize_driver_genes}} for prioritizing cancer driver genes
 #'
-#' @docType package
 #' @name driveR
-NULL
+"_PACKAGE"

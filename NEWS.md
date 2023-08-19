@@ -1,5 +1,8 @@
 # driveR (development version)
 
+## Minor changes and bug fixes
+- fixed a CRAN error due to a package documentation issue (#7)
+
 # driveR 0.4.0
 
 ## Major Changes

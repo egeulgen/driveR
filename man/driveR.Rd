@@ -3,6 +3,7 @@
 \docType{package}
 \name{driveR}
 \alias{driveR}
+\alias{driveR-package}
 \title{driveR: An R Package for Prioritizing Cancer Driver Genes Using Genomics Data}
 \description{
 Cancer genomes contain large numbers of somatic alterations but few genes
@@ -27,4 +28,8 @@ coding variants.
 \code{\link{create_features_df}} for creating the features table to
 be used to prioritize cancer driver genes.
 See \code{\link{prioritize_driver_genes}} for prioritizing cancer driver genes
+}
+\author{
+\strong{Maintainer}: Ege Ulgen \email{egeulgen@gmail.com} (\href{https://orcid.org/0000-0003-2090-3621}{ORCID}) [copyright holder]
+
 }
