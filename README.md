@@ -11,7 +11,7 @@ version](http://www.r-pkg.org/badges/version-ago/driveR)](https://cran.r-project
 [![Codecov test
 coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egeulgen/driveR?branch=master)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit/)
 <!-- badges: end -->
 
 Cancer genomes contain large numbers of somatic alterations but few
@@ -53,8 +53,12 @@ devtools::install_github("egeulgen/driveR", build_vignettes = TRUE)
 
 ## Usage
 
-![driveR
-workflow](https://github.com/egeulgen/driveR/blob/master/inst/extdata/driver_workflow.png?raw=true "driveR workflow")
+<figure>
+<img
+src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driver_workflow.png?raw=true"
+title="driveR workflow" alt="driveR workflow" />
+<figcaption aria-hidden="true">driveR workflow</figcaption>
+</figure>
 
 `driveR` has two main objectives:
 
