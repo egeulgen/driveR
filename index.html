@@ -56,7 +56,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0.9001</span>
       </span>
     </div>
 
@@ -107,10 +107,11 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="-driver-an-r-package-for-prioritizing-cancer-driver-genes-using-genomics-data">
-<img src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driveR_logo.png?raw=true" align="left" height="150/"> driveR: An R Package for Prioritizing Cancer Driver Genes Using Genomics Data<a class="anchor" aria-label="anchor" href="#-driver-an-r-package-for-prioritizing-cancer-driver-genes-using-genomics-data"></a>
+<div class="page-header"><h1 id="id_-driver-an-r-package-for-prioritizing-cancer-driver-genes-using-genomics-data">
+<img src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driveR_logo.png?raw=true" align="left" height="150/"> driveR: An R Package for Prioritizing Cancer Driver Genes Using Genomics Data<a class="anchor" aria-label="anchor" href="#id_-driver-an-r-package-for-prioritizing-cancer-driver-genes-using-genomics-data"></a>
 </h1></div>
 <!-- badges: start -->
+
 <p>Cancer genomes contain large numbers of somatic alterations but few genes drive tumor development. Identifying cancer driver genes is critical for precision oncology. Most of current approaches either identify driver genes based on mutational recurrence or using estimated scores predicting the functional consequences of mutations.</p>
 <p><code>driveR</code> is a tool for personalized or batch analysis of genomics data for driver gene prioritization by combining genomics information and prior biological knowledge. As features, driveR uses coding impact metaprediction scores, non-coding impact scores, somatic copy number alteration scores, hotspot gene/double-hit gene condition, ‘phenolyzer’ gene scores and memberships to cancer-related KEGG pathways. It uses these features to estimate cancer-type-specific probabilities for each gene of being a cancer driver using the related task of a multi-task learning classification model.</p>
 <p>The method is described in detail in <em>Ülgen E, Sezerman OU. driveR: a novel method for prioritizing cancer driver genes using somatic genomics data. BMC Bioinformatics. 2021 May 24;22(1):263.<a href="https://doi.org/10.1186/s12859-021-04203-7" class="external-link uri">https://doi.org/10.1186/s12859-021-04203-7</a></em></p>
@@ -128,10 +129,9 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<div class="figure">
-<img src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driver_workflow.png?raw=true" title="driveR workflow" alt=""><p class="caption">driveR workflow</p>
-</div>
-<p><code>driveR</code> has two main objectives:</p>
+<figure><img src="https://github.com/egeulgen/driveR/blob/master/inst/extdata/driver_workflow.png?raw=true" title="driveR workflow" alt="driveR workflow"><figcaption aria-hidden="true">
+driveR workflow
+</figcaption></figure><p><code>driveR</code> has two main objectives:</p>
 <ol style="list-style-type: decimal">
 <li>Prediction of <strong>impact of coding variants</strong> (achieved via <code><a href="reference/predict_coding_impact.html">predict_coding_impact()</a></code>)</li>
 <li>
@@ -182,7 +182,7 @@
 <li><a href="https://cran.r-project.org/package=driveR" class="external-link"><img src="http://www.r-pkg.org/badges/version-ago/driveR" alt="CRAN version"></a></li>
 <li><a href="https://github.com/egeulgen/driveR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/egeulgen/driveR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://app.codecov.io/gh/egeulgen/driveR?branch=master" class="external-link"><img src="https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
+<li><a href="https://opensource.org/license/mit/" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
 </ul>
 </div>
 
@@ -197,7 +197,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
