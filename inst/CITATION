@@ -1,7 +1,7 @@
 citHeader("To cite driveR in publications use:")
 
-citEntry(
-  entry    = "Article",
+bibentry(
+  bibtype    = "Article",
   title    = "driveR: a novel method for prioritizing cancer driver genes using somatic genomics data",
   author   = c(person("Ege","Ulgen"),
 	           person(c("Osman", "Ugur"),"Sezerman")),
