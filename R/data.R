@@ -47,6 +47,24 @@
 #' @source \url{https://pubmed.ncbi.nlm.nih.gov/24569458/}
 "example_scna_table"
 
+
+#' Example Gene-level Somatic Copy Number Alteration Table
+#'
+#' A data set containing the gene-level somatic copy number alteration data for
+#' the lung adenocarcinoma patient studied in Imielinski M, Greulich H,
+#' Kaplan B, et al. Oncogenic and sorafenib-sensitive ARAF mutations in lung
+#' adenocarcinoma. J Clin Invest. 2014;124(4):1582-6.
+#'
+#' @format A data frame with 46270 rows and 2 variables:
+#' \describe{
+#'   \item{symbol}{gene symbol}
+#'   \item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of
+#'   the gene}
+#' }
+#' @source \url{https://pubmed.ncbi.nlm.nih.gov/24569458/}
+"example_gene_scna_table"
+
+
 #' Example Features Table for Driver Prioritization
 #'
 #' The example dataset containing features for prioritizing cancer driver genes for
