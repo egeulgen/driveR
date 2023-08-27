@@ -3,7 +3,7 @@
 \docType{data}
 \name{KEGG_cancer_pathways_descriptions}
 \alias{KEGG_cancer_pathways_descriptions}
-\title{KEGG "Pathways in cancer"-related Pathways - Descriptions}
+\title{KEGG 'Pathways in cancer'-related Pathways - Descriptions}
 \format{
 A data frame with 21 rows and 2 variables:
 \describe{
@@ -15,7 +15,7 @@ A data frame with 21 rows and 2 variables:
 KEGG_cancer_pathways_descriptions
 }
 \description{
-A data frame containing descriptions for KEGG "Pathways in cancer"
+A data frame containing descriptions for KEGG 'Pathways in cancer'
 (hsa05200)-related pathways.
 \emph{Generated on Nov 17, 2020.}
 }

@@ -23,7 +23,7 @@ exonic in multiple genes. This boolean argument controls whether or not to
 keep only the first encountered symbol for a variant (default = \code{TRUE})}
 
 \item{na.string}{string that was used to indicate when a score is not available
-during annotation with ANNOVAR (default = ".")}
+during annotation with ANNOVAR (default = '.')}
 }
 \value{
 data frame of meta-prediction scores containing 2 columns: \describe{
@@ -35,7 +35,7 @@ data frame of meta-prediction scores containing 2 columns: \describe{
 Create Coding Impact Meta-prediction Score Data Frame
 }
 \examples{
-path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-                                package = "driveR")
+path2annovar_csv <- system.file('extdata/example.hg19_multianno.csv',
+                                package = 'driveR')
 metapred_df <- predict_coding_impact(path2annovar_csv)
 }

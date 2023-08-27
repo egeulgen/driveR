@@ -14,7 +14,7 @@ create_SCNA_score_df(
 \arguments{
 \item{scna_genes_df}{data frame of gene-level SCNAs (can be output of \code{\link{create_gene_level_scna_df}})}
 
-\item{build}{genome build for the SCNA segments data frame (default = "GRCh37")}
+\item{build}{genome build for the SCNA segments data frame (default = 'GRCh37')}
 
 \item{log2_ratio_threshold}{the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
 ratio threshold for keeping high-confidence SCNA events (default = 0.25)}

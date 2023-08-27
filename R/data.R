@@ -16,9 +16,9 @@
 #' }
 "MTL_submodel_descriptions"
 
-#' KEGG "Pathways in cancer"-related Pathways - Descriptions
+#' KEGG 'Pathways in cancer'-related Pathways - Descriptions
 #'
-#' A data frame containing descriptions for KEGG "Pathways in cancer"
+#' A data frame containing descriptions for KEGG 'Pathways in cancer'
 #' (hsa05200)-related pathways.
 #' \emph{Generated on Nov 17, 2020.}
 #'
@@ -86,7 +86,7 @@
 #' }
 #'
 #' @seealso \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
-#'  KEGG "Pathways in cancer"-related pathways.
+#'  KEGG 'Pathways in cancer'-related pathways.
 "example_features_table"
 
 #' Example Cohort-level Somatic Copy Number Alteration Table
@@ -143,5 +143,5 @@
 #' }
 #'
 #' @seealso \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
-#'  KEGG "Pathways in cancer"-related pathways.
+#'  KEGG 'Pathways in cancer'-related pathways.
 "example_cohort_features_table"

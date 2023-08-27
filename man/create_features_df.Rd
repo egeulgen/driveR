@@ -34,7 +34,7 @@ create_features_df(
 \item{scna_genes_df}{data frame of gene-level SCNAs (can be output of \code{\link{create_gene_level_scna_df}})}
 
 \item{phenolyzer_annotated_gene_list_path}{path to 'phenolyzer'
-"annotated_gene_list" file}
+'annotated_gene_list' file}
 
 \item{batch_analysis}{boolean to indicate whether to perform batch analysis
 (\code{TRUE}, default) or personalized analysis (\code{FALSE}). If \code{TRUE},
@@ -47,7 +47,7 @@ If \code{TRUE}, the features data frame is not created and instead the vector
 of gene symbols (union of all genes for which scores are available) is
 returned.}
 
-\item{build}{genome build for the SCNA segments data frame (default = "GRCh37")}
+\item{build}{genome build for the SCNA segments data frame (default = 'GRCh37')}
 
 \item{log2_ratio_threshold}{the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
 ratio threshold for keeping high-confidence SCNA events (default = 0.25)}
@@ -72,7 +72,7 @@ homozygous loss events (default = -1).}
 \item{verbose}{boolean controlling verbosity (default = \code{TRUE})}
 
 \item{na.string}{string that was used to indicate when a score is not available
-during annotation with ANNOVAR (default = ".")}
+during annotation with ANNOVAR (default = '.')}
 }
 \value{
 If \code{prep_phenolyzer_input=FALSE} (default), a data frame of
@@ -118,10 +118,10 @@ Create Data Frame of Features for Driver Gene Prioritization
 }
 \examples{
 \donttest{
-path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv",
-                                package = "driveR")
-path2phenolyzer_out <- system.file("extdata/example.annotated_gene_list",
-                                   package = "driveR")
+path2annovar_csv <- system.file('extdata/example.hg19_multianno.csv',
+                                package = 'driveR')
+path2phenolyzer_out <- system.file('extdata/example.annotated_gene_list',
+                                   package = 'driveR')
 features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
                                   scna_df = example_scna_table,
                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
