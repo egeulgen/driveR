@@ -26,7 +26,7 @@ create_noncoding_impact_score_df <- function(annovar_csv_path, na.string = ".") 
 
 #' Create Gene-level SCNA Data Frame
 #'
-#' @param scna_df the SCNA segments data frame. Must contain: \describe{
+#' @param scna_segs_df the SCNA segments data frame. Must contain: \describe{
 #'   \item{chr}{chromosome the segment is located in}
 #'   \item{start}{start position of the segment}
 #'   \item{end}{end position of the segment}
@@ -42,11 +42,11 @@ create_noncoding_impact_score_df <- function(annovar_csv_path, na.string = ".") 
 #' by SCNA segments.
 #'
 #' @importFrom rlang .data
-create_gene_level_scna_df <- function(scna_df, build = "GRCh37", gene_overlap_threshold = 25) {
+create_gene_level_scna_df <- function(scna_segs_df, build = "GRCh37", gene_overlap_threshold = 25) {
     ### argument checks
     nec_cols <- c("chr", "start", "end", "log2ratio")
-    if (!all(nec_cols %in% colnames(scna_df))) {
-        stop("`scna_df` should contain all of: ",
+    if (!all(nec_cols %in% colnames(scna_segs_df))) {
+        stop("`scna_segs_df` should contain all of: ",
              paste(dQuote(nec_cols), collapse = ", "))
     }
 
@@ -61,7 +61,7 @@ create_gene_level_scna_df <- function(scna_df, build = "GRCh37", gene_overlap_th
 
     #### determine gene-level log2-ratios
     # GRanges objects
-    scna_gr <- GenomicRanges::makeGRangesFromDataFrame(scna_df,
+    scna_gr <- GenomicRanges::makeGRangesFromDataFrame(scna_segs_df,
                                                        keep.extra.columns = TRUE)
     GenomeInfoDb::seqlevelsStyle(scna_gr) <- "UCSC"
     if (build == "GRCh37")
@@ -104,7 +104,7 @@ create_gene_level_scna_df <- function(scna_df, build = "GRCh37", gene_overlap_th
 
 #' Create SCNA Score Data Frame
 #'
-#' @param gene_SCNA_df data frame of gene-level SCNAs (output of \code{\link{create_gene_level_scna_df}})
+#' @param scna_genes_df data frame of gene-level SCNAs (can be output of \code{\link{create_gene_level_scna_df}})
 #' @inheritParams create_gene_level_scna_df
 #' @param log2_ratio_threshold the \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}}
 #' ratio threshold for keeping high-confidence SCNA events (default = 0.25)
@@ -123,7 +123,7 @@ create_gene_level_scna_df <- function(scna_df, build = "GRCh37", gene_overlap_th
 #' ratio over all the SCNA segments overlapping a gene). Next, it identifies the
 #' minimal common regions (MCRs) that the genes overlap and finally assigns the
 #' SCNA density (SCNA/Mb) values as proxy SCNA scores.
-create_SCNA_score_df <- function(gene_SCNA_df,
+create_SCNA_score_df <- function(scna_genes_df,
                                  build = "GRCh37",
                                  log2_ratio_threshold = 0.25,
                                  MCR_overlap_threshold = 25){
@@ -140,19 +140,38 @@ create_SCNA_score_df <- function(gene_SCNA_df,
     if (MCR_overlap_threshold < 0 | MCR_overlap_threshold > 100)
         stop("`MCR_overlap_threshold` should be between 0-100")
 
+    ### add genomic coordinates if missing
+    if (!all(c("chr", "transcript_start", "transcript_end") %in% colnames(scna_genes_df))) {
+        all_syms_tbl <- as.data.frame(org.Hs.eg.db::org.Hs.egSYMBOL)
+        if (build == "GRCh37") {
+            genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene))
+        } else {
+            genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg38.knownGene::TxDb.Hsapiens.UCSC.hg38.knownGene))
+        }
+        all_coords_df <- as.data.frame(genes_gr)
+
+        tmp_ids <- all_syms_tbl$gene_id[match(scna_genes_df$symbol, all_syms_tbl$symbol)]
+        idx <- match(tmp_ids, all_coords_df$gene_id)
+
+        scna_genes_df$chr <- all_coords_df$seqnames[idx]
+        scna_genes_df$transcript_start <- all_coords_df$start[idx]
+        scna_genes_df$transcript_end <- all_coords_df$end[idx]
+        scna_genes_df <- scna_genes_df[!is.na(scna_genes_df$chr), ]
+    }
+
     #### determine gene-level log2-ratios
     # discard sex chromosomes
-    gene_SCNA_df <- gene_SCNA_df[!gene_SCNA_df$chr %in% c("chrX", "chrY"), ]
+    scna_genes_df <- scna_genes_df[!scna_genes_df$chr %in% c("chrX", "chrY"), ]
 
     # aggregate as max |log2-ratio| over all values per gene
-    agg_ratios <- tapply(gene_SCNA_df$log2ratio, gene_SCNA_df$symbol, function(x) {
+    agg_ratios <- tapply(scna_genes_df$log2ratio, scna_genes_df$symbol, function(x) {
         max_val <- max(abs(x))
         if (max_val %in% x)
             return(max_val)
         return(-max_val)
     })
 
-    gene_agg_df <- gene_SCNA_df[, c("symbol", "chr", "transcript_start", "transcript_end")]
+    gene_agg_df <- scna_genes_df[, c("symbol", "chr", "transcript_start", "transcript_end")]
     gene_agg_df <- gene_agg_df[!duplicated(gene_agg_df$symbol), ]
     gene_agg_df$agg_log2_ratio <- agg_ratios[match(gene_agg_df$symbol, names(agg_ratios))]
 
@@ -287,7 +306,7 @@ determine_hotspot_genes <- function(annovar_csv_path, hotspot_threshold = 5L) {
 #' @return vector of gene symbols that are subject to double-hit event(s), i.e.
 #' non-synonymous mutation + homozygous copy-number loss
 determine_double_hit_genes <- function(annovar_csv_path,
-                                       gene_SCNA_df,
+                                       scna_genes_df,
                                        log2_hom_loss_threshold = -1,
                                        batch_analysis = FALSE) {
     ### argument checks
@@ -299,7 +318,7 @@ determine_double_hit_genes <- function(annovar_csv_path,
 
     ### gene-level hom. loss df
     # keep only hom. loss
-    loss_genes_df <- gene_SCNA_df[gene_SCNA_df$log2ratio < log2_hom_loss_threshold, ]
+    loss_genes_df <- scna_genes_df[scna_genes_df$log2ratio < log2_hom_loss_threshold, ]
     # discard sex chromosomes
     loss_genes_df <- loss_genes_df[!loss_genes_df$chr %in% c("chrX", "chrY"), ]
 

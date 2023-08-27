@@ -184,7 +184,8 @@ predict_coding_impact <- function(annovar_csv_path,
 #'
 #' @seealso \code{\link{prioritize_driver_genes}} for prioritizing cancer driver genes
 create_features_df <- function(annovar_csv_path,
-                               scna_df,
+                               scna_segs_df,
+                               scna_genes_df,
                                phenolyzer_annotated_gene_list_path,
                                batch_analysis = FALSE,
                                prep_phenolyzer_input = FALSE,
@@ -196,9 +197,13 @@ create_features_df <- function(annovar_csv_path,
                                log2_hom_loss_threshold = -1,
                                verbose = TRUE,
                                na.string = ".") {
-    ### argument check
+    ### argument checks
     if (!is.logical(prep_phenolyzer_input))
         stop("`prep_phenolyzer_input` should be logical")
+
+    if (rlang::is_missing(scna_segs_df) & rlang::is_missing(scna_genes_df)) {
+        stop("Either `scna_segs_df` or `scna_genes_df` must be provided")
+    }
 
     ### determine individual features
     # coding variant impact metaprediction scores
@@ -214,16 +219,18 @@ create_features_df <- function(annovar_csv_path,
                                                             na.string = na.string)
 
     # gene-level SCNA df
-    if (verbose)
-        message("Determining gene-level SCNAs (This may take a while)")
-    gene_SCNA_df <- create_gene_level_scna_df(scna_df = scna_df,
-                                              build = build,
-                                              gene_overlap_threshold = gene_overlap_threshold)
+    if (rlang::is_missing(scna_genes_df)) {
+        if (verbose)
+            message("Determining gene-level SCNAs (This may take a while)")
+        scna_genes_df <- create_gene_level_scna_df(scna_segs_df = scna_segs_df,
+                                                  build = build,
+                                                  gene_overlap_threshold = gene_overlap_threshold)
+    }
 
     # SCNA scores
     if (verbose)
         message("Scoring SCNA events")
-    scna_scores_df <- create_SCNA_score_df(gene_SCNA_df = gene_SCNA_df,
+    scna_scores_df <- create_SCNA_score_df(scna_genes_df = scna_genes_df,
                                            build = build,
                                            log2_ratio_threshold = log2_ratio_threshold,
                                            MCR_overlap_threshold = MCR_overlap_threshold)
@@ -234,7 +241,7 @@ create_features_df <- function(annovar_csv_path,
     hotspot_genes <- determine_hotspot_genes(annovar_csv_path = annovar_csv_path,
                                              hotspot_threshold = hotspot_threshold)
     double_hit_genes <- determine_double_hit_genes(annovar_csv_path = annovar_csv_path,
-                                                   gene_SCNA_df = gene_SCNA_df,
+                                                   scna_genes_df = scna_genes_df,
                                                    log2_hom_loss_threshold = log2_hom_loss_threshold,
                                                    batch_analysis = batch_analysis)
     hotspot_dhit_genes <- unique(c(hotspot_genes, double_hit_genes))
