@@ -5,13 +5,13 @@
 \title{Create Gene-level SCNA Data Frame}
 \usage{
 create_gene_level_scna_df(
-  scna_df,
+  scna_segs_df,
   build = "GRCh37",
   gene_overlap_threshold = 25
 )
 }
 \arguments{
-\item{scna_df}{the SCNA segments data frame. Must contain: \describe{
+\item{scna_segs_df}{the SCNA segments data frame. Must contain: \describe{
 \item{chr}{chromosome the segment is located in}
 \item{start}{start position of the segment}
 \item{end}{end position of the segment}

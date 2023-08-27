@@ -6,7 +6,8 @@
 \usage{
 create_features_df(
   annovar_csv_path,
-  scna_df,
+  scna_segs_df,
+  scna_genes_df,
   phenolyzer_annotated_gene_list_path,
   batch_analysis = FALSE,
   prep_phenolyzer_input = FALSE,
@@ -23,12 +24,14 @@ create_features_df(
 \arguments{
 \item{annovar_csv_path}{path to 'ANNOVAR' csv output file}
 
-\item{scna_df}{the SCNA segments data frame. Must contain: \describe{
+\item{scna_segs_df}{the SCNA segments data frame. Must contain: \describe{
 \item{chr}{chromosome the segment is located in}
 \item{start}{start position of the segment}
 \item{end}{end position of the segment}
 \item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of the segment}
 }}
+
+\item{scna_genes_df}{data frame of gene-level SCNAs (can be output of \code{\link{create_gene_level_scna_df}})}
 
 \item{phenolyzer_annotated_gene_list_path}{path to 'phenolyzer'
 "annotated_gene_list" file}
