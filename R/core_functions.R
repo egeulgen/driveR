@@ -178,7 +178,7 @@ predict_coding_impact <- function(annovar_csv_path, keep_highest_score = TRUE, k
 #' path2phenolyzer_out <- system.file('extdata/example.annotated_gene_list',
 #'                                    package = 'driveR')
 #' features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
-#'                                   scna_df = example_scna_table,
+#'                                   scna_segs_df = example_scna_table,
 #'                                   phenolyzer_annotated_gene_list_path = path2phenolyzer_out)
 #' }
 #'
