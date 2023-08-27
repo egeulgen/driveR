@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1.9001</span>
       </span>
     </div>
 
@@ -70,7 +70,8 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_features_df</span><span class="op">(</span></span>
 <span>  <span class="va">annovar_csv_path</span>,</span>
-<span>  <span class="va">scna_df</span>,</span>
+<span>  <span class="va">scna_segs_df</span>,</span>
+<span>  <span class="va">scna_genes_df</span>,</span>
 <span>  <span class="va">phenolyzer_annotated_gene_list_path</span>,</span>
 <span>  batch_analysis <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  prep_phenolyzer_input <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -91,7 +92,7 @@
 <dd><p>path to 'ANNOVAR' csv output file</p></dd>
 
 
-<dt>scna_df</dt>
+<dt>scna_segs_df</dt>
 <dd><p>the SCNA segments data frame. Must contain:</p><dl><dt>chr</dt>
 <dd><p>chromosome the segment is located in</p></dd>
 
@@ -108,9 +109,13 @@
 </dl></dd>
 
 
+<dt>scna_genes_df</dt>
+<dd><p>data frame of gene-level SCNAs (can be output of <code><a href="create_gene_level_scna_df.html">create_gene_level_scna_df</a></code>)</p></dd>
+
+
 <dt>phenolyzer_annotated_gene_list_path</dt>
 <dd><p>path to 'phenolyzer'
-"annotated_gene_list" file</p></dd>
+'annotated_gene_list' file</p></dd>
 
 
 <dt>batch_analysis</dt>
@@ -129,7 +134,7 @@ returned.</p></dd>
 
 
 <dt>build</dt>
-<dd><p>genome build for the SCNA segments data frame (default = "GRCh37")</p></dd>
+<dd><p>genome build for the SCNA segments data frame (default = 'GRCh37')</p></dd>
 
 
 <dt>log2_ratio_threshold</dt>
@@ -168,7 +173,7 @@ homozygous loss events (default = -1).</p></dd>
 
 <dt>na.string</dt>
 <dd><p>string that was used to indicate when a score is not available
-during annotation with ANNOVAR (default = ".")</p></dd>
+during annotation with ANNOVAR (default = '.')</p></dd>
 
 </dl></div>
     <div id="value">
@@ -274,17 +279,16 @@ input for performing 'phenolyzer' analysis.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.hg19_multianno.csv"</span>,</span></span>
-<span class="r-in"><span>                                package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">path2phenolyzer_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.annotated_gene_list"</span>,</span></span>
-<span class="r-in"><span>                                   package <span class="op">=</span> <span class="st">"driveR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">path2annovar_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata/example.hg19_multianno.csv'</span>,</span></span>
+<span class="r-in"><span>                                package <span class="op">=</span> <span class="st">'driveR'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">path2phenolyzer_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">'extdata/example.annotated_gene_list'</span>,</span></span>
+<span class="r-in"><span>                                   package <span class="op">=</span> <span class="st">'driveR'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">features_df</span> <span class="op">&lt;-</span> <span class="fu">create_features_df</span><span class="op">(</span>annovar_csv_path <span class="op">=</span> <span class="va">path2annovar_csv</span>,</span></span>
-<span class="r-in"><span>                                  scna_df <span class="op">=</span> <span class="va">example_scna_table</span>,</span></span>
+<span class="r-in"><span>                                  scna_segs_df <span class="op">=</span> <span class="va">example_scna_table</span>,</span></span>
 <span class="r-in"><span>                                  phenolyzer_annotated_gene_list_path <span class="op">=</span> <span class="va">path2phenolyzer_out</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Predicting impact of coding variants</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Predicting impact of non-coding variants</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Determining gene-level SCNAs (This may take a while)</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scoring SCNA events</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Determining hotspot/double-hit genes</span>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">driveR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1.9001</span>
       </span>
     </div>
 
@@ -70,7 +70,7 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">determine_double_hit_genes</span><span class="op">(</span></span>
 <span>  <span class="va">annovar_csv_path</span>,</span>
-<span>  <span class="va">gene_SCNA_df</span>,</span>
+<span>  <span class="va">scna_genes_df</span>,</span>
 <span>  log2_hom_loss_threshold <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
 <span>  batch_analysis <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -82,8 +82,8 @@
 <dd><p>path to 'ANNOVAR' csv output file</p></dd>
 
 
-<dt>gene_SCNA_df</dt>
-<dd><p>data frame of gene-level SCNAs (output of <code><a href="create_gene_level_scna_df.html">create_gene_level_scna_df</a></code>)</p></dd>
+<dt>scna_genes_df</dt>
+<dd><p>data frame of gene-level SCNAs (can be output of <code><a href="create_gene_level_scna_df.html">create_gene_level_scna_df</a></code>)</p></dd>
 
 
 <dt>log2_hom_loss_threshold</dt>
