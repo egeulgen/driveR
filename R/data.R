@@ -16,9 +16,9 @@
 #' }
 "MTL_submodel_descriptions"
 
-#' KEGG "Pathways in cancer"-related Pathways - Descriptions
+#' KEGG 'Pathways in cancer'-related Pathways - Descriptions
 #'
-#' A data frame containing descriptions for KEGG "Pathways in cancer"
+#' A data frame containing descriptions for KEGG 'Pathways in cancer'
 #' (hsa05200)-related pathways.
 #' \emph{Generated on Nov 17, 2020.}
 #'
@@ -46,6 +46,24 @@
 #' }
 #' @source \url{https://pubmed.ncbi.nlm.nih.gov/24569458/}
 "example_scna_table"
+
+
+#' Example Gene-level Somatic Copy Number Alteration Table
+#'
+#' A data set containing the gene-level somatic copy number alteration data for
+#' the lung adenocarcinoma patient studied in Imielinski M, Greulich H,
+#' Kaplan B, et al. Oncogenic and sorafenib-sensitive ARAF mutations in lung
+#' adenocarcinoma. J Clin Invest. 2014;124(4):1582-6.
+#'
+#' @format A data frame with 46270 rows and 2 variables:
+#' \describe{
+#'   \item{symbol}{gene symbol}
+#'   \item{log2ratio}{\ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} ratio of
+#'   the gene}
+#' }
+#' @source \url{https://pubmed.ncbi.nlm.nih.gov/24569458/}
+"example_gene_scna_table"
+
 
 #' Example Features Table for Driver Prioritization
 #'
@@ -86,7 +104,7 @@
 #' }
 #'
 #' @seealso \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
-#'  KEGG "Pathways in cancer"-related pathways.
+#'  KEGG 'Pathways in cancer'-related pathways.
 "example_features_table"
 
 #' Example Cohort-level Somatic Copy Number Alteration Table
@@ -143,5 +161,5 @@
 #' }
 #'
 #' @seealso \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
-#'  KEGG "Pathways in cancer"-related pathways.
+#'  KEGG 'Pathways in cancer'-related pathways.
 "example_cohort_features_table"

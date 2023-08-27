@@ -38,6 +38,8 @@ reference:
       - specific_thresholds
       - KEGG_cancer_pathways_descriptions
       - example_scna_table
+      - example_scna_table
+      - example_gene_scna_table
       - example_cohort_scna_table
       - example_features_table
       - example_cohort_features_table

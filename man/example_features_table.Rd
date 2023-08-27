@@ -47,6 +47,6 @@ J Clin Invest. 2014;124(4):1582-6.
 }
 \seealso{
 \code{\link{KEGG_cancer_pathways_descriptions}} for descriptions of
-KEGG "Pathways in cancer"-related pathways.
+KEGG 'Pathways in cancer'-related pathways.
 }
 \keyword{datasets}

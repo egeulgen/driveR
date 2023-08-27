@@ -6,7 +6,7 @@
 \usage{
 determine_double_hit_genes(
   annovar_csv_path,
-  gene_SCNA_df,
+  scna_genes_df,
   log2_hom_loss_threshold = -1,
   batch_analysis = FALSE
 )
@@ -14,7 +14,7 @@ determine_double_hit_genes(
 \arguments{
 \item{annovar_csv_path}{path to 'ANNOVAR' csv output file}
 
-\item{gene_SCNA_df}{data frame of gene-level SCNAs (output of \code{\link{create_gene_level_scna_df}})}
+\item{scna_genes_df}{data frame of gene-level SCNAs (can be output of \code{\link{create_gene_level_scna_df}})}
 
 \item{log2_hom_loss_threshold}{to determine double-hit events, the
 \ifelse{html}{\out{log<sub>2</sub>}}{\eqn{log_2}} threshold for identifying
