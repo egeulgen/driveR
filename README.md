@@ -11,7 +11,7 @@ version](http://www.r-pkg.org/badges/version-ago/driveR)](https://cran.r-project
 [![Codecov test
 coverage](https://codecov.io/gh/egeulgen/driveR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/egeulgen/driveR?branch=master)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit/)
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit)
 <!-- badges: end -->
 
 Cancer genomes contain large numbers of somatic alterations but few
