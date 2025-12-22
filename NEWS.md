@@ -1,4 +1,4 @@
-# driveR (development version)
+# driveR 0.5.0
 ## Major Changes
 - added support for gene-level SCNA data frames to be used as input for `create_features_df()` and added an example gene-level SCNA data frame `example_gene_scna_table`
 
