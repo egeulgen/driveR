@@ -2,6 +2,9 @@
 ## Major Changes
 - added support for gene-level SCNA data frames to be used as input for `create_features_df()` and added an example gene-level SCNA data frame `example_gene_scna_table`
 
+## Minor changes and bug fixes
+- Moved `org.Hs.eg.db`, `TxDb.Hsapiens.UCSC.hg19.knownGene` and `TxDb.Hsapiens.UCSC.hg38.knownGene` from "Imports" to "Suggests" per new CRAN policy. Relevant functions raise error if the required package is not installed.
+
 # driveR 0.4.1
 
 ## Minor changes and bug fixes

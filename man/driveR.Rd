@@ -2,8 +2,8 @@
 % Please edit documentation in R/driveR.R
 \docType{package}
 \name{driveR}
-\alias{driveR}
 \alias{driveR-package}
+\alias{driveR}
 \title{driveR: An R Package for Prioritizing Cancer Driver Genes Using Genomics Data}
 \description{
 Cancer genomes contain large numbers of somatic alterations but few genes

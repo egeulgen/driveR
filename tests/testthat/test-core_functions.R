@@ -37,62 +37,64 @@ test_that("`predict_coding_impact` -- argument checks work", {
         "`keep_single_symbol` should be logical")
 })
 
-test_that("`create_features_df` -- works as expected", {
-    # personalized analysis
-    path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv", package = "driveR")
-    path2phenolyzer_out <- system.file("extdata/example.annotated_gene_list", package = "driveR")
+if (requireNamespace("org.Hs.eg.db", quietly = TRUE) && requireNamespace("TxDb.Hsapiens.UCSC.hg19", quietly = TRUE) && requireNamespace("TxDb.Hsapiens.UCSC.hg38", quietly = TRUE)) {
+    test_that("`create_features_df` -- works as expected", {
+        # personalized analysis
+        path2annovar_csv <- system.file("extdata/example.hg19_multianno.csv", package = "driveR")
+        path2phenolyzer_out <- system.file("extdata/example.annotated_gene_list", package = "driveR")
 
-    # prep_phenolyzer_input = FALSE
-    expect_is(features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
-        scna_segs_df = example_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out),
-        "data.frame")
-    expect_equal(ncol(features_df), 27)
-    expect_is(features_df2 <- create_features_df(annovar_csv_path = path2annovar_csv,
-        scna_genes_df = example_gene_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out),
-        "data.frame")
-    expect_equal(ncol(features_df2), 27)
+        # prep_phenolyzer_input = FALSE
+        expect_is(features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
+                                                    scna_segs_df = example_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out),
+                  "data.frame")
+        expect_equal(ncol(features_df), 27)
+        expect_is(features_df2 <- create_features_df(annovar_csv_path = path2annovar_csv,
+                                                     scna_genes_df = example_gene_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out),
+                  "data.frame")
+        expect_equal(ncol(features_df2), 27)
 
-    # prep_phenolyzer_input = TRUE
-    expect_is(create_features_df(annovar_csv_path = path2annovar_csv, scna_segs_df = example_scna_table,
-        prep_phenolyzer_input = TRUE), "character")
+        # prep_phenolyzer_input = TRUE
+        expect_is(create_features_df(annovar_csv_path = path2annovar_csv, scna_segs_df = example_scna_table,
+                                     prep_phenolyzer_input = TRUE), "character")
 
 
-    # batch analysis
-    path2annovar_csv <- system.file("extdata/example_cohort.hg19_multianno.csv",
-        package = "driveR")
-    path2phenolyzer_out <- system.file("extdata/example_cohort.annotated_gene_list",
-        package = "driveR")
-    expect_is(features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
-        scna_segs_df = example_cohort_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out,
-        batch_analysis = TRUE), "data.frame")
-    expect_equal(ncol(features_df), 27)
+        # batch analysis
+        path2annovar_csv <- system.file("extdata/example_cohort.hg19_multianno.csv",
+                                        package = "driveR")
+        path2phenolyzer_out <- system.file("extdata/example_cohort.annotated_gene_list",
+                                           package = "driveR")
+        expect_is(features_df <- create_features_df(annovar_csv_path = path2annovar_csv,
+                                                    scna_segs_df = example_cohort_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out,
+                                                    batch_analysis = TRUE), "data.frame")
+        expect_equal(ncol(features_df), 27)
 
-    # corner case 1
-    tmp <- read.csv(path2annovar_csv)
-    tmp <- tmp[tmp$CADD_phred == ".", ]
-    path2corner <- tempfile()
-    write.csv(tmp, path2corner, row.names = FALSE)
-    expect_warning(features_df <- create_features_df(annovar_csv_path = path2corner,
-        scna_segs_df = example_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out))
-    expect_is(features_df, "data.frame")
-    expect_equal(ncol(features_df), 27)
+        # corner case 1
+        tmp <- read.csv(path2annovar_csv)
+        tmp <- tmp[tmp$CADD_phred == ".", ]
+        path2corner <- tempfile()
+        write.csv(tmp, path2corner, row.names = FALSE)
+        expect_warning(features_df <- create_features_df(annovar_csv_path = path2corner,
+                                                         scna_segs_df = example_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out))
+        expect_is(features_df, "data.frame")
+        expect_equal(ncol(features_df), 27)
 
-    # corner case 2
-    tmp <- tmp[1:2, ]
-    tmp$cosmic91_coding <- tmp$cosmic91_noncoding <- "."
-    path2corner <- tempfile()
-    write.csv(tmp, path2corner, row.names = FALSE)
-    tmp_scna_table <- example_scna_table[1:2, ]
-    tmp_scna_table$log2ratio <- 0.1
-    expect_warning(features_df <- create_features_df(annovar_csv_path = path2corner,
-        scna_segs_df = tmp_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out))
+        # corner case 2
+        tmp <- tmp[1:2, ]
+        tmp$cosmic91_coding <- tmp$cosmic91_noncoding <- "."
+        path2corner <- tempfile()
+        write.csv(tmp, path2corner, row.names = FALSE)
+        tmp_scna_table <- example_scna_table[1:2, ]
+        tmp_scna_table$log2ratio <- 0.1
+        expect_warning(features_df <- create_features_df(annovar_csv_path = path2corner,
+                                                         scna_segs_df = tmp_scna_table, phenolyzer_annotated_gene_list_path = path2phenolyzer_out))
 
-})
+    })
 
-test_that("`create_features_df` -- argument checks work", {
-    expect_error(create_features_df(prep_phenolyzer_input = "INVALID"), "`prep_phenolyzer_input` should be logical")
-    expect_error(create_features_df(), "Either `scna_segs_df` or `scna_genes_df` must be provided")
-})
+    test_that("`create_features_df` -- argument checks work", {
+        expect_error(create_features_df(prep_phenolyzer_input = "INVALID"), "`prep_phenolyzer_input` should be logical")
+        expect_error(create_features_df(), "Either `scna_segs_df` or `scna_genes_df` must be provided")
+    })
+}
 
 test_that("`prioritize_driver_genes` -- works as expected", {
     expect_is(drivers_df <- prioritize_driver_genes(example_features_table, "LUAD"),

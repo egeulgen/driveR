@@ -47,6 +47,35 @@ create_noncoding_impact_score_df <- function(annovar_csv_path, na.string = ".") 
 #'
 #' @importFrom rlang .data
 create_gene_level_scna_df <- function(scna_segs_df, build = "GRCh37", gene_overlap_threshold = 25) {
+
+if (!requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
+        stop(
+            "Package 'org.Hs.eg.db' is required but not installed.\n",
+            "Install it with:\n",
+            "  if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')\n",
+            "  BiocManager::install('org.Hs.eg.db')",
+            call. = FALSE
+        )
+    }
+    if (build == "GRCh37" && !requireNamespace("TxDb.Hsapiens.UCSC.hg19.knownGene", quietly = TRUE)) {
+        stop(
+            "Package 'TxDb.Hsapiens.UCSC.hg19.knownGene' is required but not installed.\n",
+            "Install it with:\n",
+            "  if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')\n",
+            "  BiocManager::install('TxDb.Hsapiens.UCSC.hg19.knownGene')",
+            call. = FALSE
+        )
+    }
+    if (build == "GRCh38" && !requireNamespace("TxDb.Hsapiens.UCSC.hg38.knownGene", quietly = TRUE)) {
+        stop(
+            "Package 'TxDb.Hsapiens.UCSC.hg38.knownGene' is required but not installed.\n",
+            "Install it with:\n",
+            "  if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')\n",
+            "  BiocManager::install('TxDb.Hsapiens.UCSC.hg38.knownGene')",
+            call. = FALSE
+        )
+    }
+
     ### argument checks
     nec_cols <- c("chr", "start", "end", "log2ratio")
     if (!all(nec_cols %in% colnames(scna_segs_df))) {
@@ -65,8 +94,11 @@ create_gene_level_scna_df <- function(scna_segs_df, build = "GRCh37", gene_overl
     #### determine gene-level log2-ratios GRanges objects
     scna_gr <- GenomicRanges::makeGRangesFromDataFrame(scna_segs_df, keep.extra.columns = TRUE)
     GenomeInfoDb::seqlevelsStyle(scna_gr) <- "UCSC"
-    if (build == "GRCh37")
-        genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene)) else genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg38.knownGene::TxDb.Hsapiens.UCSC.hg38.knownGene))
+    if (build == "GRCh37") {
+        genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene))
+    } else {
+        genes_gr <- suppressMessages(GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg38.knownGene::TxDb.Hsapiens.UCSC.hg38.knownGene))
+    }
 
     # overlaps
     hits <- GenomicRanges::findOverlaps(scna_gr, genes_gr, type = "any", select = "all")
@@ -122,6 +154,34 @@ create_gene_level_scna_df <- function(scna_segs_df, build = "GRCh37", gene_overl
 #' SCNA density (SCNA/Mb) values as proxy SCNA scores.
 create_SCNA_score_df <- function(scna_genes_df, build = "GRCh37", log2_ratio_threshold = 0.25,
     MCR_overlap_threshold = 25) {
+    if (!requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
+        stop(
+            "Package 'org.Hs.eg.db' is required but not installed.\n",
+            "Install it with:\n",
+            "  if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')\n",
+            "  BiocManager::install('org.Hs.eg.db')",
+            call. = FALSE
+        )
+    }
+    if (build == "GRCh37" && !requireNamespace("TxDb.Hsapiens.UCSC.hg19.knownGene", quietly = TRUE)) {
+        stop(
+            "Package 'TxDb.Hsapiens.UCSC.hg19.knownGene' is required but not installed.\n",
+            "Install it with:\n",
+            "  if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')\n",
+            "  BiocManager::install('TxDb.Hsapiens.UCSC.hg19.knownGene')",
+            call. = FALSE
+        )
+    }
+    if (build == "GRCh38" && !requireNamespace("TxDb.Hsapiens.UCSC.hg38.knownGene", quietly = TRUE)) {
+        stop(
+            "Package 'TxDb.Hsapiens.UCSC.hg38.knownGene' is required but not installed.\n",
+            "Install it with:\n",
+            "  if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')\n",
+            "  BiocManager::install('TxDb.Hsapiens.UCSC.hg38.knownGene')",
+            call. = FALSE
+        )
+    }
+
     ### argument checks
     if (!build %in% c("GRCh37", "GRCh38"))
         stop("`build should be one of ", paste(dQuote(c("GRCh37", "GRCh38")), collapse = ", "))
